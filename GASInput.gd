@@ -21,6 +21,7 @@ func remap_action(action:String, event:InputEvent):
 			InputMap.action_erase_event(action, mapping)
 			InputMap.action_add_event(action, event)
 
+# https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
 func is_action_just_pressed(s:String) -> bool:
 	if !Input.is_action_just_pressed(s): return false
 	if cooldowns.has(s): return false
