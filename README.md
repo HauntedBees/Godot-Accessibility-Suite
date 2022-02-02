@@ -12,9 +12,9 @@ This suite is a work in progress and will be built upon as I develop my own game
 If you would like to add to the project, by all means, go for it! All contributions must be made with a permissive open source license to ensure as many game developers as possible have access to this code.
 
 # Usage
-This suite is probably not entirely usable yet, even for the features that are already implemented. The intention is that certain functionalities will be grouped together and developers will be able to simply copy those script files into their own projects. It is possible that making this whole thing a plugin might be a better idea in the long run. An example project and usage notes for each feature will be added eventually.
+Create the folder `res://addons/gas/` in your project and copy the contents of this repository's `addons/gas` folder into there. Then in Godot go to **Project Settings** > **Plugins** and enable **Godot Accessibility Suite**. Usage information for each feature is described in that feature's summary below. An example project will be added eventually.
 
-# Features (based on the Game Accessibility Guidelines as they existed on 1FEB2022)
+# Current Features
 
 ## [Controller Remapping](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
 `GASInput.remap_action(action:String, event:InputEvent)` will update a Godot action (as seen in the **Input Map** in **Project Settings**) to a new value. This supports both keyboard and gamepad inputs concurrently, so if `ui_accept` is configured to the "Start" button on a gamepad as well as the Enter key on a keyboard, calling `GASInput.remap_action("ui_accept", user_pressed_the_spacebar_key)` will replace the Enter key binding with a Spacebar key binding, but leave the "Start" button binding unchanged.
