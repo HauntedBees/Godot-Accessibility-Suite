@@ -1,7 +1,7 @@
 extends Node
 
-const COOLDOWN_LENGTH := 0.5
-var cooldowns := {}
+const INPUT_COOLDOWN_LENGTH := 0.5
+var active_input_cooldowns := {}
 
 # https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/
 func remap_action(action:String, event:InputEvent):
@@ -24,12 +24,11 @@ func remap_action(action:String, event:InputEvent):
 # https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
 func is_action_just_pressed(s:String) -> bool:
 	if !Input.is_action_just_pressed(s): return false
-	if cooldowns.has(s): return false
-	cooldowns[s] = COOLDOWN_LENGTH
+	if active_input_cooldowns.has(s): return false
+	active_input_cooldowns[s] = INPUT_COOLDOWN_LENGTH
 	return true
-
 func _process(delta:float) -> void:
-	for key in cooldowns:
-		cooldowns[key] -= delta
-		if cooldowns[key] <= 0:
-			cooldowns.erase(key)
+	for key in active_input_cooldowns.keys():
+		active_input_cooldowns[key] -= delta
+		if active_input_cooldowns[key] <= 0:
+			active_input_cooldowns.erase(key)
