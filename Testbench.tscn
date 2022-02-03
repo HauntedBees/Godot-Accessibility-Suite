@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://testfont.tres" type="DynamicFont" id=1]
+
+[node name="Testbench" type="Node2D"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 345.0
+margin_top = 177.0
+margin_right = 736.0
+margin_bottom = 263.0
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_right = 134.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 1 )
+text = "Button One"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+margin_left = 149.0
+margin_right = 233.0
+margin_bottom = 86.0
+text = "Button Two"

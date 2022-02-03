@@ -16,6 +16,14 @@ Create the folder `res://addons/gas/` in your project and copy the contents of t
 
 # Current Features
 
+## Accessibility Audit
+An "Accessibility" tab is added to the Bottom Panel with two buttons:
+ - **Audit Scene**: Scans through all Nodes in the current scene for accessibility issues.
+ - **Audit Resources**: Scans through all Resources in the project for accessibility issues.
+These audits will certainly miss things if you're doing custom/creative/weird stuff, so as with everything else in this Suite, should be used as just one of many tools in your mission to make your game accessible. These audits will currently find:
+ - [Easily Readable Font Size](https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/) in `Button`, `Label`, and `RichTextLabel` Nodes (Audit Scene) and `DynamicFont` and `BitmapFont` Resources (Audit Resources).
+ - [Well Spaced Interactive Elements](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/) on `Button` Nodes inside `HBoxContainer` and `VBoxContainer` Nodes (Audit Scene).
+
 ## [Controller Remapping](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
 `GASInput.remap_action(action:String, event:InputEvent)` will update a Godot action (as seen in the **Input Map** in **Project Settings**) to a new value. This supports both keyboard and gamepad inputs concurrently, so if `ui_accept` is configured to the "Start" button on a gamepad as well as the Enter key on a keyboard, calling `GASInput.remap_action("ui_accept", user_pressed_the_spacebar_key)` will replace the Enter key binding with a Spacebar key binding, but leave the "Start" button binding unchanged.
 
@@ -62,3 +70,6 @@ Functions to export all custom settings into a dictionary - which can then be sa
 
 ## [Auto-Aim](https://gameaccessibilityguidelines.com/include-assist-modes-such-as-auto-aim-and-assisted-steering/)
 Might be possible to create something like an "auto aim target" node with a certain radius that, when the cursor (controlled by mouse or analog stick) is within that radius, will snap to the center of the node.
+
+## Some sort of in-editor checklist
+Show all items (even the ones not included in this plugin) in a checklist or kanban board with room to leave comments and such.
