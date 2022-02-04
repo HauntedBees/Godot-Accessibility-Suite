@@ -11,6 +11,7 @@ var goods := []
 var nodes_scanned := 0
 
 func _enter_tree():
+	add_autoload_singleton("GASConfig", "res://addons/gas/GASConfig.gd")
 	add_autoload_singleton("GASInput", "res://addons/gas/GASInput.gd")
 	
 	profiler = VBoxContainer.new()
@@ -45,6 +46,7 @@ func _enter_tree():
 
 func _exit_tree():
 	remove_autoload_singleton("GASInput")
+	remove_autoload_singleton("GASConfig")
 	remove_control_from_bottom_panel(profiler) # why doesn't this work?? :(
 	profiler.queue_free() # this throws an error :'(
 
