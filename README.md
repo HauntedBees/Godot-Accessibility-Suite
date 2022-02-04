@@ -14,9 +14,7 @@ If you would like to add to the project, by all means, go for it! All contributi
 # Usage
 Create the folder `res://addons/gas/` in your project and copy the contents of this repository's `addons/gas` folder into there. Then in Godot go to **Project Settings** > **Plugins** and enable **Godot Accessibility Suite**. Usage information for each feature is described in that feature's summary below. An example project will be added eventually.
 
-# Current Features
-
-## Accessibility Audit
+# Accessibility Audit
 An "Accessibility" tab is added to the Bottom Panel with two buttons:
  - **Audit Scene**: Scans through all Nodes in the current scene for accessibility issues.
  - **Audit Resources**: Scans through all Resources in the project for accessibility issues.
@@ -24,6 +22,10 @@ These audits will certainly miss things if you're doing custom/creative/weird st
  - [Easily Readable Font Size](https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/) in `Button`, `Label`, and `RichTextLabel` Nodes (Audit Scene) and `DynamicFont` and `BitmapFont` Resources (Audit Resources).
  - [Well Spaced Interactive Elements](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/) on `Button` Nodes inside `HBoxContainer` and `VBoxContainer` Nodes (Audit Scene).
 
+# Custom Nodes
+### GASContainer
+Does not *resize* or *scale* child nodes to fit the container, but does enforce alignment rules and [a minimum separation between the nodes](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/). **Known Issue**: The actual container size and position have no relation to the actual contents.
+# Other Features
 ## [Controller Remapping](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
 `GASInput.remap_action(action:String, event:InputEvent)` will update a Godot action (as seen in the **Input Map** in **Project Settings**) to a new value. This supports both keyboard and gamepad inputs concurrently, so if `ui_accept` is configured to the "Start" button on a gamepad as well as the Enter key on a keyboard, calling `GASInput.remap_action("ui_accept", user_pressed_the_spacebar_key)` will replace the Enter key binding with a Spacebar key binding, but leave the "Start" button binding unchanged.
 

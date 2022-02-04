@@ -8,9 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Control",
+"class": "GASContainer",
+"language": "GDScript",
+"path": "res://addons/gas/GASContainer.gd"
+} ]
+_global_script_class_icons={
+"GASContainer": ""
+}
+
 [application]
 
 config/name="Godot Accessibility Suite"
+run/main_scene="res://Testbench.tscn"
 config/icon="res://icon.png"
 
 [autoload]

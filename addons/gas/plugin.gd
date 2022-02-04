@@ -13,7 +13,7 @@ var nodes_scanned := 0
 func _enter_tree():
 	add_autoload_singleton("GASConfig", "res://addons/gas/GASConfig.gd")
 	add_autoload_singleton("GASInput", "res://addons/gas/GASInput.gd")
-	
+	add_custom_type("GASContainer", "Control", preload("res://addons/gas/GASContainer.gd"), get_editor_interface().get_base_control().get_icon("GridContainer", "EditorIcons"))
 	profiler = VBoxContainer.new()
 	
 	var buttons := HBoxContainer.new()
@@ -47,6 +47,7 @@ func _enter_tree():
 func _exit_tree():
 	remove_autoload_singleton("GASInput")
 	remove_autoload_singleton("GASConfig")
+	remove_custom_type("GASContainer")
 	remove_control_from_bottom_panel(profiler) # why doesn't this work?? :(
 	profiler.queue_free() # this throws an error :'(
 

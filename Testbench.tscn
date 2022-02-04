@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://testfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://addons/gas/GASContainer.gd" type="Script" id=3]
 
 [node name="Testbench" type="Node2D"]
 
@@ -14,14 +15,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="HBoxContainer"]
-margin_right = 134.0
+[node name="GASContainer" type="Control" parent="."]
+margin_right = 277.0
 margin_bottom = 86.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+alignment = 2
+
+[node name="Button2" type="Button" parent="GASContainer"]
+margin_left = 40.0
+margin_top = 515.0
+margin_right = 69.0
+margin_bottom = 535.0
+rect_pivot_offset = Vector2( 42, 43 )
+text = "B2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="GASContainer"]
+margin_left = 84.0
+margin_top = 449.0
+margin_right = 218.0
+margin_bottom = 535.0
+rect_pivot_offset = Vector2( 67, 43 )
 custom_fonts/font = ExtResource( 1 )
 text = "Button One"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
-margin_left = 149.0
-margin_right = 233.0
-margin_bottom = 86.0
-text = "Button Two"
+[node name="Button3" type="Button" parent="GASContainer"]
+margin_left = 233.0
+margin_top = 472.0
+margin_right = 317.0
+margin_bottom = 535.0
+rect_pivot_offset = Vector2( 42, 43 )
+text = "Button 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
