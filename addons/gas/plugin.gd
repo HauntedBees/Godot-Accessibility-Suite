@@ -14,6 +14,8 @@ func _enter_tree():
 	add_autoload_singleton("GASConfig", "res://addons/gas/GASConfig.gd")
 	add_autoload_singleton("GASInput", "res://addons/gas/GASInput.gd")
 	add_custom_type("GASContainer", "Control", preload("res://addons/gas/GASContainer.gd"), get_editor_interface().get_base_control().get_icon("GridContainer", "EditorIcons"))
+	add_custom_type("GASVirtualGamepad", "Control", preload("res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
+	add_custom_type("GASVirtualButton", "Control", preload("res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
 	profiler = VBoxContainer.new()
 	
 	var buttons := HBoxContainer.new()
@@ -48,8 +50,10 @@ func _exit_tree():
 	remove_autoload_singleton("GASInput")
 	remove_autoload_singleton("GASConfig")
 	remove_custom_type("GASContainer")
-	remove_control_from_bottom_panel(profiler) # why doesn't this work?? :(
-	profiler.queue_free() # this throws an error :'(
+	remove_custom_type("GASVirtualGamepad")
+	remove_custom_type("GASVirtualButton")
+	remove_control_from_bottom_panel(profiler) # TODO: why doesn't this work?? :(
+	profiler.queue_free() # TODO: this throws an error :'(
 
 func _on_link_click(meta): OS.shell_open(str(meta))
 

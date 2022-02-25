@@ -13,15 +13,39 @@ _global_script_classes=[ {
 "class": "GASContainer",
 "language": "GDScript",
 "path": "res://addons/gas/GASContainer.gd"
+}, {
+"base": "GASVirtualControl",
+"class": "GASVirtualButton",
+"language": "GDScript",
+"path": "res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd"
+}, {
+"base": "Control",
+"class": "GASVirtualControl",
+"language": "GDScript",
+"path": "res://addons/gas/GASVirtualGamepad/GASVirtualControl.gd"
+}, {
+"base": "Control",
+"class": "GASVirtualGamepad",
+"language": "GDScript",
+"path": "res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd"
+}, {
+"base": "Control",
+"class": "GASVirtualGizmo",
+"language": "GDScript",
+"path": "res://addons/gas/GASVirtualGamepad/GASVirtualGizmo.gd"
 } ]
 _global_script_class_icons={
-"GASContainer": ""
+"GASContainer": "",
+"GASVirtualButton": "",
+"GASVirtualControl": "",
+"GASVirtualGamepad": "",
+"GASVirtualGizmo": ""
 }
 
 [application]
 
 config/name="Godot Accessibility Suite"
-run/main_scene="res://Testbench.tscn"
+run/main_scene="res://VirtualControllerExample.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -32,6 +56,10 @@ GASInput="*res://addons/gas/GASInput.gd"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/gas/plugin.cfg" )
+
+[input_devices]
+
+pointing/emulate_mouse_from_touch=false
 
 [physics]
 

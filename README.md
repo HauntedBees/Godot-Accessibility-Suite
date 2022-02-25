@@ -25,6 +25,52 @@ These audits will certainly miss things if you're doing custom/creative/weird st
 # Custom Nodes
 ### GASContainer
 Does not *resize* or *scale* child nodes to fit the container, but does enforce alignment rules and [a minimum separation between the nodes](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/). **Known Issue**: The actual container size and position have no relation to the actual contents.
+
+# Virtual Gamepad
+For touch-screen based games, adding a virtual gamepad to the screen is common. The Virtual Gamepad in this Suite is designed to be easily configurable by the developer, and just as easily configurable by players to accommodate accessibility needs, by allowing the player to:
+    - resize and reposition all gamepad elements
+    - choose whether to have analog sticks/directional pads be dynamic (when the player presses down anywhere on the screen, the center of the movement control appears there) or fixed (stays at a specified position)
+    - set buttons and movement controls that might be pressed rapidly or held down to be *toggle-based* so that they can just press the button once to simulate the button being held or rapidly pressed, then press again to stop the action
+
+## Usage
+Add a *GASVirtualGamepad* node to your scene, size it as appropriate, then add the relevant *GASVirtualButton*, *GASVirtualDPad*, and *GASVirtualAnalogStick* nodes and size/position them as your intended default positions. Players will be able to reposition and resize these buttons in **Edit Mode** but they will not be able to add or remove buttons. If different parts of your game need different virtual gamepads, create a different *GASVirtualGamepad* for each one. Configuration is stored in a `gas_virtualgamepad_NODE_NAME.cfg` file in the `user://` directory, so use different names for different gamepad configurations, and use the same name for a given gamepad across multiple scenes.
+
+## Nodes
+
+### GASVirtualGamepad
+The container node for your virtual gamepad. All children of a *GASVirtualGamepad* node should be virtual inputs as described below. The position and scale of these nodes will be the default values when a new player begins the game. It is recommended that you take advantage of the customization features by adding an "edit gamepad configuration" option to your options menu (and having an options menu in your game) so that players can reposition and resize the gamepad as needed. 
+
+#### edit_mode
+Set `edit_mode` to true to allow players to resize and reposition game inputs. In your game's options menu or equivalent, you'll be able to toggle this variable as needed.
+#### save_setup()
+This will save the player's custom configuration to `gas_virtualgamepad_NODE_NAME.cfg`. You should call this when the player wants to save their changes in your game's options menu.
+#### load_setup()
+This will load the player's custom configuration, or do nothing if one has not been defined. This is called in the `_ready` function so it does not need to be called manually, but can be if needed - i.e. if the player is editing their configuration and clicks a cancel button instead of a save button.
+#### restore_defaults()
+This will set the configuration back to the default values: what you specified in the scene. This change will not be saved unless `save_setup` is also called. It is recommended to have a button in your options menu/control edit screen for this in case the player accidentally moves a button off-screen or makes some other hard-to-undo mistake.
+
+### GASVirtualControl
+All buttons, analog sticks, and d-pads inherit from *GASVirtualControl* which has the following export variables:
+
+#### can_be_toggled
+This should be set by the developer; when true, players can make this input toggle-able, which is desirable for movement controls and buttons that are likely to be held down or pressed repeatedly. It is not recommended for actions that should not be executed repeatedly, like a Pause button or a "talk to the character in front of you or advance the dialog" button.
+#### is_toggle
+A default value can be set by the developer but this will be configurable by players in Edit Mode if `can_be_toggled` is true.
+
+### GASVirtualButton
+It's a button you can press. By default, this will emit its specified `action` when pressed down. It can be configured to repeat the action emission every `repeat_frequency` seconds when held or when toggled.
+
+#### texture
+The texture the button should have. Set it to whatever you want your button to look like.
+#### action
+The action to be executed when pressing the button.
+#### is_circle
+When `true`, the radius of the button will be used to ensure that the player's finger is actually in the button and not pressing the corner of the square. **TODO: actually implement this, remove it if it doesn't matter, or use an actual click mask.**
+#### repeat_frequency
+If non-zero, the action will be emitted every repeat_frequency seconds as long as the button is pressed; this should **never** be 0 if `can_be_toggled` is true.
+#### pressed_tint
+The color the button should be tinted when it's pressed. **TODO: have a separate `pressed_texture` maybe.**
+
 # Other Features
 ## [Controller Remapping](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
 `GASInput.remap_action(action:String, event:InputEvent)` will update a Godot action (as seen in the **Input Map** in **Project Settings**) to a new value. This supports both keyboard and gamepad inputs concurrently, so if `ui_accept` is configured to the "Start" button on a gamepad as well as the Enter key on a keyboard, calling `GASInput.remap_action("ui_accept", user_pressed_the_spacebar_key)` will replace the Enter key binding with a Spacebar key binding, but leave the "Start" button binding unchanged.
