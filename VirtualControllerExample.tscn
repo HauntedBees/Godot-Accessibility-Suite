@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd" type="Script" id=1]
 [ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd" type="Script" id=2]
 [ext_resource path="res://VirtualControllerExample.gd" type="Script" id=3]
+[ext_resource path="res://addons/gas/GASVirtualGamepad/Parts/button1.png" type="Texture" id=4]
 
 [node name="VirtualControllerExample" type="Control"]
 anchor_right = 1.0
@@ -21,19 +22,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GASVirtualButton" type="Control" parent="GASVirtualGamepad"]
+[node name="A Button" type="Control" parent="GASVirtualGamepad"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -250.0
-margin_right = -43.0
-margin_bottom = -166.0
+margin_left = -247.0
+margin_top = -152.0
+margin_right = -162.0
+margin_bottom = -68.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+repeat_frequency = 0.5
+
+[node name="B Button" type="Control" parent="GASVirtualGamepad"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -133.0
+margin_top = -235.0
+margin_right = -53.0
+margin_bottom = -155.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+texture = ExtResource( 4 )
+repeat_frequency = 0.5
+
+[node name="B2 Button" type="Control" parent="GASVirtualGamepad"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -173.0
+margin_top = -382.0
+margin_right = -93.0
+margin_bottom = -302.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+texture = ExtResource( 4 )
 repeat_frequency = 0.5
 
 [node name="Buttons" type="HBoxContainer" parent="."]

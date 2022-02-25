@@ -23,6 +23,7 @@ export(Color) var pressed_tint := Color.darkgray
 
 var button:TextureRect = null
 var pressed := false
+var press_idx := 0
 var press_delay := 0.0
 
 func _ready():
@@ -59,6 +60,8 @@ func _on_input(i:InputEvent):
 func _standard_input(i:InputEvent):
 	if !(i is InputEventScreenTouch || i is InputEventMouseButton): return
 	var is_pressed:bool = i.pressed
+	var my_idx:int = i.index if i is InputEventScreenTouch else 0
+	if !is_pressed && my_idx != press_idx: return # TODO: this does NOT work; get multitouch working!
 	## TODO: circle check
 	if is_toggle:
 		if is_pressed: ## For toggle buttons, pressing the button will toggle its pressed state
@@ -68,6 +71,7 @@ func _standard_input(i:InputEvent):
 		pressed = is_pressed
 	button.modulate = pressed_tint if pressed else Color.white
 	if pressed:
+		press_idx = my_idx
 		press_delay = repeat_frequency
 		_simulate_action_press() ## When you first press the button, always emit the event!
 

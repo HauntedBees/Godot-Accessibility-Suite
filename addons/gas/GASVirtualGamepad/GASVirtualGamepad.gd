@@ -24,7 +24,8 @@ func load_setup():
 	var err := config.load("user://gas_virtualgamepad_%s.cfg" % name)
 	if err != OK: return
 	for c in get_children():
-		c.config = config.get_value("controls", c.name)
+		var loaded_config = config.get_value("controls", c.name)
+		if loaded_config != null: c.config = loaded_config
 func save_setup():
 	var config := ConfigFile.new()
 	for c in get_children():

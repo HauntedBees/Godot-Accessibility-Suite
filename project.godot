@@ -53,13 +53,13 @@ config/icon="res://icon.png"
 GASConfig="*res://addons/gas/GASConfig.gd"
 GASInput="*res://addons/gas/GASInput.gd"
 
+[display]
+
+window/handheld/orientation="portrait"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/gas/plugin.cfg" )
-
-[input_devices]
-
-pointing/emulate_mouse_from_touch=false
 
 [physics]
 
