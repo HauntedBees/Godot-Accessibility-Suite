@@ -28,6 +28,7 @@ Does not *resize* or *scale* child nodes to fit the container, but does enforce 
 
 # Virtual Gamepad
 For touch-screen based games, adding a virtual gamepad to the screen is common. The Virtual Gamepad in this Suite is designed to be easily configurable by the developer, and just as easily configurable by players to accommodate accessibility needs, by allowing the player to:
+
     - resize and reposition all gamepad elements
     - choose whether to have analog sticks/directional pads be dynamic (when the player presses down anywhere on the screen, the center of the movement control appears there) or fixed (stays at a specified position)
     - set buttons and movement controls that might be pressed rapidly or held down to be *toggle-based* so that they can just press the button once to simulate the button being held or rapidly pressed, then press again to stop the action
