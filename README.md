@@ -29,9 +29,9 @@ Does not *resize* or *scale* child nodes to fit the container, but does enforce 
 # Virtual Gamepad
 For touch-screen based games, adding a virtual gamepad to the screen is common. The Virtual Gamepad in this Suite is designed to be easily configurable by the developer, and just as easily configurable by players to accommodate accessibility needs, by allowing the player to:
 
-    - resize and reposition all gamepad elements
-    - choose whether to have analog sticks/directional pads be dynamic (when the player presses down anywhere on the screen, the center of the movement control appears there) or fixed (stays at a specified position)
-    - set buttons and movement controls that might be pressed rapidly or held down to be *toggle-based* so that they can just press the button once to simulate the button being held or rapidly pressed, then press again to stop the action
+    * resize and reposition all gamepad elements
+    * choose whether to have analog sticks/directional pads be dynamic (when the player presses down anywhere on the screen, the center of the movement control appears there) or fixed (stays at a specified position)
+    * set buttons and movement controls that might be pressed rapidly or held down to be *toggle-based* so that they can just press the button once to simulate the button being held or rapidly pressed, then press again to stop the action
 
 ## Usage
 Add a *GASVirtualGamepad* node to your scene, size it as appropriate, then add the relevant *GASVirtualButton*, *GASVirtualDPad*, and *GASVirtualAnalogStick* nodes and size/position them as your intended default positions. Players will be able to reposition and resize these buttons in **Edit Mode** but they will not be able to add or remove buttons. If different parts of your game need different virtual gamepads, create a different *GASVirtualGamepad* for each one. Configuration is stored in a `gas_virtualgamepad_NODE_NAME.cfg` file in the `user://` directory, so use different names for different gamepad configurations, and use the same name for a given gamepad across multiple scenes.
