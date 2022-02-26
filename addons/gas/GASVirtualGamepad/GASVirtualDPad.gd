@@ -19,10 +19,6 @@ func _set_down_texture(t:Texture):
 	down_texture = t
 	if down != null: down.texture = t
 
-export(String) var action_left := "ui_left"
-export(String) var action_right := "ui_right"
-export(String) var action_up := "ui_up"
-export(String) var action_down := "ui_down"
 
 export(float) var button_distance := 5.0 setget _set_button_distance
 func _set_button_distance(b:float):
@@ -36,11 +32,6 @@ var left:TextureRect = null
 var right:TextureRect = null
 var up:TextureRect = null
 var down:TextureRect = null
-var pressed := false
-var press_idx := 0
-var center := Vector2.ZERO
-var initial_position := Vector2.ZERO
-var radius := 1.0
 
 func _ready():
 	left = TextureRect.new()
@@ -77,74 +68,21 @@ func _position_directions():
 	radius = center.x # TODO?: better support for rectangle d-pads
 	for i in [left, right, up, down]: i.rect_position += rect_size / 2.0
 
-func _post_edit():
-	pass
-	#if back == null || front == null: return
-#	center = back.rect_position + (back.rect_size - front.rect_size) / 2.0
-#	front.rect_position = center
-#	radius = back.rect_size.x / 2.0 # TODO?: better support for oval wheels
-#	if !edit_mode: visible = fixed_position
-
-func _on_input(i:InputEvent):
-	if edit_mode: pass
-	else: _standard_input(i)
 func _standard_input(i:InputEvent):
-	if i is InputEventScreenDrag || i is InputEventMouseMotion: _handle_dragging(i)
-	if !(i is InputEventScreenTouch || i is InputEventMouseButton): return
-	var is_pressed:bool = i.pressed
-	var my_idx:int = i.index if i is InputEventScreenTouch else 0
-	if is_pressed: press_idx = my_idx
-	elif press_idx != my_idx: return
-	
-#	if is_toggle:
-#		if is_pressed: ## For toggle buttons, pressing the button will toggle its pressed state
-#			pressed = !pressed
-#		else: return
-#	else: ## For regular buttons, pressing/releasing the button will set the pressed state accordingly
-	pressed = is_pressed
-	
-	if pressed:
-		press_idx = my_idx
-		initial_position = center
-		if !fixed_position: visible = true
-		_handle_dragging(i)
-	else:
-		#front.rect_position = center
-		Input.action_release(action_left)
-		Input.action_release(action_right)
-		Input.action_release(action_up)
-		Input.action_release(action_down)
+	._standard_input(i)
+	if !pressed:
 		for i in [left, right, up, down]: i.modulate = Color.white
-		if !fixed_position: visible = false
 
 func _handle_dragging(i:InputEvent):
-	var my_idx:int = i.index if (i is InputEventScreenTouch || i is InputEventScreenDrag) else 0
-	if !pressed || my_idx != press_idx: return
-	var delta:Vector2 = i.position - initial_position# - front.rect_size / 2.0
+	._handle_dragging(i)
+	var delta := _get_delta(i)
 	var adjusted_dead_zone := dead_zone * radius
-	#front.rect_position = center + delta
-	
 	for i in [left, right, up, down]: i.modulate = Color.white
 	if delta.x >= adjusted_dead_zone:
-		Input.action_release(action_left)
-		Input.action_press(action_right)
 		right.modulate = pressed_tint
 	elif delta.x <= -adjusted_dead_zone:
-		Input.action_press(action_left)
-		Input.action_release(action_right)
 		left.modulate = pressed_tint
-	else:
-		Input.action_release(action_left)
-		Input.action_release(action_right)
-	
 	if delta.y >= adjusted_dead_zone:
-		Input.action_release(action_up)
-		Input.action_press(action_down)
 		down.modulate = pressed_tint
 	elif delta.y <= -adjusted_dead_zone:
-		Input.action_press(action_up)
-		Input.action_release(action_down)
 		up.modulate = pressed_tint
-	else:
-		Input.action_release(action_down)
-		Input.action_release(action_up)
