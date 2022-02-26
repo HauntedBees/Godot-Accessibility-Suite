@@ -17,7 +17,10 @@ export(String) var action_down := "ui_down"
 
 export(float) var dead_zone := 0.15
 export(float) var max_zone := 0.8
-export(bool) var fixed_position := true
+export(bool) var fixed_position := true setget _set_fixed_position
+func _set_fixed_position(p:bool):
+	fixed_position = p
+	visible = fixed_position
 
 var back:TextureRect = null
 var front:TextureRect = null
@@ -45,6 +48,7 @@ func _post_edit():
 	center = back.rect_position + (back.rect_size - front.rect_size) / 2.0
 	front.rect_position = center
 	radius = back.rect_size.x / 2.0 # TODO?: better support for oval wheels
+	if !edit_mode: visible = fixed_position
 
 func _on_input(i:InputEvent):
 	if edit_mode: pass
@@ -67,6 +71,7 @@ func _standard_input(i:InputEvent):
 	if pressed:
 		press_idx = my_idx
 		initial_position = center
+		if !fixed_position: visible = true
 		_handle_dragging(i)
 	else:
 		front.rect_position = center
@@ -74,6 +79,7 @@ func _standard_input(i:InputEvent):
 		Input.action_release(action_right)
 		Input.action_release(action_up)
 		Input.action_release(action_down)
+		if !fixed_position: visible = false
 
 func _handle_dragging(i:InputEvent):
 	var my_idx:int = i.index if (i is InputEventScreenTouch || i is InputEventScreenDrag) else 0
