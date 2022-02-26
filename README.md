@@ -41,6 +41,8 @@ Add a *GASVirtualGamepad* node to your scene, size it as appropriate, then add t
 ### GASVirtualGamepad
 The container node for your virtual gamepad. All children of a *GASVirtualGamepad* node should be virtual inputs as described below. The position and scale of these nodes will be the default values when a new player begins the game. It is recommended that you take advantage of the customization features by adding an "edit gamepad configuration" option to your options menu (and having an options menu in your game) so that players can reposition and resize the gamepad as needed. 
 
+### mobile_only
+Set this in the Godot Editor; when `true`, the gamepad will default to being invisible if `OS.has_feature("mobile")` returns false. Otherwise, the gamepad will default to being visible regardless of OS. Useful if you're making mobile and desktop OS builds from the same Godot project. If you're building for the web (with the `HTML5` export), the mobile check will likely fail, so this `mobile_only` being `true` will hide the gamepad in web builds, even if accessed from a mobile device. 
 #### edit_mode
 Set `edit_mode` to true to allow players to resize and reposition game inputs. In your game's options menu or equivalent, you'll be able to toggle this variable as needed.
 #### save_setup()
@@ -68,7 +70,7 @@ The action to be executed when pressing the button.
 #### is_circle
 When `true`, the radius of the button will be used to ensure that the player's finger is actually in the button and not pressing the corner of the square. **TODO: actually implement this, remove it if it doesn't matter, or use an actual click mask.**
 #### repeat_frequency
-If non-zero, the action will be emitted every repeat_frequency seconds as long as the button is pressed; this should **never** be 0 if `can_be_toggled` is true.
+If non-zero, every `repeat_frequency` seconds the action will be released and pressed again. If you have calls to `Input.is_action_just_pressed` in your code, this will ensure that that they return `true` regularly as the button is held down. If you only ever use `Input.is_action_pressed`, this is not needed, as the action will be pressed as long as the button is held down regardless.
 #### pressed_tint
 The color the button should be tinted when it's pressed. **TODO: have a separate `pressed_texture` maybe.**
 

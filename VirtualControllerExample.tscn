@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd" type="Script" id=1]
 [ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd" type="Script" id=2]
 [ext_resource path="res://VirtualControllerExample.gd" type="Script" id=3]
 [ext_resource path="res://addons/gas/GASVirtualGamepad/Parts/button1.png" type="Texture" id=4]
+[ext_resource path="res://example_assets/penguin.png" type="Texture" id=5]
 
 [node name="VirtualControllerExample" type="Control"]
 anchor_right = 1.0
@@ -13,6 +14,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 534, 292 )
+scale = Vector2( 0.206294, 0.206294 )
+texture = ExtResource( 5 )
+
 [node name="GASVirtualGamepad" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,6 +27,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+mobile_only = false
 
 [node name="A Button" type="Control" parent="GASVirtualGamepad"]
 anchor_left = 1.0
@@ -50,6 +57,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+action = "ui_cancel"
 texture = ExtResource( 4 )
 repeat_frequency = 0.5
 
@@ -66,6 +74,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+is_toggle = true
+action = "ui_end"
 texture = ExtResource( 4 )
 repeat_frequency = 0.5
 
