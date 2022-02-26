@@ -2,6 +2,8 @@ tool
 extends GASVirtualControl
 class_name GASVirtualMovementControl
 
+signal reset_dynamic_movement
+
 export(String) var action_left := "ui_left"
 export(String) var action_right := "ui_right"
 export(String) var action_up := "ui_up"
@@ -12,7 +14,9 @@ export(float) var max_zone := 0.8
 export(bool) var fixed_position := true setget _set_fixed_position
 func _set_fixed_position(p:bool):
 	fixed_position = p
-	visible = Engine.editor_hint || fixed_position
+	visible = Engine.editor_hint || edit_mode || fixed_position
+	if gizmo != null && gizmo.dynamic_toggle != null:
+		gizmo.dynamic_toggle.pressed = !fixed_position
 
 var pressed := false
 var press_idx := 0

@@ -19,6 +19,7 @@ var gizmo:GASVirtualGizmo = null
 var edit_mode := false setget _set_edit_mode
 func _set_edit_mode(e:bool):
 	edit_mode = e
+	if e: visible = true
 	gizmo.visible = e
 	_post_edit()
 

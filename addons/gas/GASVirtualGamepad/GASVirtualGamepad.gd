@@ -3,6 +3,7 @@ class_name GASVirtualGamepad
 extends Control
 
 export(bool) var mobile_only := true
+export(String) var translation_prefix := ""
 
 var edit_mode := false setget _set_edit_mode
 func _set_edit_mode(m:bool):
@@ -20,6 +21,8 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	for c in get_children():
 		default_values[c.name] = c.config
+		if c is GASVirtualMovementControl:
+			c.connect("reset_dynamic_movement", self, "_on_reset_dynamic_movement", [c])
 	load_setup()
 	dynamic_control_handler = Control.new()
 	dynamic_control_handler.rect_size = rect_size
@@ -66,3 +69,8 @@ func _on_unhandled_input(i:InputEvent):
 			c._standard_input(i)
 			current_dynamic_control = c
 			return
+
+func _on_reset_dynamic_movement(new_dynamic:GASVirtualMovementControl):
+	for c in get_children():
+		if c == new_dynamic ||  !(c is GASVirtualMovementControl): continue
+		c.fixed_position = true

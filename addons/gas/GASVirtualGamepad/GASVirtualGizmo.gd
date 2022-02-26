@@ -14,6 +14,11 @@ var resize_y:TextureButton
 var move:TextureButton
 var border:ReferenceRect
 
+var options:VBoxContainer
+var dynamic_toggle:CheckButton
+var toggle_toggle:CheckButton
+var dead_zone_slider:HSlider
+
 enum { NONE, MOVE, SCALE_X, SCALE_Y }
 var cursor_state := NONE
 
@@ -55,7 +60,45 @@ func _ready():
 	move.connect("button_up", self, "_end_action")
 	add_child(move)
 	
+	options = VBoxContainer.new()
+	add_child(options)
+	
+	var prefix:String = p.get_parent().translation_prefix
+	if p.can_be_toggled:
+		toggle_toggle = CheckButton.new()
+		toggle_toggle.text = tr(prefix + "Toggle")
+		toggle_toggle.pressed = p.is_toggle
+		toggle_toggle.connect("pressed", self, "_on_toggle_toggle")
+		options.add_child(toggle_toggle)
+	if p.has_signal("reset_dynamic_movement"): # p is GASVirtualMovementControl makes it mad for some reason
+		dynamic_toggle = CheckButton.new()
+		dynamic_toggle.text = tr(prefix + "Dynamic Position")
+		dynamic_toggle.pressed = p.is_toggle
+		dynamic_toggle.connect("pressed", self, "_on_dynamic_toggle")
+		options.add_child(dynamic_toggle)
+		
+		var slider_container := HBoxContainer.new()
+		options.add_child(slider_container)
+		var slider_label := Label.new()
+		slider_label.text = tr(prefix + "Deadzone")
+		slider_container.add_child(slider_label)
+		dead_zone_slider = HSlider.new()
+		dead_zone_slider.step = 5.0
+		dead_zone_slider.max_value = 45.0
+		dead_zone_slider.value = p.dead_zone * 100.0
+		dead_zone_slider.size_flags_horizontal = SIZE_EXPAND_FILL
+		dead_zone_slider.connect("value_changed", self, "_on_deadzone_change")
+		slider_container.add_child(dead_zone_slider)
+	
+	yield(get_tree(), "idle_frame")
 	_align_gizmo()
+
+func _on_toggle_toggle(): p.is_toggle = toggle_toggle.pressed
+func _on_dynamic_toggle():
+	p.fixed_position = !dynamic_toggle.pressed
+	if !p.fixed_position: # Only one control can be dynamic at a time
+		p.emit_signal("reset_dynamic_movement")
+func _on_deadzone_change(v:float): p.dead_zone = v / 100.0
 
 func _align_gizmo():
 	move.rect_scale = Vector2(1, 1) / p.rect_scale
@@ -63,8 +106,13 @@ func _align_gizmo():
 	resize_y.rect_scale = Vector2(1, 1) / p.rect_scale
 	resize_x.rect_position = Vector2(p.rect_size.x, p.rect_size.y / 2.0) - resize_x.rect_size / 2.0
 	resize_y.rect_position = Vector2(p.rect_size.x / 2.0, p.rect_size.y) - resize_y.rect_size / 2.0
-	# TODO: move.rect_position does NOT appear in the center when scaled
-	move.rect_position = Vector2(p.rect_size.x / 2.0, p.rect_size.y / 2.0) - move.rect_size / 2.0
+	border.rect_scale = Vector2(1, 1) / p.rect_scale
+	border.rect_size = p.rect_size * p.rect_scale
+	
+	# TODO: this isn't the actual center when scaled
+	var center := Vector2(p.rect_size.x / 2.0, p.rect_size.y / 2.0) - move.rect_size / 2.0
+	move.rect_position = center
+	options.rect_position = Vector2(center.x, -options.rect_size.y)
 
 func _begin_action(action):
 	button_just_pressed = true
