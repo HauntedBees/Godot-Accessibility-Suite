@@ -74,6 +74,33 @@ If non-zero, every `repeat_frequency` seconds the action will be released and pr
 #### pressed_tint
 The color the button should be tinted when it's pressed. **TODO: have a separate `pressed_texture` maybe.**
 
+### GASVirtualAnalogStick
+It's an analog stick. It will emit up to two actions based on the direction it is tilted in.
+
+#### front_texture, back_texture
+The textures for the analog stick and the back of the analog stick.
+
+#### action_left, action_right, action_up, action_down
+The actions to be emitted when the stick is moved in the respective directions.
+#### dead_zone
+Movements below this percentage of the control's radius won't trigger actions.
+#### max_zone
+Movements above this percentage of the control's radius will be clamped to this.
+#### fixed_position
+When false, the control will be invisible until the player presses somewhere on the screen not occupied by another button. After pressing down, this control will immediately appear under their finger and then can be moved from that position. It will disappear again when the player lifts their finger. **Only one control can be set to `fixed_position = false` at a time.**
+
+### GASVirtualDPad
+It's a directional pad. It will emit up to two actions based on the direction it is pressed.
+#### left_texture, right_texture, up_texture, down_texture
+The textures for the four directions.
+#### button_distance
+How far apart the direction buttons should be from each other. Set this to 0 if you want this to look like one connected pad.
+#### action_left, action_right, action_up, action_down, dead_zone, max_zone, fixed_position
+Same as the variables for *GASVirtualAnalogStick*.
+#### pressed_tint
+The color a direction button should be tinted when it's pressed. **TODO: have separate `pressed_texture`s maybe.**
+
+
 # Other Features
 ## [Controller Remapping](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
 `GASInput.remap_action(action:String, event:InputEvent)` will update a Godot action (as seen in the **Input Map** in **Project Settings**) to a new value. This supports both keyboard and gamepad inputs concurrently, so if `ui_accept` is configured to the "Start" button on a gamepad as well as the Enter key on a keyboard, calling `GASInput.remap_action("ui_accept", user_pressed_the_spacebar_key)` will replace the Enter key binding with a Spacebar key binding, but leave the "Start" button binding unchanged.

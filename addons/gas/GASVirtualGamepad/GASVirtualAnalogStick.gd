@@ -1,5 +1,5 @@
 tool
-extends GASVirtualControl
+extends GASVirtualMovementControl
 class_name GASVirtualAnalogStick
 
 export(Texture) var front_texture:Texture = preload("res://addons/gas/GASVirtualGamepad/Parts/analog_front.png") setget _set_front_texture
@@ -14,13 +14,6 @@ export(String) var action_left := "ui_left"
 export(String) var action_right := "ui_right"
 export(String) var action_up := "ui_up"
 export(String) var action_down := "ui_down"
-
-export(float) var dead_zone := 0.15
-export(float) var max_zone := 0.8
-export(bool) var fixed_position := true setget _set_fixed_position
-func _set_fixed_position(p:bool):
-	fixed_position = p
-	visible = fixed_position
 
 var back:TextureRect = null
 var front:TextureRect = null
@@ -48,7 +41,10 @@ func _post_edit():
 	center = back.rect_position + (back.rect_size - front.rect_size) / 2.0
 	front.rect_position = center
 	radius = back.rect_size.x / 2.0 # TODO?: better support for oval wheels
-	if !edit_mode: visible = fixed_position
+	if edit_mode || Engine.editor_hint:
+		visible = true
+	else:
+		visible = fixed_position
 
 func _on_input(i:InputEvent):
 	if edit_mode: pass
