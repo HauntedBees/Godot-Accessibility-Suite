@@ -43,9 +43,10 @@ func save_setup():
 ## For handling dynamic analog sticks and directional pads
 func _on_unhandled_input(i:InputEvent):
 	if !(i is InputEventScreenTouch || i is InputEventMouseButton): return
+	if !i.pressed: return
 	for c in get_children():
 		if c is GASVirtualAnalogStick && !c.fixed_position:
 			c.rect_position = i.position - c.rect_size / 2.0
 			i.position = c.rect_size / 2.0
-			c._standard_input(i)
+			c._standard_input(i) # TODO: ????
 			return
