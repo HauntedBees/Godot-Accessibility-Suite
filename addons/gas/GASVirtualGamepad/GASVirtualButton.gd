@@ -31,19 +31,15 @@ func _ready():
 	button = TextureRect.new()
 	if texture != null: button.texture = texture
 	button.connect("gui_input", self, "_on_input")
-	button.size_flags_horizontal = SIZE_EXPAND_FILL
-	button.size_flags_vertical = SIZE_EXPAND_FILL
 	add_child(button)
 	yield(get_tree(), "idle_frame")
 	rect_size = button.rect_size
 	_add_gizmo()
 
 func _inner_get_config(d:Dictionary) -> Dictionary:
-	d["texture"] = texture.resource_path
 	d["is_circle"] = is_circle
 	return d
 func _inner_set_config(c:Dictionary):
-	texture = load(c["texture"])
 	is_circle = c["is_circle"]
 
 func _process(delta:float):
@@ -58,13 +54,6 @@ func _process(delta:float):
 func _on_input(i:InputEvent):
 	if edit_mode: pass
 	else: _standard_input(i)
-## Sometimes lifting the finger doesn't work quite right and things get fucky,
-## so this _unhandled_input is to ensure that lifting a finger up always registers.
-## TODO: figure out a better way of handling this? or maybe this IS how to handle it.
-func _unhandled_input(i:InputEvent):
-	if !(i is InputEventScreenTouch): return
-	if i.pressed: return
-	_on_input(i)
 
 func _standard_input(i:InputEvent):
 	if !(i is InputEventScreenTouch || i is InputEventMouseButton): return

@@ -19,11 +19,13 @@ var edit_mode := false setget _set_edit_mode
 func _set_edit_mode(e:bool):
 	edit_mode = e
 	gizmo.visible = e
+	_post_edit()
 
 func _add_gizmo():
 	gizmo = GASVirtualGizmo.new()
 	add_child(gizmo)
 	gizmo.visible = edit_mode
+func _post_edit(): pass
 
 var config setget _set_config, _get_config
 func _get_config() -> Dictionary:
@@ -53,3 +55,12 @@ func _set_config(c:Dictionary):
 	can_be_toggled = c["can_be_toggled"]
 	_inner_set_config(c)
 func _inner_set_config(c:Dictionary): pass
+
+func _on_input(i:InputEvent): pass
+## Sometimes lifting the finger doesn't work quite right and things get fucky,
+## so this _unhandled_input is to ensure that lifting a finger up always registers.
+## TODO: figure out a better way of handling this? or maybe this IS how to handle it.
+func _unhandled_input(i:InputEvent):
+	if !(i is InputEventScreenTouch): return
+	if i.pressed: return
+	_on_input(i)

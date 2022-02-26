@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd" type="Script" id=1]
 [ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd" type="Script" id=2]
 [ext_resource path="res://VirtualControllerExample.gd" type="Script" id=3]
 [ext_resource path="res://addons/gas/GASVirtualGamepad/Parts/button1.png" type="Texture" id=4]
 [ext_resource path="res://example_assets/penguin.png" type="Texture" id=5]
+[ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualAnalogStick.gd" type="Script" id=6]
 
 [node name="VirtualControllerExample" type="Control"]
 anchor_right = 1.0
@@ -36,8 +37,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -247.0
 margin_top = -152.0
-margin_right = -162.0
-margin_bottom = -68.0
+margin_right = -167.0
+margin_bottom = -72.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -78,6 +79,14 @@ is_toggle = true
 action = "ui_end"
 texture = ExtResource( 4 )
 repeat_frequency = 0.5
+
+[node name="Analog" type="Control" parent="GASVirtualGamepad"]
+margin_left = 115.0
+margin_top = 296.0
+margin_right = 275.0
+margin_bottom = 456.0
+script = ExtResource( 6 )
+fixed_position = false
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 anchor_right = 1.0

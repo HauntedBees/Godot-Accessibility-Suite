@@ -16,6 +16,7 @@ func _enter_tree():
 	add_custom_type("GASContainer", "Control", preload("res://addons/gas/GASContainer.gd"), get_editor_interface().get_base_control().get_icon("GridContainer", "EditorIcons"))
 	add_custom_type("GASVirtualGamepad", "Control", preload("res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
 	add_custom_type("GASVirtualButton", "Control", preload("res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
+	add_custom_type("GASVirtualAnalogStick", "Control", preload("res://addons/gas/GASVirtualGamepad/GASVirtualAnalogStick.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
 	profiler = VBoxContainer.new()
 	
 	var buttons := HBoxContainer.new()
@@ -52,6 +53,7 @@ func _exit_tree():
 	remove_custom_type("GASContainer")
 	remove_custom_type("GASVirtualGamepad")
 	remove_custom_type("GASVirtualButton")
+	remove_custom_type("GASVirtualAnalogStick")
 	remove_control_from_bottom_panel(profiler) # TODO: why doesn't this work?? :(
 	profiler.queue_free() # TODO: this throws an error :'(
 
