@@ -118,6 +118,9 @@ The color a direction button should be tinted when it's pressed. **TODO: have se
 ## [Cooldown on Inputs](https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/)
 `GASInput.is_action_just_pressed(action:String)` returns `true` when the action is just pressed (based on the native `Input.is_action_just_pressed` method) **unless** it was pressed within the last `COOLDOWN_LENGTH` seconds (default is 0.5), in which case it returns `false`.
 
+## [Adjust Game Speed](https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/)
+Setting `GASConfig.core_game_speed` will adjust `Engine.time_scale` automatically. As that is a built-in Engine variable, the main benefit of using `GASConfig.core_game_speed` instead is that the value will be saved with other accessibility settings and automatically loaded when the game begins. Default value is **1.0**; to run the game at half speed, set it to **0.5**, to run at double speed, set it to **2.0**, etc.
+
 # To Be Implemented/Considered
 
 ## [Control Sensitivity](https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-sensitivity-of-controls/)
@@ -128,9 +131,6 @@ Will probably need to create some sort of "padding" Node that buttons can go in 
 
 ## [Haptics Toggles](https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/)
 An Autoload function to replace `Input.start_joy_vibration` based on user-defined limits.
-
-## [Adjust Game Speed](https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/)
-Perhaps an Autoload function like `adjust_speed(delta)` that takes the delta value from `_process` or `_physics_process` and adjusts it based on the specified game speed.
 
 ## [Support Windowed Mode](https://gameaccessibilityguidelines.com/if-producing-a-pc-game-support-windowed-mode-for-compatibility-with-overlaid-virtual-keyboards/)
 Some sort of plug-and-play node to toggle between windowed and full screen modes.
