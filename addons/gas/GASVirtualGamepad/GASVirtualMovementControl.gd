@@ -25,10 +25,10 @@ func _on_input(i:InputEvent):
 	else: _standard_input(i)
 
 func _standard_input(i:InputEvent):
-	if i is InputEventScreenDrag || i is InputEventMouseMotion: _handle_dragging(i)
-	if !(i is InputEventScreenTouch || i is InputEventMouseButton): return
+	if _is_valid_drag(i): _handle_dragging(i)
+	if !_is_valid_press_release(i): return
 	var is_pressed:bool = i.pressed
-	var my_idx:int = i.index if i is InputEventScreenTouch else 0
+	var my_idx:int = _get_index(i)
 	if is_pressed: press_idx = my_idx
 	elif press_idx != my_idx: return
 	
@@ -52,7 +52,7 @@ func _standard_input(i:InputEvent):
 		if !fixed_position: visible = false
 
 func _handle_dragging(i:InputEvent):
-	var my_idx:int = i.index if (i is InputEventScreenTouch || i is InputEventScreenDrag) else 0
+	var my_idx:int = _get_index(i)
 	if !pressed || my_idx != press_idx: return
 	var delta:Vector2 = _get_delta(i)
 	var adjusted_dead_zone := dead_zone * radius

@@ -56,9 +56,9 @@ func _on_input(i:InputEvent):
 	else: _standard_input(i)
 
 func _standard_input(i:InputEvent):
-	if !(i is InputEventScreenTouch || i is InputEventMouseButton): return
+	if !_is_valid_press_release(i): return
 	var is_pressed:bool = i.pressed
-	var my_idx:int = i.index if i is InputEventScreenTouch else 0
+	var my_idx:int = _get_index(i)
 	if is_pressed: press_idx = my_idx
 	elif press_idx != my_idx: return
 	# TODO: circle check

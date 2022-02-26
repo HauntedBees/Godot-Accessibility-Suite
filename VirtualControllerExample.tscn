@@ -36,10 +36,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -247.0
-margin_top = -152.0
-margin_right = -167.0
-margin_bottom = -72.0
+margin_left = -217.0
+margin_top = -104.0
+margin_right = -137.0
+margin_bottom = -24.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,10 +51,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -133.0
-margin_top = -235.0
-margin_right = -53.0
-margin_bottom = -155.0
+margin_left = -146.0
+margin_top = -180.0
+margin_right = -66.0
+margin_bottom = -100.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -68,10 +68,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -173.0
-margin_top = -382.0
-margin_right = -93.0
-margin_bottom = -302.0
+margin_left = -96.0
+margin_top = -265.0
+margin_right = -16.0
+margin_bottom = -185.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,10 +82,12 @@ texture = ExtResource( 4 )
 repeat_frequency = 0.5
 
 [node name="Analog" type="Control" parent="GASVirtualGamepad"]
-margin_left = 85.0
-margin_top = 70.0
-margin_right = 245.0
-margin_bottom = 230.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 42.0
+margin_top = -380.0
+margin_right = 202.0
+margin_bottom = -220.0
 focus_mode = 2
 script = ExtResource( 6 )
 __meta__ = {
@@ -94,10 +96,12 @@ __meta__ = {
 is_toggle = true
 
 [node name="GASVirtualDPad" type="Control" parent="GASVirtualGamepad"]
-margin_left = 32.0
-margin_top = 381.0
-margin_right = 193.0
-margin_bottom = 542.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 37.0
+margin_top = -181.0
+margin_right = 198.0
+margin_bottom = -20.0
 script = ExtResource( 7 )
 
 [node name="Buttons" type="HBoxContainer" parent="."]

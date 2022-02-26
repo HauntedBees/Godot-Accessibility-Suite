@@ -14,12 +14,22 @@ export(bool) var can_be_toggled := true
 ## TODO: make this editable in edit mode
 export(bool) var is_toggle := false
 
+var is_mobile := OS.has_feature("mobile")
 var gizmo:GASVirtualGizmo = null
 var edit_mode := false setget _set_edit_mode
 func _set_edit_mode(e:bool):
 	edit_mode = e
 	gizmo.visible = e
 	_post_edit()
+
+func _is_valid_press_release(i:InputEvent) -> bool:
+	if is_mobile: return i is InputEventScreenTouch
+	else: return i is InputEventMouseButton
+func _is_valid_drag(i:InputEvent) -> bool:
+	if is_mobile: return i is InputEventScreenDrag
+	else: return i is InputEventMouseMotion
+func _get_index(i:InputEvent) -> int:
+	return i.index if (i is InputEventScreenTouch || i is InputEventScreenDrag) else 0
 
 func _add_gizmo():
 	gizmo = GASVirtualGizmo.new()
