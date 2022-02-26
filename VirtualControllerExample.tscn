@@ -91,7 +91,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-fixed_position = false
+is_toggle = true
 
 [node name="GASVirtualDPad" type="Control" parent="GASVirtualGamepad"]
 margin_left = 32.0

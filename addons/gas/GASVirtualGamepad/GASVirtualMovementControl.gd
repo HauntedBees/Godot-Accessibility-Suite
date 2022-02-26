@@ -32,12 +32,12 @@ func _standard_input(i:InputEvent):
 	if is_pressed: press_idx = my_idx
 	elif press_idx != my_idx: return
 	
-#	if is_toggle:
-#		if is_pressed: ## For toggle buttons, pressing the button will toggle its pressed state
-#			pressed = !pressed
-#		else: return
-#	else: ## For regular buttons, pressing/releasing the button will set the pressed state accordingly
-	pressed = is_pressed
+	if is_toggle:
+		if is_pressed: ## For toggle buttons, pressing the button will toggle its pressed state
+			pressed = !pressed
+		else: return
+	else: ## For regular buttons, pressing/releasing the button will set the pressed state accordingly
+		pressed = is_pressed
 	
 	if pressed:
 		press_idx = my_idx
@@ -45,7 +45,6 @@ func _standard_input(i:InputEvent):
 		if !fixed_position: visible = true
 		_handle_dragging(i)
 	else:
-		#front.rect_position = center
 		Input.action_release(action_left)
 		Input.action_release(action_right)
 		Input.action_release(action_up)
@@ -55,11 +54,10 @@ func _standard_input(i:InputEvent):
 func _handle_dragging(i:InputEvent):
 	var my_idx:int = i.index if (i is InputEventScreenTouch || i is InputEventScreenDrag) else 0
 	if !pressed || my_idx != press_idx: return
-	var delta:Vector2 = _get_delta(i)#i.position - initial_position - front.rect_size / 2.0
+	var delta:Vector2 = _get_delta(i)
 	var adjusted_dead_zone := dead_zone * radius
 	var adjusted_max_zone := max_zone * radius
 	if delta.length() > adjusted_max_zone: delta = delta.normalized() * adjusted_max_zone
-	#front.rect_position = center + delta
 	
 	if delta.x >= adjusted_dead_zone:
 		Input.action_release(action_left)

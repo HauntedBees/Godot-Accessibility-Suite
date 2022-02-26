@@ -38,6 +38,12 @@ func _post_edit():
 		visible = fixed_position
 
 func _get_delta(i:InputEvent) -> Vector2: return i.position - initial_position - front.rect_size / 2.0
+
+func _standard_input(i:InputEvent):
+	._standard_input(i)
+	if !pressed:
+		front.rect_position = center
+
 func _handle_dragging(i:InputEvent):
 	._handle_dragging(i)
 	var delta := _get_delta(i)
