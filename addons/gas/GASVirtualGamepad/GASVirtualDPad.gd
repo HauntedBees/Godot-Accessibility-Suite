@@ -86,3 +86,6 @@ func _handle_dragging(i:InputEvent):
 		down.modulate = pressed_tint
 	elif delta.y <= -adjusted_dead_zone:
 		up.modulate = pressed_tint
+
+func _get_strength(amount:float, adjusted_dead_zone:float, adjusted_max_zone:float) -> float:
+	return 1.0

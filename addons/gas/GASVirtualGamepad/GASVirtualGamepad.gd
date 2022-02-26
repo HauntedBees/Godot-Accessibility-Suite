@@ -12,12 +12,13 @@ func _set_edit_mode(m:bool):
 		if c == dynamic_control_handler: continue
 		c.edit_mode = m
 
+var is_mobile := OS.has_feature("mobile")
 var default_values := {}
 var dynamic_control_handler:Control = null
 var current_dynamic_control:GASVirtualControl = null
 var current_dynamic_control_start := Vector2.ZERO
 func _ready():
-	if mobile_only && !OS.has_feature("mobile"): visible = false
+	if mobile_only && !is_mobile: visible = false
 	yield(get_tree(), "idle_frame")
 	for c in get_children():
 		default_values[c.name] = c.config
@@ -52,10 +53,10 @@ func save_setup():
 ## For handling dynamic analog sticks and directional pads
 func _on_unhandled_input(i:InputEvent):
 	if edit_mode: return
-	if (i is InputEventScreenDrag || i is InputEventMouseMotion) && current_dynamic_control != null:
+	if _is_valid_drag(i) && current_dynamic_control != null:
 		i.position = current_dynamic_control.rect_size / 2.0 + i.position - current_dynamic_control_start
 		current_dynamic_control._standard_input(i)
-	if !(i is InputEventScreenTouch || i is InputEventMouseButton): return
+	if !_is_valid_press_release(i): return
 	if !i.pressed:
 		if current_dynamic_control != null:
 			current_dynamic_control._standard_input(i)
@@ -69,6 +70,12 @@ func _on_unhandled_input(i:InputEvent):
 			c._standard_input(i)
 			current_dynamic_control = c
 			return
+func _is_valid_press_release(i:InputEvent) -> bool:
+	if is_mobile: return i is InputEventScreenTouch
+	else: return i is InputEventMouseButton
+func _is_valid_drag(i:InputEvent) -> bool:
+	if is_mobile: return i is InputEventScreenDrag
+	else: return i is InputEventMouseMotion
 
 func _on_reset_dynamic_movement(new_dynamic:GASVirtualMovementControl):
 	for c in get_children():
