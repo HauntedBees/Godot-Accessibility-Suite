@@ -15,7 +15,7 @@ func _on_LoadButton_pressed(): $GASVirtualGamepad.load_setup()
 func _on_DefaultButton_pressed(): $GASVirtualGamepad.restore_defaults()
 
 func _process(delta:float):
-	if Input.is_action_just_pressed("ui_accept"):
+	if GASInput.is_action_just_pressed("ui_accept"):
 		current_frame = (current_frame + 1) % 3
 		player.texture = frames[current_frame]
 	if Input.is_action_pressed("ui_cancel"):
