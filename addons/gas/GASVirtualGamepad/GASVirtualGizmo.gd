@@ -73,7 +73,7 @@ func _ready():
 	if p.has_signal("reset_dynamic_movement"): # p is GASVirtualMovementControl makes it mad for some reason
 		dynamic_toggle = CheckButton.new()
 		dynamic_toggle.text = tr(prefix + "Dynamic Position")
-		dynamic_toggle.pressed = p.is_toggle
+		dynamic_toggle.pressed = !p.fixed_position
 		dynamic_toggle.connect("pressed", self, "_on_dynamic_toggle")
 		options.add_child(dynamic_toggle)
 		
