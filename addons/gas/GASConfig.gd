@@ -4,6 +4,14 @@ extends Node
 var input_cooldown_enabled := false
 var input_cooldown_length := 0.5
 
+# https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
+var input_toggle_actions := ["ui_end"]
+func set_toggle_action(action:String, is_toggle:bool):
+	var idx := input_toggle_actions.find(action)
+	if (is_toggle && idx >= 0) || (!is_toggle && idx < 0): return
+	if is_toggle: input_toggle_actions.append(action)
+	else: input_toggle_actions.remove(idx)
+
 # https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/
 var core_game_speed := 1.0 setget _set_core_game_speed
 func _set_core_game_speed(s:float):
@@ -20,10 +28,12 @@ func _load() -> bool:
 	core_game_speed = config.get_value("core", "core_game_speed")
 	input_cooldown_length = config.get_value("input", "input_cooldown_length")
 	input_cooldown_enabled = config.get_value("input", "input_cooldown_enabled")
+	input_toggle_actions = config.get_value("input", "input_toggle_actions")
 	return true
 func _save():
 	var config := ConfigFile.new()
 	config.set_value("core", "core_game_speed", core_game_speed)
 	config.set_value("input", "input_cooldown_length", input_cooldown_length)
 	config.set_value("input", "input_cooldown_enabled", input_cooldown_enabled)
+	config.set_value("input", "input_toggle_actions", input_toggle_actions)
 	config.save("user://gas.cfg")

@@ -118,6 +118,9 @@ The color a direction button should be tinted when it's pressed. **TODO: have se
 ## [Cooldown on Inputs](https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/)
 `GASInput.is_action_just_pressed(action:String)` returns `true` when the action is just pressed (based on the native `Input.is_action_just_pressed` method) **unless** it was pressed within the last `COOLDOWN_LENGTH` seconds (default is 0.5), in which case it returns `false`.
 
+## [Toggles instead of Holding Buttons](https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/)
+Add an action to the `GASConfig.input_toggle_actions` array and it will be handled by `GASInput._process` and `GASInput._input`, ensuring that a player triggering the action will trigger one `Input.is_action_just_pressed` on the first press, then the action will remain pressed until the player triggers it next. 
+
 ## [Adjust Game Speed](https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/)
 Setting `GASConfig.core_game_speed` will adjust `Engine.time_scale` automatically. As that is a built-in Engine variable, the main benefit of using `GASConfig.core_game_speed` instead is that the value will be saved with other accessibility settings and automatically loaded when the game begins. Default value is **1.0**; to run the game at half speed, set it to **0.5**, to run at double speed, set it to **2.0**, etc.
 
@@ -134,9 +137,6 @@ An Autoload function to replace `Input.start_joy_vibration` based on user-define
 
 ## [Support Windowed Mode](https://gameaccessibilityguidelines.com/if-producing-a-pc-game-support-windowed-mode-for-compatibility-with-overlaid-virtual-keyboards/)
 Some sort of plug-and-play node to toggle between windowed and full screen modes.
-
-## [Toggles instead of Holding Buttons](https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/)
-May be able to write some `is_held_down` function that returns true if the toggle is set OR if the button is actively held down.
 
 ## [Support Portrait and Landscape Mode](https://gameaccessibilityguidelines.com/allow-play-in-both-landscape-and-portrait/)
 May be able to write some sort of wrapper container to handle this automatically.
