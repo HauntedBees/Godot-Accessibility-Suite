@@ -36,6 +36,9 @@ For touch-screen based games, adding a virtual gamepad to the screen is common. 
 ## Usage
 Add a *GASVirtualGamepad* node to your scene, size it as appropriate, then add the relevant *GASVirtualButton*, *GASVirtualDPad*, and *GASVirtualAnalogStick* nodes and size/position them as your intended default positions. Players will be able to reposition and resize these buttons in **Edit Mode** but they will not be able to add or remove buttons. If different parts of your game need different virtual gamepads, create a different *GASVirtualGamepad* for each one. Configuration is stored in a `gas_virtualgamepad_NODE_NAME.cfg` file in the `user://` directory, so use different names for different gamepad configurations, and use the same name for a given gamepad across multiple scenes.
 
+## Limitations
+To scale the gamepad controls, you must use the `rect_scale` property (modified in `Control > Rect > Scale` in the **Inspector** tab, or by using **Scale Mode** in the main 2D view); resizing the `rect_size` property will not work as expected.
+
 ## Nodes
 
 ### GASVirtualGamepad
