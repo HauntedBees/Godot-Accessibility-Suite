@@ -11,7 +11,6 @@ export(bool) var can_be_toggled := true
 
 ## A default value can be set by the developer but this will be configurable
 ## by players in Edit Mode if can_be_toggled is true.
-## TODO: make this editable in edit mode
 export(bool) var is_toggle := false
 
 var is_mobile := OS.has_feature("mobile")

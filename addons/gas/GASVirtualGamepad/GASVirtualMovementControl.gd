@@ -9,6 +9,9 @@ export(String) var action_right := "ui_right"
 export(String) var action_up := "ui_up"
 export(String) var action_down := "ui_down"
 
+## Probably not a good idea to set this to false for analog sticks. That's what d-pads are for.
+export(bool) var diagonals_enabled := true
+
 export(float) var dead_zone := 0.15
 export(float) var max_zone := 0.8
 export(bool) var fixed_position := true setget _set_fixed_position
@@ -23,6 +26,7 @@ var press_idx := 0
 var center := Vector2.ZERO
 var initial_position := Vector2.ZERO
 var radius := 1.0
+var current_action := "" # only used when diagonals_enabled == false
 
 func _on_input(i:InputEvent):
 	if edit_mode: pass
@@ -63,25 +67,45 @@ func _handle_dragging(i:InputEvent):
 	var adjusted_max_zone := max_zone * radius
 	if delta.length() > adjusted_max_zone: delta = delta.normalized() * adjusted_max_zone
 	
-	if delta.x >= adjusted_dead_zone:
-		Input.action_release(action_left)
-		Input.action_press(action_right, _get_strength(delta.x, adjusted_dead_zone, adjusted_max_zone))
-	elif delta.x <= -adjusted_dead_zone:
-		Input.action_press(action_left, _get_strength(delta.x, adjusted_dead_zone, adjusted_max_zone))
-		Input.action_release(action_right)
+	if diagonals_enabled:
+		if delta.x >= adjusted_dead_zone:
+			Input.action_release(action_left)
+			Input.action_press(action_right, _get_strength(delta.x, adjusted_dead_zone, adjusted_max_zone))
+		elif delta.x <= -adjusted_dead_zone:
+			Input.action_press(action_left, _get_strength(delta.x, adjusted_dead_zone, adjusted_max_zone))
+			Input.action_release(action_right)
+		else:
+			Input.action_release(action_left)
+			Input.action_release(action_right)
+		
+		if delta.y >= adjusted_dead_zone:
+			Input.action_release(action_up)
+			Input.action_press(action_down, _get_strength(delta.y, adjusted_dead_zone, adjusted_max_zone))
+		elif delta.y <= -adjusted_dead_zone:
+			Input.action_press(action_up, _get_strength(delta.y, adjusted_dead_zone, adjusted_max_zone))
+			Input.action_release(action_down)
+		else:
+			Input.action_release(action_down)
+			Input.action_release(action_up)
 	else:
-		Input.action_release(action_left)
-		Input.action_release(action_right)
-	
-	if delta.y >= adjusted_dead_zone:
-		Input.action_release(action_up)
-		Input.action_press(action_down, _get_strength(delta.y, adjusted_dead_zone, adjusted_max_zone))
-	elif delta.y <= -adjusted_dead_zone:
-		Input.action_press(action_up, _get_strength(delta.y, adjusted_dead_zone, adjusted_max_zone))
-		Input.action_release(action_down)
-	else:
-		Input.action_release(action_down)
-		Input.action_release(action_up)
+		var highest_delta := 0.0
+		var new_direction := ""
+		if delta.x >= adjusted_dead_zone && delta.x > highest_delta:
+			new_direction = action_right
+			highest_delta = delta.x
+		elif delta.x <= -adjusted_dead_zone && delta.x < -highest_delta:
+			new_direction = action_left
+			highest_delta = -delta.x
+		elif delta.y >= adjusted_dead_zone && delta.y > highest_delta:
+			new_direction = action_down
+			highest_delta = delta.y
+		elif delta.y <= -adjusted_dead_zone && delta.y < -highest_delta:
+			new_direction = action_up
+			highest_delta = -delta.y
+		
+		if current_action != "": Input.action_release(current_action)
+		current_action = new_direction
+		Input.action_press(current_action, _get_strength(highest_delta, adjusted_dead_zone, adjusted_max_zone))
 
 func _get_delta(i:InputEvent) -> Vector2: return i.position - initial_position
 func _get_strength(amount:float, adjusted_dead_zone:float, adjusted_max_zone:float) -> float:

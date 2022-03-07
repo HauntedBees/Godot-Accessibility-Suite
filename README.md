@@ -112,6 +112,8 @@ How far apart the direction buttons should be from each other. Set this to 0 if 
 Same as the variables for *GASVirtualAnalogStick*.
 #### pressed_tint
 The color a direction button should be tinted when it's pressed. **TODO: have separate `pressed_texture`s maybe.**
+#### diagonals_enabled:
+Do you want this d-pad going in eight directions or four?
 
 
 # Other Features

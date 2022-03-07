@@ -19,7 +19,6 @@ func _set_down_texture(t:Texture):
 	down_texture = t
 	if down != null: down.texture = t
 
-
 export(float) var button_distance := 5.0 setget _set_button_distance
 func _set_button_distance(b:float):
 	button_distance = b
@@ -78,14 +77,24 @@ func _handle_dragging(i:InputEvent):
 	var delta := _get_delta(i)
 	var adjusted_dead_zone := dead_zone * radius
 	for i in [left, right, up, down]: i.modulate = Color.white
-	if delta.x >= adjusted_dead_zone:
-		right.modulate = pressed_tint
-	elif delta.x <= -adjusted_dead_zone:
-		left.modulate = pressed_tint
-	if delta.y >= adjusted_dead_zone:
-		down.modulate = pressed_tint
-	elif delta.y <= -adjusted_dead_zone:
-		up.modulate = pressed_tint
+	if diagonals_enabled:
+		if delta.x >= adjusted_dead_zone:
+			right.modulate = pressed_tint
+		elif delta.x <= -adjusted_dead_zone:
+			left.modulate = pressed_tint
+		if delta.y >= adjusted_dead_zone:
+			down.modulate = pressed_tint
+		elif delta.y <= -adjusted_dead_zone:
+			up.modulate = pressed_tint
+	else:
+		if delta.x >= adjusted_dead_zone:
+			right.modulate = pressed_tint
+		elif delta.x <= -adjusted_dead_zone:
+			left.modulate = pressed_tint
+		elif delta.y >= adjusted_dead_zone:
+			down.modulate = pressed_tint
+		elif delta.y <= -adjusted_dead_zone:
+			up.modulate = pressed_tint
 
 func _get_strength(amount:float, adjusted_dead_zone:float, adjusted_max_zone:float) -> float:
 	return 1.0
