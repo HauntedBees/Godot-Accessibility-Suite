@@ -23,11 +23,8 @@ func _process(delta:float):
 	if Input.is_action_pressed("ui_end"):
 		player.rotation += 2.0 * delta
 	
-	if Input.is_action_pressed("ui_left"):
-		player.position.x -= delta * SPEED * Input.get_action_strength("ui_left")
-	elif Input.is_action_pressed("ui_right"):
-		player.position.x += delta * SPEED * Input.get_action_strength("ui_right")
-	if Input.is_action_pressed("ui_up"):
-		player.position.y -= delta * SPEED * Input.get_action_strength("ui_up")
-	elif Input.is_action_pressed("ui_down"):
-		player.position.y += delta * SPEED * Input.get_action_strength("ui_down")
+	var movement := Vector2(
+		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	).normalized()
+	player.position += movement * delta * SPEED
