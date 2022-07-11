@@ -13,6 +13,7 @@ var nodes_scanned := 0
 func _enter_tree():
 	add_autoload_singleton("GASConfig", "res://addons/gas/GASConfig.gd")
 	add_autoload_singleton("GASInput", "res://addons/gas/GASInput.gd")
+	add_custom_type("GASRichTextLabel", "RichTextLabel", preload("res://addons/gas/GASRichTextLabel.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
 	add_custom_type("GASContainer", "Control", preload("res://addons/gas/GASContainer.gd"), get_editor_interface().get_base_control().get_icon("GridContainer", "EditorIcons"))
 	add_custom_type("GASVirtualGamepad", "Control", preload("res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
 	add_custom_type("GASVirtualButton", "Control", preload("res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd"), get_editor_interface().get_base_control().get_icon("Button", "EditorIcons"))
@@ -51,6 +52,7 @@ func _enter_tree():
 func _exit_tree():
 	remove_autoload_singleton("GASInput")
 	remove_autoload_singleton("GASConfig")
+	remove_custom_type("GASRichTextLabel")
 	remove_custom_type("GASContainer")
 	remove_custom_type("GASVirtualGamepad")
 	remove_custom_type("GASVirtualButton")

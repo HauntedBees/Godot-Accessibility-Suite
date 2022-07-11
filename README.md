@@ -1,7 +1,7 @@
 # Godot Accessibility Suite
 An attempt at making it as easy for you to follow as many of the guidelines from [gameaccessibilityguidelines.com](https://gameaccessibilityguidelines.com/) as possible in your Godot 3.4 games.
 
-Guidelines not listed below have not been evaluated yet, or are things that cannot be solved with a plugin or script (or at the very least, ***I*** couldn't figure out how to solve with a plugin or script). The only way I can think of to handle something like [providing Simple Control Schemes](https://gameaccessibilityguidelines.com/provide-very-simple-control-schemes-that-are-compatible-with-assistive-technology-devices-such-as-switch-or-eye-tracking/) is for the developer to be conscious of this need and just ***not*** programming in complicated control schemes. This suite is intended to make accessible design decisions as easy as possible for game developers, but "as easy as possible" doesn't always mean "easy." It's usually harder to [allow interfaces to be rearranged](gameaccessibilityguidelines.com/allow-interfaces-to-be-rearranged) than it is to just give the players one static interface. Every game is different and what is trivial to implement in one game may be impossible to implement in another.
+Guidelines not listed below have not been evaluated yet, or are things that cannot be solved with a plugin or script (or at the very least, ***I*** couldn't figure out how to solve with a plugin or script). The only way I can think of to handle something like [providing Simple Control Schemes](https://gameaccessibilityguidelines.com/provide-very-simple-control-schemes-that-are-compatible-with-assistive-technology-devices-such-as-switch-or-eye-tracking/) is for the developer to be conscious of this need and just ***not*** program in complicated control schemes. This suite is intended to make accessible design decisions as easy as possible for game developers, but "as easy as possible" doesn't always mean easy. It's usually harder to [allow interfaces to be rearranged](gameaccessibilityguidelines.com/allow-interfaces-to-be-rearranged) than it is to just give the player one static interface, for example. Every game is different and what is trivial to implement in one game may be impossible to implement in another.
 
 You should consult resources like the [Game Accessibility Guidelines](https://gameaccessibilityguidelines.com/advanced/) and the [AbleGamers APX](https://accessible.games/accessible-player-experiences/) to learn what's right for your game, and having people with a variety of accessibility needs playtesting your game and giving you feedback will be even more valuable. I am not associated with any of theese associations or websites and I am not a professional or expert on video game accessibility.
 
@@ -18,13 +18,28 @@ Create the folder `res://addons/gas/` in your project and copy the contents of t
 An "Accessibility" tab is added to the Bottom Panel with two buttons:
  - **Audit Scene**: Scans through all Nodes in the current scene for accessibility issues.
  - **Audit Resources**: Scans through all Resources in the project for accessibility issues.
-These audits will certainly miss things if you're doing custom/creative/weird stuff, so as with everything else in this Suite, should be used as just one of many tools in your mission to make your game accessible. These audits will currently find:
+These audits will certainly miss things if you're doing custom/creative/weird stuff, so as with everything else in this Suite, this should be used as just one of many tools in your mission to make your game accessible. These audits will currently find:
  - [Easily Readable Font Size](https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/) in `Button`, `Label`, and `RichTextLabel` Nodes (Audit Scene) and `DynamicFont` and `BitmapFont` Resources (Audit Resources).
  - [Well Spaced Interactive Elements](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/) on `Button` Nodes inside `HBoxContainer` and `VBoxContainer` Nodes (Audit Scene).
 
 # Custom Nodes
-### GASContainer
-Does not *resize* or *scale* child nodes to fit the container, but does enforce alignment rules and [a minimum separation between the nodes](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/). **Known Issue**: The actual container size and position have no relation to the actual contents.
+
+## GASRichTextLabel
+A **RichTextLabel** built for easy font size readjusting. In a regular **RichTextLabel**, if your text takes up more space than the control itself, it will either add a scrollbar (when `scroll_active` is true) or the overflowing text will be cut off, possibly with some percentage of the overflow still visible at the bottom of the control. When overflowing text is present in a **GASRichTextLabel** control, no scroll bar will appear, and the text will be cleanly cut (with no partial text visible); the control's `advance()` function can be called to move to the next part of the overflowed text. For example, if the control only allowed around a dozen characters, and the text is set to "Hey everybody, I'm going to the store for some milk!" the player would first see "Hey everybody," after `advance()` is called, they would then see "I'm going to" followed by "the store for" and then "some milk!" `advance()` will return `true` as long as more overflowing text is available to be displayed, and will return `false` at the last chunk of text and when called after that.
+
+The **GASRichTextLabel** also has a `font_size` property that will automamatically adjust the label's font's size. This will not affect any other controls, even ones using the same `DynamicFont`. The `vision_minimum_font_size` config option will force the control to start at at least that font size, even if the control has a different font size specified in code or in its scene, but it can be resized to a smaller font by changing the `font_size` property. However, [a minimum font size of 28 is recommended, and is the default value for this config setting](https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/), so while you can allow the player to manually set a lower font size, your controls should always be at least this size.
+
+Finally, a `translation_key` property exists, and writing `control.translation_key = "x"` is equivalent to writing `control.text = tr("x")`.
+
+### Limitations
+This doesn't play nice with bbcode (yet?).
+ - Currently Supported: none
+ - Can Probably Support: `underline`, `strikethrough`, `url`, `url (ref)`, `color`
+ - Probably Can't Support (due to Godot limitations): `bold`, `italics`, `code`, `font`
+ - Almost Definitely Can't Support: `center`, `right`, `fill`, `indent`, `image`, `resized image`, `table`, `cell`
+
+## GASContainer
+Does not *resize* or *scale* child nodes to fit the container, but does enforce alignment rules and [a minimum separation between the nodes](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/). **Known Issue**: The actual container size and position have no relation to the contents.
 
 # Virtual Gamepad
 For touch-screen based games, adding a virtual gamepad to the screen is common. The Virtual Gamepad in this Suite is designed to be easily configurable by the developer, and just as easily configurable by players to accommodate accessibility needs, by allowing the player to:
