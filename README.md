@@ -32,9 +32,14 @@ The **GASRichTextLabel** also has a `font_size` property that will automamatical
 Finally, a `translation_key` property exists, and writing `control.translation_key = "x"` is equivalent to writing `control.text = tr("x")`.
 
 ### Limitations
-This doesn't play nice with bbcode (yet?).
- - Currently Supported: none
- - Can Probably Support: `underline`, `strikethrough`, `url`, `url (ref)`, `color`
+This plays nice with some bbcode, with the same caveats as regular **RichTextLabel** controls:
+ - Tags must be closed in first-in-first-out order.
+   - Bad: `[right][s][b]hey[/right][/b][/s]`
+   - Good: `[right][s][b]hey[/b][/s][/right]`
+ - Certain combinations don't work together, like `[u][s]strikethrough and underline[/s][/u]`.
+
+Additionally, not all bbcode tags are supported:
+ - Currently Supported: `underline`, `strikethrough`, `url`, `url (ref)`, `color`
  - Probably Can't Support (due to Godot limitations): `bold`, `italics`, `code`, `font`
  - Almost Definitely Can't Support: `center`, `right`, `fill`, `indent`, `image`, `resized image`, `table`, `cell`
 
