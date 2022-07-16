@@ -11,6 +11,22 @@ This suite is a work in progress and will be built upon as I develop my own game
 ## Contributing
 If you would like to add to the project, by all means, go for it! All contributions must be made with a permissive open source license to ensure as many game developers as possible have access to this code.
 
+# Table of Contents
+
+ - [Usage](#usage)
+ - [Accessibility Audit](#accessibility-audit)
+ - [Custom Nodes](#custom-nodes)
+   - [GASRichTextLabel](#gasrichtextlabel)
+   - [GASContainer](#gascontainer)
+ - [Virtual Gamepad](#virtual-gamepad)
+ - [Other Features](#other-features)
+   - [Game Thumbnails with Game Saves](#game-thumbnails-with-game-saves)
+   - [Controller Remapping](#controller-remapping)
+   - [Cooldown on Inputs](#cooldown-on-inputs)
+   - [Toggles instead of Holding Buttons](#toggles-instead-of-holding-buttons)
+   - [Adjust Game Speed](#adjust-game-speed)
+ - [To Be Implemented/Considered](#to-be-implementedconsidered)
+
 # Usage
 Create the folder `res://addons/gas/` in your project and copy the contents of this repository's `addons/gas` folder into there. Then in Godot go to **Project Settings** > **Plugins** and enable **Godot Accessibility Suite**. Usage information for each feature is described in that feature's summary below. An example project will be added eventually.
 
