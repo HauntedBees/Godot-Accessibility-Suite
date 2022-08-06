@@ -2,11 +2,14 @@ extends Node
 
 # https://gameaccessibilityguidelines.com/provide-gameplay-thumbnails-with-game-saves/
 func save_screen(name: String):
+	var img := get_screen()
+	img.save_png("user://save_%s.png" % name)
+func get_screen() -> Image:
 	var img := get_viewport().get_texture().get_data()
 	img.flip_y()
 	img.shrink_x2()
-	img.save_png("user://save_%s.png" % name)
-func get_screen_as_image(name: String) -> Image:
+	return img
+func load_screen_as_image(name: String) -> Image:
 	var file := File.new()
 	var opened := file.open("user://save_%s.png" % name, File.READ)
 	if opened != OK: return null
@@ -15,8 +18,8 @@ func get_screen_as_image(name: String) -> Image:
 	var img := Image.new()
 	img.load_png_from_buffer(content)
 	return img
-func get_screen_as_texture(name: String, width := 0.0, height := 0.0, keep_aspect_ratio := true) -> ImageTexture:
-	var img := get_screen_as_image(name)
+func load_screen_as_texture(name: String, width := 0.0, height := 0.0, keep_aspect_ratio := true) -> ImageTexture:
+	var img := load_screen_as_image(name)
 	if img == null: return null
 	var texture := ImageTexture.new()
 	texture.create_from_image(img)
@@ -31,8 +34,8 @@ func get_screen_as_texture(name: String, width := 0.0, height := 0.0, keep_aspec
 		else:
 			texture.set_size_override(Vector2(width if width > 0 else curr_width, height if height > 0 else curr_height))
 	return texture
-func get_screen_as_texture_rect(name: String, width := 0.0, height := 0.0, keep_aspect_ratio := true) -> TextureRect:
-	var texture := get_screen_as_texture(name, width, height, keep_aspect_ratio)
+func load_screen_as_texture_rect(name: String, width := 0.0, height := 0.0, keep_aspect_ratio := true) -> TextureRect:
+	var texture := load_screen_as_texture(name, width, height, keep_aspect_ratio)
 	if texture == null: return null
 	var texture_rect := TextureRect.new()
 	texture_rect.texture = texture
