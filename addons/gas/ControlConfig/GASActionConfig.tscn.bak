@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/gas/ControlConfig/GASActionConfig.gd" type="Script" id=1]
-[ext_resource path="res://addons/gas/ControlConfig/IconAtlas.tres" type="Texture" id=2]
+[ext_resource path="res://IconAtlas.tres" type="Texture" id=2]
 
 [sub_resource type="Theme" id=1]
 HBoxContainer/constants/separation = 12
