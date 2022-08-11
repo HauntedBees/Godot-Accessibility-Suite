@@ -20,8 +20,9 @@ If you would like to add to the project, by all means, go for it! All contributi
    - [GASContainer](#gascontainer)
  - [Virtual Gamepad](#virtual-gamepad)
  - [Other Features](#other-features)
-   - [Game Thumbnails with Game Saves](#game-thumbnails-with-game-saves)
    - [Controller Remapping](#controller-remapping)
+   - [Action Config](#action-config)
+   - [Game Thumbnails with Game Saves](#game-thumbnails-with-game-saves)
    - [Cooldown on Inputs](#cooldown-on-inputs)
    - [Toggles instead of Holding Buttons](#toggles-instead-of-holding-buttons)
    - [Adjust Game Speed](#adjust-game-speed)
@@ -153,13 +154,29 @@ Do you want this d-pad going in eight directions or four?
 
 
 # Other Features
+
+## [Controller Remapping](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
+`GASInput.remap_action(action:String, event:InputEvent)` will update a Godot action (as seen in the **Input Map** in **Project Settings**) to a new value. This supports both keyboard and gamepad inputs concurrently, so if `ui_accept` is configured to the "Start" button on a gamepad as well as the Enter key on a keyboard, calling `GASInput.remap_action("ui_accept", user_pressed_the_spacebar_key)` will replace the Enter key binding with a Spacebar key binding, but leave the "Start" button binding unchanged. If you want to save controller mappings, use `GASInput.get_actions_as_json()` to get a JSON string containing a dictionary of every action and its mappings. Save this however you like with the rest of your save data (this is not included in `GASConfig.save()`). After loading the JSON string, use `GASInput.restore_actions_from_json()` to set the controls up again.
+
+## [Action Config](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
+The `GASActionConfig` scene can be dropped anywhere in your project and will function as an out-of-the-box pre-made controller/input remapping screen. Use a `theme` to style it, slap it in your existing options menu if you have one, and players will be able to remap their controls without you having to write any code or design anything. This control automatically reads from the `InputMap` to get available actions, but unless you want users to edit things like `ui_up` and `ui_focus_prev`, you should use the **Action Names** export (described below) to make things more presentable.
+
+### Exports / Script Variables
+
+ - **Number of Columns**: How many columns your control remapping screen should be. This control doesn't have scrolling, so if you don't want to add your own scroller around this and you have a lot of controls, set this to 3.
+ - **Action Names**: A dictionary of all of your game's actions as keys; the values are the names that will be displayed to the player. So if you have `ui_up: Move Forward` then the user will see **Move Forward** to describe the `ui_up` action. As you add new actions to your project, this will automatically update with them (although you may need to close and reopen the scene the `GASActionConfig` is instanced in). **Note:** If you *remove* actions from your project, they will not be automatically removed here, so this must be done manually.
+ - **Sort Order**: An array of all of your game's actions. Rearrange them to show how they'll be sorted. If you have multiple columns, this fills out rows first, *then* columns.
+ - **Hide Default UI Actions**: If you don't want to show the default actions Godot adds and doesn't let you delete - like `ui_home` and `ui_page_down`, check this.
+
+### Additional Notes
+
+ - This control is a **scene**, not a **node**, so you'll need to add it to your scene with **Instance Child Scene**, not **Add Child Node**.
+ - This control uses `GASInput` behind the scenes to remap actions (described above). User configuration will last for the rest of the game; if you wish to have these settings retained after reopening the game, use `GASInput.get_actions_as_json()` and `GASInput.restore_actions_from_json()` with your own saving logic.
+
 ## [Game Thumbnails with Game Saves](https://gameaccessibilityguidelines.com/provide-gameplay-thumbnails-with-game-saves/)
 `GASUtils.save_screen(name:String)` will save the current viewport texture to `user://save_{name}.png`, overwriting any existing file with that name. This can then be accessed with `GASUtils.load_screen_as_texture_rect(name:string)`, which returns a `TextureRect` node to be easily dropped into your game scene. `GASUtils.load_screen_as_texture` and `GASUtils.load_screen_as_image` also exist if you want the raw `ImageTexture` or `Image` instead. Alternatively, `GAS_Utils.get_screen()` will return the current viewport image as an `Image`.
 
 Both `load_screen_as_texture_rect` and `load_screen_as_texture` take additional optional arguments, `width:float`, `height:float`, and `keep_aspect_ratio:bool`, that allow you to resize the texture (by default the saved image is half the size of the viewport). Calling `GASUtils.load_screen_as_texture("test", 320, 0, true)` will ensure the image keeps its original aspect ratio, with a maximum width of 320px. Likewise, `GASUtils.load_screen_as_texture("test", 0, 320, true)` will keep the aspect ratio with a maximum height of 320px. `GASUtils.load_screen_as_texture("test", 320, 320, false)` will resize the image to 320x320, regardless of its original aspect ratio. `GASUtils.load_screen_as_texture("test", 320, 320, true)` will maintain the aspect ratio while ensuring that neither the width nor height exceed 320px.
-
-## [Controller Remapping](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
-`GASInput.remap_action(action:String, event:InputEvent)` will update a Godot action (as seen in the **Input Map** in **Project Settings**) to a new value. This supports both keyboard and gamepad inputs concurrently, so if `ui_accept` is configured to the "Start" button on a gamepad as well as the Enter key on a keyboard, calling `GASInput.remap_action("ui_accept", user_pressed_the_spacebar_key)` will replace the Enter key binding with a Spacebar key binding, but leave the "Start" button binding unchanged.
 
 ## [Cooldown on Inputs](https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/)
 `GASInput.is_action_just_pressed(action:String)` returns `true` when the action is just pressed (based on the native `Input.is_action_just_pressed` method) **unless** it was pressed within the last `COOLDOWN_LENGTH` seconds (default is 0.5), in which case it returns `false`.

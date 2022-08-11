@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/gas/ControlConfig/GASActionConfig.gd" type="Script" id=1]
+[ext_resource path="res://IconAtlas.tres" type="Texture" id=2]
+
+[sub_resource type="Theme" id=1]
+HBoxContainer/constants/separation = 12
+
+[node name="ControlConfig" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+number_of_columns = 3
+action_names = {
+"ui_accept": "ui_accept",
+"ui_cancel": "ui_cancel",
+"ui_down": "Move Backward",
+"ui_end": "ui_end",
+"ui_focus_next": "ui_focus_next",
+"ui_focus_prev": "ui_focus_prev",
+"ui_home": "ui_home",
+"ui_left": "Move Left",
+"ui_page_down": "ui_page_down",
+"ui_page_up": "ui_page_up",
+"ui_right": "Move Right",
+"ui_select": "ui_select",
+"ui_up": "Move Forward"
+}
+sort_order = [ "ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_select", "ui_cancel", "ui_focus_next", "ui_focus_prev", "ui_end", "ui_home", "ui_page_up", "ui_page_down" ]
+
+[node name="Container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 1 )
+alignment = 1
+
+[node name="Left" type="VBoxContainer" parent="Container"]
+margin_left = 152.0
+margin_right = 384.0
+margin_bottom = 600.0
+
+[node name="Middle" type="VBoxContainer" parent="Container"]
+margin_left = 396.0
+margin_right = 628.0
+margin_bottom = 600.0
+
+[node name="Right" type="VBoxContainer" parent="Container"]
+margin_left = 640.0
+margin_right = 872.0
+margin_bottom = 600.0
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -146.0
+margin_top = -86.0
+margin_right = 146.0
+margin_bottom = 86.0
+window_title = "New Control"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmationDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+alignment = 1
+
+[node name="Label2" type="Label" parent="ConfirmationDialog/VBoxContainer"]
+margin_top = 23.0
+margin_right = 276.0
+margin_bottom = 37.0
+text = "Current Input:"
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="ConfirmationDialog/VBoxContainer"]
+margin_top = 41.0
+margin_right = 276.0
+margin_bottom = 105.0
+
+[node name="NewButton" type="TextureRect" parent="ConfirmationDialog/VBoxContainer/CenterContainer"]
+margin_left = 106.0
+margin_right = 170.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 2 )
+expand = true
+
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="popup_hide" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_popup_hide"]
