@@ -52,3 +52,54 @@ func _input(event:InputEvent):
 			Input.action_release(action)
 			get_tree().set_input_as_handled()
 			return
+
+func get_actions_as_json() -> String:
+	return to_json(get_actions_as_dictionary())
+func get_actions_as_dictionary() -> Dictionary:
+	var actions := {}
+	var action_list := InputMap.get_actions()
+	for action_name in action_list:
+		var action_inputs := []
+		for action in InputMap.get_action_list(action_name):
+			if action is InputEventKey:
+				action_inputs.append("InputEventKey,%s" % action.scancode)
+			elif action is InputEventMouseButton:
+				var b: InputEventMouseButton = action
+				action_inputs.append("InputEventMouseButton,%s" % b.button_index)
+			elif action is InputEventJoypadButton:
+				var b: InputEventJoypadButton = action
+				action_inputs.append("InputEventJoypadButton,%s" % b.button_index)
+			elif action is InputEventJoypadMotion:
+				var b: InputEventJoypadMotion = action
+				action_inputs.append("InputEventJoypadMotion,%s,%s" % [b.axis, b.axis_value])
+		actions[action_name] = action_inputs
+	return actions
+
+func restore_actions_from_json(json: String):
+	restore_actions_from_dictionary(parse_json(json))
+func restore_actions_from_dictionary(actions: Dictionary):
+	for action_name in actions.keys():
+		InputMap.action_erase_events(action_name)
+		var split_type: Array = String(actions[action_name]).split(",")
+		match split_type[0]:
+			"InputEventKey":
+				var event := InputEventKey.new()
+				event.pressed = true
+				event.scancode = int(split_type[1])
+				InputMap.action_add_event(action_name, event)
+			"InputEventMouseButton":
+				var event := InputEventMouseButton.new()
+				event.pressed = true
+				event.button_index = int(split_type[1])
+				InputMap.action_add_event(action_name, event)
+			"InputEventJoypadButton":
+				var event := InputEventJoypadButton.new()
+				event.pressed = true
+				event.button_index = int(split_type[1])
+				InputMap.action_add_event(action_name, event)
+			"InputEventJoypadMotion":
+				var event := InputEventJoypadMotion.new()
+				event.pressed = true
+				event.axis = int(split_type[1])
+				event.axis_value = float(split_type[2])
+				InputMap.action_add_event(action_name, event)
