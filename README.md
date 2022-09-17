@@ -1,5 +1,5 @@
 # Godot Accessibility Suite
-An attempt at making it as easy for you to follow as many of the guidelines from [gameaccessibilityguidelines.com](https://gameaccessibilityguidelines.com/) as possible in your Godot 3.4 games.
+An attempt at making it as easy for you to follow as many of the guidelines from [gameaccessibilityguidelines.com](https://gameaccessibilityguidelines.com/) as possible in your Godot 4.x games.
 
 Guidelines not listed below have not been evaluated yet, or are things that cannot be solved with a plugin or script (or at the very least, ***I*** couldn't figure out how to solve with a plugin or script). The only way I can think of to handle something like [providing Simple Control Schemes](https://gameaccessibilityguidelines.com/provide-very-simple-control-schemes-that-are-compatible-with-assistive-technology-devices-such-as-switch-or-eye-tracking/) is for the developer to be conscious of this need and just ***not*** program in complicated control schemes. This suite is intended to make accessible design decisions as easy as possible for game developers, but "as easy as possible" doesn't always mean easy. It's usually harder to [allow interfaces to be rearranged](gameaccessibilityguidelines.com/allow-interfaces-to-be-rearranged) than it is to just give the player one static interface, for example. Every game is different and what is trivial to implement in one game may be impossible to implement in another.
 
@@ -160,6 +160,7 @@ Do you want this d-pad going in eight directions or four?
 
 ## [Action Config](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
 The `GASActionConfig` scene can be dropped anywhere in your project and will function as an out-of-the-box pre-made controller/input remapping screen. Use a `theme` to style it, slap it in your existing options menu if you have one, and players will be able to remap their controls without you having to write any code or design anything. This control automatically reads from the `InputMap` to get available actions, but unless you want users to edit things like `ui_up` and `ui_focus_prev`, you should use the **Action Names** export (described below) to make things more presentable.
+**NOTE:** This is currently broken in Godot 4.0 beta and is in the process of being fixed.
 
 ### Exports / Script Variables
 

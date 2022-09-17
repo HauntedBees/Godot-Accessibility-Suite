@@ -1,30 +1,40 @@
-tool
+@tool
 extends Control
 
 const control_atlas: AtlasTexture = preload("res://addons/gas/ControlConfig/IconAtlas.tres")
 
-export(int, 1, 3) var number_of_columns := 1 setget _set_column_count
-func _set_column_count(i: int) -> void:
-	number_of_columns = i
-	_generate_controls_display()
-export(Dictionary) var action_names := {} setget _set_action_names
-func _set_action_names(d: Dictionary) -> void:
-	action_names = d
-	_generate_controls_display()
-export(Array) var sort_order := [] setget _set_sort_order
-func _set_sort_order(a: Array) -> void:
-	sort_order = a
-	_generate_controls_display()
-export(bool) var hide_default_ui_actions := false setget _set_hide_default
-func _set_hide_default(b: bool) -> void:
-	hide_default_ui_actions = b
-	_generate_controls_display()
+@export_range(1, 3)
+var number_of_columns := 1:
+	set(v):
+		number_of_columns = v
+		_generate_controls_display()
+@export
+var action_names := {}:
+	set(v):
+		action_names = v
+		_generate_controls_display()
+@export
+var sort_order := []:
+	set(v):
+		sort_order = v
+		_generate_controls_display()
+@export
+var hide_default_ui_actions := false:
+	set(v):
+		hide_default_ui_actions = v
+		_generate_controls_display()
+@export
+var editor_refresh := false:
+	set(v):
+		action_names = {}
+		editor_refresh = v
+		_configure_display_settings(true)
 
-onready var _left_column: VBoxContainer = $Container/Left
-onready var _middle_column: VBoxContainer = $Container/Middle
-onready var _right_column: VBoxContainer = $Container/Right
-onready var _popup: ConfirmationDialog = $ConfirmationDialog
-onready var _new_button: TextureRect = $ConfirmationDialog/VBoxContainer/CenterContainer/NewButton
+@onready var _left_column: VBoxContainer = $Container/Left
+@onready var _middle_column: VBoxContainer = $Container/Middle
+@onready var _right_column: VBoxContainer = $Container/Right
+@onready var _popup: ConfirmationDialog = $ConfirmationDialog
+@onready var _new_button: TextureRect = $ConfirmationDialog/VBoxContainer/CenterContainer/NewButton
 
 var _using_gamepad := false
 var _target_button: Button = null
@@ -85,8 +95,12 @@ func _generate_controls_display() -> void:
 	if action_names.size() == 0:
 		_configure_display_settings(false)
 	for i in sort_order.size():
-		if hide_default_ui_actions && sort_order[i].find("ui_") == 0:
-			continue
+		if hide_default_ui_actions:
+			var action_name := String(sort_order[i])
+			if action_name.find("ui_") == 0:
+				continue
+			elif action_name.find("spatial_editor") == 0:
+				continue
 		var column: VBoxContainer = columns[i % number_of_columns]
 		column.add_child(_get_control(sort_order[i]))
 
@@ -94,17 +108,17 @@ func _get_control(action_key: String) -> HBoxContainer:
 	var display_name: String = action_names[action_key]
 	var c := HBoxContainer.new()
 	var l := Label.new()
-	l.rect_min_size = Vector2(100.0, 60.0)
-	l.valign = Label.VALIGN_CENTER
-	l.align = Label.ALIGN_RIGHT
+	l.custom_minimum_size = Vector2i(100, 60)
+	l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	l.text = display_name
 	c.add_child(l)
 	var b := Button.new()
-	b.rect_min_size = Vector2(120.0, 60.0)
+	b.custom_minimum_size = Vector2i(120, 60)
 	b.icon = _get_icon(action_key)
 	b.expand_icon = true
 	b.flat = true
-	b.connect("pressed", self, "_change_control", [b, display_name, action_key])
+	b.pressed.connect(_change_control.bind(b, display_name, action_key))
 	c.add_child(b)
 	return c
 func _get_icon(action_key: String) -> AtlasTexture:
@@ -123,10 +137,10 @@ func _get_icon_from_input(action: InputEvent) -> AtlasTexture:
 			idx = 2 + am.button_index
 	elif action is InputEventKey:
 		var ak := action as InputEventKey
-		if ak.scancode >= 16777217:
-			idx = 69 + ak.scancode - 16777217
+		if ak.keycode >= 16777217:
+			idx = 69 + ak.keycode - 16777217
 		else:
-			idx = ak.scancode - 32
+			idx = ak.keycode - 32
 	elif action is InputEventJoypadButton:
 		var ab := action as InputEventJoypadButton
 		if ab.button_index > 15:
@@ -149,7 +163,7 @@ func _get_icon_from_input(action: InputEvent) -> AtlasTexture:
 	c.region.position = Vector2(128 * (idx % 16), 128 * floor(idx / 16.0))
 	return c
 func _get_first_action(action_key: String, prefer_gamepad: bool) -> InputEvent:
-	var actions := InputMap.get_action_list(action_key)
+	var actions := InputMap.action_get_events(action_key)
 	for a in actions:
 		var is_gamepad := a is InputEventJoypadMotion || a is InputEventJoypadButton
 		if (is_gamepad && prefer_gamepad) || (!is_gamepad && !prefer_gamepad):
@@ -174,9 +188,9 @@ func _on_ConfirmationDialog_confirmed() -> void:
 	_target_event = null
 	_target_action = ""
 
-# TODO: remove old ones, too?
+# TODO: remove_at old ones, too?
 func _configure_display_settings(editor_only := true) -> void:
-	if editor_only && !Engine.editor_hint:
+	if editor_only && !Engine.is_editor_hint():
 		return
 	var actions := InputMap.get_actions()
 	for a in actions:

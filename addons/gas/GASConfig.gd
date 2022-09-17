@@ -9,21 +9,21 @@ var vision_minimum_font_size := 28
 
 # https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
 var input_toggle_actions := ["ui_end"]
-func set_toggle_action(action:String, is_toggle:bool):
+func set_toggle_action(action: String, is_toggle: bool):
 	var idx := input_toggle_actions.find(action)
 	if (is_toggle && idx >= 0) || (!is_toggle && idx < 0): return
 	if is_toggle: input_toggle_actions.append(action)
-	else: input_toggle_actions.remove(idx)
+	else: input_toggle_actions.remove_at(idx)
 
 # https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/
-var core_game_speed := 1.0 setget _set_core_game_speed
-func _set_core_game_speed(s:float):
-	core_game_speed = s
-	Engine.time_scale = s
+var core_game_speed := 1.0:
+	set(s):
+		core_game_speed = s
+		Engine.time_scale = s
 
 func _ready():
 	if !_load():
-		_set_core_game_speed(core_game_speed)
+		Engine.time_scale = core_game_speed
 func _load(profile := "") -> bool:
 	var config := ConfigFile.new()
 	var err := config.load("user://gas%s.cfg" % profile)

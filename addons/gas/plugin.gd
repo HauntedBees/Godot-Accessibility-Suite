@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorPlugin
 
 const FONT_MSG := "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/"
@@ -29,23 +29,23 @@ func _enter_tree():
 	var profile_button = Button.new()
 	profile_button.size_flags_horizontal = 3
 	profile_button.text = "Audit Scene"
-	profile_button.connect("pressed", self, "_audit_scene")
+	profile_button.pressed.connect(_audit_scene)
 	buttons.add_child(profile_button)
 	
 	var profile_resources = Button.new()
 	profile_resources.size_flags_horizontal = 3
 	profile_resources.text = "Audit Project Resources"
-	profile_resources.connect("pressed", self, "_audit_resources")
+	profile_resources.pressed.connect(_audit_resources)
 	buttons.add_child(profile_resources)
 	
 	result_text = RichTextLabel.new()
 	result_text.size_flags_horizontal = 3
 	result_text.size_flags_vertical = 3
-	result_text.rect_min_size = Vector2(10, 100)
+	result_text.minimum_size = Vector2(10, 100)
 	result_text.selection_enabled = true
 	result_text.bbcode_enabled = true
-	result_text.bbcode_text = "This Accessibility Profiler will scan through all nodes in the current Scene to check for some common accessibility issues. Note that this [u]will not[/u] identify issues with Nodes created via code."
-	result_text.connect("meta_clicked", self, "_on_link_click")
+	result_text.text = "This Accessibility Profiler will scan through all nodes in the current Scene to check for some common accessibility issues. Note that this [u]will not[/u] identify issues with Nodes created via code."
+	result_text.meta_clicked.connect(_on_link_click)
 	profiler.add_child(result_text)
 	
 	add_control_to_bottom_panel(profiler, "Accessibility")
@@ -68,31 +68,31 @@ func _on_link_click(meta): OS.shell_open(str(meta))
 func _audit_scene():
 	var ei := get_editor_interface()
 	if ei == null:
-		result_text.bbcode_text = "[color=red]Could not find Editor Interface.[/color]"
+		result_text.text = "[color=red]Could not find Editor Interface.[/color]"
 		return
 	var cs := ei.get_edited_scene_root()
 	if cs == null:
-		result_text.bbcode_text = "[color=red]Please select a Scene with at least one Node to begin.[/color]"
+		result_text.text = "[color=red]Please select a Scene with at least one Node to begin.[/color]"
 		return
 	errors = []
 	goods = []
 	nodes_scanned = 0
-	result_text.bbcode_text = "Beginning Audit."
+	result_text.text = "Beginning Audit."
 	process_node(cs, cs)
 	_display_audit_results("Node")
 func _audit_resources(path := "res://", is_first := true):
 	var d:Directory = Directory.new()
 	if d.open(path) != OK:
 		errors.append("Unable to open %s directory." % path)
-		if is_first: result_text.bbcode_text = "[color=red]Unable to open %s directory.[/color]" % path
+		if is_first: result_text.text = "[color=red]Unable to open %s directory.[/color]" % path
 		return
 	if is_first:
-		result_text.bbcode_text = "Beginning Audit."
+		result_text.text = "Beginning Audit."
 		errors = []
 		goods = []
 		nodes_scanned = 0
 	print("Stepping through %s" % path)
-	d.list_dir_begin(true, true)
+	d.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	var i := d.get_next()
 	while i != "":
 		if d.current_is_dir(): _audit_resources("%s%s/" % [path, i], false)
@@ -114,7 +114,7 @@ func _display_audit_results(noun:String):
 	for g in goods: good_response += "\n%s" % g
 	if good_response == "": good_response = "N/A"
 	var noun_suffixed = noun if nodes_scanned == 1 else "%ss" % noun
-	result_text.bbcode_text = "Audit Complete (%s %s Audited)\n Issues Found: %s\n Passed Checks: %s" % [nodes_scanned, noun_suffixed, response, good_response]
+	result_text.text = "Audit Complete (%s %s Audited)\n Issues Found: %s\n Passed Checks: %s" % [nodes_scanned, noun_suffixed, response, good_response]
 
 func process_resource(name:String, r:Resource):
 	if r is Font:
@@ -124,7 +124,7 @@ func process_resource(name:String, r:Resource):
 
 func process_node(root:Node, n:Node):
 	var name := root.get_path_to(n)
-	result_text.bbcode_text = "Processing %s" % name
+	result_text.text = "Processing %s" % name
 	nodes_scanned += 1
 	if n is BaseButton || n is Label:
 		var fh := get_font_size((n as Control).get_font("font"))
@@ -169,5 +169,5 @@ func process_node(root:Node, n:Node):
 	for c in n.get_children(): process_node(root, c)
 
 func get_font_size(f:Font) -> int:
-	if f is DynamicFont: return f.size
+	if f is FontFile: return f.size
 	else: return int(f.get_height())

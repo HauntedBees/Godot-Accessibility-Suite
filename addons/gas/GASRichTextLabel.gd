@@ -1,33 +1,31 @@
 extends RichTextLabel
 
-# Font.get_wordwrap_string_size doesn't seem to be accurate when using rect_size as the
+# Font.get_wordwrap_string_size doesn't seem to be accurate when using size as the
 # bounds, and this padding seems to fix that. not sure if these numbers will always work.
-export(Vector2) var text_padding := Vector2(8.0, 4.0)
-func _real_width() -> float: return rect_size.x - text_padding.x * (font_size / 16.0)
-func _real_height() -> float: return rect_size.y - text_padding.y * (font_size / 16.0)
+@export var text_padding := Vector2(8.0, 4.0)
+func _real_width() -> float: return size.x - text_padding.x * (font_size / 16.0)
+func _real_height() -> float: return size.y - text_padding.y * (font_size / 16.0)
 
-var wrap_text:String setget set_text
-func set_text(t:String):
-	wrap_text = t
-	if bbcode_enabled: bbcode_text = t
-	else: text = t
-	_reset_text()
-var translation_key:String setget set_translation_key
-func set_translation_key(t:String):
-	translation_key = t
-	set_text(tr(t)) 
+var wrap_text: String:
+	set(t):
+		wrap_text = t
+		if bbcode_enabled:
+			text = t
+		else:
+			text = t
+		_reset_text()
+var translation_key:String:
+	set(t):
+		translation_key = t
+		set_text(tr(t)) 
 
-onready var bbcode_open := RegEx.new()
-onready var bbcode_close := RegEx.new()
-var current_font:DynamicFont
-var font_size:int setget set_font_size
-func set_font_size(i:int, reset := true):
-	if i == font_size: return
-	current_font = (current_font.duplicate() as DynamicFont)
-	current_font.size = i
-	font_size = i
-	add_font_override("normal_font", current_font)
-	if reset: _reset_text()
+@onready var bbcode_open := RegEx.new()
+@onready var bbcode_close := RegEx.new()
+var font_size: int:
+	get:
+		return font_size # TODOConverter40 Non existent get function 
+	set(i):
+		font_size = i
 
 var text_parts := []
 var text_part_idx := 0
@@ -41,16 +39,14 @@ func advance() -> bool:
 
 func _ready():
 	scroll_active = false
-	bbcode_open.compile("\\[([a-z]+)(\\=[\\w\\d\\.\\,\\\\\/\\\"\\'\\#\\,\\-]*)?\\]")
+	bbcode_open.compile("\\[([a-z]+)(\\=[\\w\\d\\.\\,\\\\/\\\"\\'\\#\\,\\-]*)?\\]")
 	bbcode_close.compile("\\[/([a-z]+)\\]")
-	var font := get_font("normal_font")
-	assert(font is DynamicFont, "GASRichTextLabel can only be used with DynamicFonts")
-	current_font = (font as DynamicFont)
-	font_size = current_font.size
-	if font_size < GASConfig.vision_minimum_font_size: set_font_size(GASConfig.vision_minimum_font_size, false)
+	font_size = get_theme_default_font_size()
+	if font_size < GASConfig.vision_minimum_font_size:
+		font_size = GASConfig.vision_minimum_font_size
 	if font_size < 28: print("You should use a minimum of 28px for your font sizes. See: https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/")
-	connect("resized", self, "_reset_text")
-	wrap_text = bbcode_text if bbcode_enabled else text
+	resized.connect(_reset_text)
+	wrap_text = text if bbcode_enabled else text
 	_reset_text()
 
 func _reset_text():
@@ -67,7 +63,8 @@ func _reset_text():
 		var raw_next:String = raw_word if raw_current_text == "" else ("%s %s" % [raw_current_text, raw_word])
 		var next:String = word if current_text == "" else ("%s %s" % [current_text, word])
 		
-		if current_font.get_wordwrap_string_size(next, _real_width()).y <= _real_height():
+		var current_font := get_theme_default_font()
+		if current_font.get_multiline_string_size(next, _real_width()).y <= _real_height():
 			raw_current_text = raw_next
 			current_text = next
 		else:
@@ -79,11 +76,11 @@ func _reset_text():
 			if parse_info["match"] == "open":
 				open_tags.append(parse_info)
 			elif parse_info["match"] == "close":
-				open_tags.remove(parse_info["tag_index"])
+				open_tags.remove_at(parse_info["tag_index"])
 	if raw_current_text != "": text_parts.append(raw_current_text)
 	_display_text(text_parts[0])
 
-func _try_parse_bbcode(w:String) -> Array:
+func _try_parse_bbcode(w: String) -> Array:
 	if !bbcode_enabled: return [{ "match": "", "clean_word": w }]
 	var potential_open := bbcode_open.search(w)
 	var potential_close := bbcode_close.search(w)
@@ -135,5 +132,5 @@ func _get_open_tags() -> String:
 	return opening_tags
 
 func _display_text(t:String):
-	if bbcode_enabled: bbcode_text = t
+	if bbcode_enabled: text = t
 	else: text = t

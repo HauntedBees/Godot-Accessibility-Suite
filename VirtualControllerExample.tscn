@@ -1,143 +1,151 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://cg42315wl5crk"]
 
-[ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd" type="Script" id=1]
-[ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd" type="Script" id=2]
-[ext_resource path="res://VirtualControllerExample.gd" type="Script" id=3]
-[ext_resource path="res://addons/gas/GASVirtualGamepad/Parts/button1.png" type="Texture" id=4]
-[ext_resource path="res://example_assets/penguin.png" type="Texture" id=5]
-[ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualAnalogStick.gd" type="Script" id=6]
-[ext_resource path="res://addons/gas/GASVirtualGamepad/GASVirtualDPad.gd" type="Script" id=7]
+[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd" id="1"]
+[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd" id="2"]
+[ext_resource type="Script" path="res://VirtualControllerExample.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://d31xceav5034u" path="res://addons/gas/GASVirtualGamepad/Parts/button1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://0eyna3ngbt2k" path="res://example_assets/penguin.png" id="5"]
+[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualAnalogStick.gd" id="6"]
+[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualDPad.gd" id="7"]
 
 [node name="VirtualControllerExample" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
 
-[node name="Player" type="Sprite" parent="."]
-position = Vector2( 534, 292 )
-scale = Vector2( 0.206294, 0.206294 )
-texture = ExtResource( 5 )
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(534, 292)
+scale = Vector2(0.206294, 0.206294)
+texture = ExtResource("5")
 
 [node name="GASVirtualGamepad" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 40.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
 mobile_only = false
 
 [node name="A Button" type="Control" parent="GASVirtualGamepad"]
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -217.0
-margin_top = -104.0
-margin_right = -137.0
-margin_bottom = -24.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -238.0
+offset_top = -106.0
+offset_right = -158.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2")
 repeat_frequency = 0.5
 
 [node name="B Button" type="Control" parent="GASVirtualGamepad"]
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -146.0
-margin_top = -180.0
-margin_right = -66.0
-margin_bottom = -100.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -167.0
+offset_top = -182.0
+offset_right = -87.0
+offset_bottom = -102.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2")
 action = "ui_cancel"
-texture = ExtResource( 4 )
+texture = ExtResource("4")
 repeat_frequency = 0.5
 
 [node name="B2 Button" type="Control" parent="GASVirtualGamepad"]
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -96.0
-margin_top = -265.0
-margin_right = -16.0
-margin_bottom = -185.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-is_toggle = true
+offset_left = -117.0
+offset_top = -267.0
+offset_right = -37.0
+offset_bottom = -187.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2")
 action = "ui_end"
-texture = ExtResource( 4 )
+texture = ExtResource("4")
 repeat_frequency = 0.5
+is_toggle = true
 
 [node name="Analog" type="Control" parent="GASVirtualGamepad"]
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 42.0
-margin_top = -380.0
-margin_right = 202.0
-margin_bottom = -220.0
+offset_left = 29.0
+offset_top = -360.0
+offset_right = 189.0
+offset_bottom = -200.0
+grow_vertical = 0
 focus_mode = 2
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("6")
 is_toggle = true
 
 [node name="GASVirtualDPad" type="Control" parent="GASVirtualGamepad"]
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 37.0
-margin_top = -181.0
-margin_right = 198.0
-margin_bottom = -20.0
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 113.0
+offset_top = -212.0
+offset_right = 274.0
+offset_bottom = -51.0
+grow_vertical = 0
+script = ExtResource("7")
 diagonals_enabled = false
 
 [node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
-custom_constants/separation = 50
+grow_horizontal = 2
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CheckButton" type="CheckButton" parent="Buttons"]
-margin_left = 264.0
-margin_right = 408.0
-margin_bottom = 40.0
+layout_mode = 2
+offset_left = 393.0
+offset_right = 519.0
+offset_bottom = 31.0
 text = "Edit Mode"
 
 [node name="SaveButton" type="Button" parent="Buttons"]
-margin_left = 458.0
-margin_right = 499.0
-margin_bottom = 40.0
+layout_mode = 2
+offset_left = 523.0
+offset_right = 567.0
+offset_bottom = 31.0
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="Buttons"]
-margin_left = 549.0
-margin_right = 591.0
-margin_bottom = 40.0
+layout_mode = 2
+offset_left = 571.0
+offset_right = 617.0
+offset_bottom = 31.0
 text = "Load"
 
 [node name="DefaultButton" type="Button" parent="Buttons"]
-margin_left = 641.0
-margin_right = 759.0
-margin_bottom = 40.0
+layout_mode = 2
+offset_left = 621.0
+offset_right = 758.0
+offset_bottom = 31.0
 text = "Restore Defaults"
 
 [connection signal="pressed" from="Buttons/CheckButton" to="." method="_on_CheckButton_pressed"]

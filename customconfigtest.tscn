@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2t0rig70eb1r"]
+
+[ext_resource type="PackedScene" uid="uid://d213lodm33x4n" path="res://addons/gas/ControlConfig/GASActionConfig.tscn" id="1_tjcfv"]
+
+[node name="Node2d" type="Node2D"]
+
+[node name="ControlConfig" parent="." instance=ExtResource("1_tjcfv")]
+grow_horizontal = 2
+grow_vertical = 2
+action_names = {
+"spatial_editor/freelook_backwards": &"spatial_editor/freelook_backwards",
+"spatial_editor/freelook_down": &"spatial_editor/freelook_down",
+"spatial_editor/freelook_forward": &"spatial_editor/freelook_forward",
+"spatial_editor/freelook_left": &"spatial_editor/freelook_left",
+"spatial_editor/freelook_right": &"spatial_editor/freelook_right",
+"spatial_editor/freelook_slow_modifier": &"spatial_editor/freelook_slow_modifier",
+"spatial_editor/freelook_speed_modifier": &"spatial_editor/freelook_speed_modifier",
+"spatial_editor/freelook_up": &"spatial_editor/freelook_up",
+"ui_accept": &"ui_accept",
+"ui_cancel": &"ui_cancel",
+"ui_copy": &"ui_copy",
+"ui_cut": &"ui_cut",
+"ui_down": &"ui_down",
+"ui_end": &"ui_end",
+"ui_filedialog_refresh": &"ui_filedialog_refresh",
+"ui_filedialog_show_hidden": &"ui_filedialog_show_hidden",
+"ui_filedialog_up_one_level": &"ui_filedialog_up_one_level",
+"ui_focus_next": &"ui_focus_next",
+"ui_focus_prev": &"ui_focus_prev",
+"ui_graph_delete": &"ui_graph_delete",
+"ui_graph_duplicate": &"ui_graph_duplicate",
+"ui_home": &"ui_home",
+"ui_left": &"ui_left",
+"ui_menu": &"ui_menu",
+"ui_page_down": &"ui_page_down",
+"ui_page_up": &"ui_page_up",
+"ui_paste": &"ui_paste",
+"ui_redo": &"ui_redo",
+"ui_right": &"ui_right",
+"ui_select": &"ui_select",
+"ui_swap_input_direction": &"ui_swap_input_direction",
+"ui_text_backspace": &"ui_text_backspace",
+"ui_text_backspace_all_to_left": &"ui_text_backspace_all_to_left",
+"ui_text_backspace_word": &"ui_text_backspace_word",
+"ui_text_caret_document_end": &"ui_text_caret_document_end",
+"ui_text_caret_document_start": &"ui_text_caret_document_start",
+"ui_text_caret_down": &"ui_text_caret_down",
+"ui_text_caret_left": &"ui_text_caret_left",
+"ui_text_caret_line_end": &"ui_text_caret_line_end",
+"ui_text_caret_line_start": &"ui_text_caret_line_start",
+"ui_text_caret_page_down": &"ui_text_caret_page_down",
+"ui_text_caret_page_up": &"ui_text_caret_page_up",
+"ui_text_caret_right": &"ui_text_caret_right",
+"ui_text_caret_up": &"ui_text_caret_up",
+"ui_text_caret_word_left": &"ui_text_caret_word_left",
+"ui_text_caret_word_right": &"ui_text_caret_word_right",
+"ui_text_completion_accept": &"ui_text_completion_accept",
+"ui_text_completion_query": &"ui_text_completion_query",
+"ui_text_completion_replace": &"ui_text_completion_replace",
+"ui_text_dedent": &"ui_text_dedent",
+"ui_text_delete": &"ui_text_delete",
+"ui_text_delete_all_to_right": &"ui_text_delete_all_to_right",
+"ui_text_delete_word": &"ui_text_delete_word",
+"ui_text_indent": &"ui_text_indent",
+"ui_text_newline": &"ui_text_newline",
+"ui_text_newline_above": &"ui_text_newline_above",
+"ui_text_newline_blank": &"ui_text_newline_blank",
+"ui_text_scroll_down": &"ui_text_scroll_down",
+"ui_text_scroll_up": &"ui_text_scroll_up",
+"ui_text_select_all": &"ui_text_select_all",
+"ui_text_select_word_under_caret": &"ui_text_select_word_under_caret",
+"ui_text_submit": &"ui_text_submit",
+"ui_text_toggle_insert_mode": &"ui_text_toggle_insert_mode",
+"ui_undo": &"ui_undo",
+"ui_up": &"ui_up"
+}
+hide_default_ui_actions = true
+editor_refresh = true
