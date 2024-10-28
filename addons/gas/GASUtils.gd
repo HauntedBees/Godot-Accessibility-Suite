@@ -9,9 +9,9 @@ func get_screen() -> Image:
 	img.shrink_x2()
 	return img
 func load_screen_as_image(name: String) -> Image:
-	var file := File.new()
-	var opened := file.open("user://save_%s.png" % name, File.READ)
-	if opened != OK: return null
+	var file := FileAccess.open("user://save_%s.png" % name, FileAccess.READ)
+	if file == null:
+		return null
 	var content := file.get_buffer(file.get_length())
 	file.close()
 	var img := Image.new()

@@ -1,14 +1,17 @@
 extends Node
 
+# https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/
+var warn_on_font_too_small := false
+
  # https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
-var input_cooldown_enabled := true
+var input_cooldown_enabled := false
 var input_cooldown_length := 0.5
 
 # https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/
 var vision_minimum_font_size := 28
 
 # https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
-var input_toggle_actions := ["ui_end"]
+var input_toggle_actions := []
 func set_toggle_action(action: String, is_toggle: bool):
 	var idx := input_toggle_actions.find(action)
 	if (is_toggle && idx >= 0) || (!is_toggle && idx < 0): return

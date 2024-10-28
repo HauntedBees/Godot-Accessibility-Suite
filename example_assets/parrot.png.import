@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/parrot.png-149d47e0f32c6c20a1afe5a4f527d9a5.c
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

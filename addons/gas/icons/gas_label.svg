@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="gas_label.svg"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="51.5"
+     inkscape:cx="6.776699"
+     inkscape:cy="9.0097087"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     id="path1"
+     d="M 6 3 A 1 1 0 0 0 5.2929688 3.2929688 L 1.2929688 7.2929688 A 1 1 0 0 0 1.2929688 8.7070312 L 5.2929688 12.707031 A 1 1 0 0 0 6 13 L 14 13 A 1 1 0 0 0 15 12 L 15 4 A 1 1 0 0 0 14 3 L 6 3 z M 9.8066406 4.0332031 L 10.755859 4.0332031 C 11.01186 4.5665376 11.25752 5.1067401 11.492188 5.6542969 C 11.726855 6.1947425 11.960645 6.7620404 12.195312 7.359375 C 12.437091 7.9567096 12.682751 8.5913197 12.931641 9.2597656 C 13.18053 9.9211004 13.447977 10.641604 13.732422 11.423828 L 12.601562 11.423828 C 12.480673 11.103827 12.366433 10.792107 12.259766 10.486328 C 12.153099 10.173439 12.043466 9.8571101 11.929688 9.5371094 L 8.5800781 9.5371094 L 7.9082031 11.423828 L 6.8300781 11.423828 C 7.1145232 10.641604 7.3819699 9.9211004 7.6308594 9.2597656 C 7.8797488 8.5913197 8.1208016 7.9567096 8.3554688 7.359375 C 8.597247 6.7620404 8.8356453 6.1947425 9.0703125 5.6542969 C 9.3049797 5.1067401 9.5506401 4.5665376 9.8066406 4.0332031 z M 10.253906 5.2167969 C 10.005017 5.7501314 9.7666185 6.3075126 9.5390625 6.890625 C 9.3186176 7.4666262 9.0993512 8.0649257 8.8789062 8.6835938 L 11.630859 8.6835938 C 11.403303 8.0649257 11.174822 7.4666262 10.947266 6.890625 C 10.726821 6.3075126 10.495685 5.7501314 10.253906 5.2167969 z M 5 7 A 1 1 0 0 1 5 9 A 1 1 0 0 1 5 7 z "
+     style="fill:#8eef97;fill-opacity:1" />
+</svg>

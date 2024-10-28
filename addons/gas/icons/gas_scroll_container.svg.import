@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvxxdwjejk7a"
-path="res://.godot/imported/dpad0.png-8d7421b096fe7c83ac6610d5e96dd8e9.ctex"
+uid="uid://c4hpair6lr2bh"
+path="res://.godot/imported/gas_scroll_container.svg-ecb07bc91b85b722f2ec8f8248528bbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/gas/GASVirtualGamepad/Parts/dpad0.png"
-dest_files=["res://.godot/imported/dpad0.png-8d7421b096fe7c83ac6610d5e96dd8e9.ctex"]
+source_file="res://addons/gas/icons/gas_scroll_container.svg"
+dest_files=["res://.godot/imported/gas_scroll_container.svg-ecb07bc91b85b722f2ec8f8248528bbe.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

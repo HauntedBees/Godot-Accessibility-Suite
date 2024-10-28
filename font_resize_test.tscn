@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk4x0dhd46uh"]
+
+[ext_resource type="Script" path="res://font_resize_test.gd" id="1_j3irf"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_tj1mp"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="2_gmq6b"]
+
+[node name="FontResizeTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j3irf")
+
+[node name="AccessibleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 180.0
+offset_right = 287.0
+offset_bottom = 203.0
+text = "Base Text"
+script = ExtResource("1_tj1mp")
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 221.0
+offset_right = 917.0
+offset_bottom = 315.0
+bbcode_enabled = true
+text = "Rich Text [font_size=32]LABEL[/font_size]!"
+script = ExtResource("2_gmq6b")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 56.0
+offset_right = 477.0
+offset_bottom = 108.0
+text = "1x Size"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 52.0
+offset_right = 675.0
+offset_bottom = 104.0
+text = "2x Size"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -24,7 +24,7 @@ func _process(delta: float):
 		player.scale += Vector2(0.2, 0.2) * delta
 	if Input.is_action_pressed("ui_end"):
 		player.rotation += 2.0 * delta
-	
+
 	var movement := Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
