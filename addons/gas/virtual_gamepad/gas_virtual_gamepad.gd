@@ -1,6 +1,5 @@
 @tool
-class_name GASVirtualGamepad
-extends Control
+class_name GASVirtualGamepad extends Control
 
 @export var mobile_only := true
 @export var translation_prefix := ""
@@ -17,8 +16,10 @@ var default_values := {}
 var dynamic_control_handler:Control = null
 var current_dynamic_control:GASVirtualControl = null
 var current_dynamic_control_start := Vector2.ZERO
-func _ready():
-	if mobile_only && !is_mobile: visible = false
+
+func _ready() -> void:
+	if mobile_only && !is_mobile:
+		visible = false
 	await get_tree().process_frame
 	for c in get_children():
 		default_values[c.name] = c.config
@@ -31,32 +32,40 @@ func _ready():
 	add_child(dynamic_control_handler)
 	move_child(dynamic_control_handler, 0)
 
-func restore_defaults():
+func restore_defaults() -> void:
 	for c in get_children():
-		if c == dynamic_control_handler: continue
+		if c == dynamic_control_handler:
+			continue
 		c.config = default_values[c.name]
-func load_setup():
+
+func load_setup() -> void:
 	var config := ConfigFile.new()
 	var err := config.load("user://gas_virtualgamepad_%s.cfg" % name)
-	if err != OK: return
+	if config.load("user://gas_virtualgamepad_%s.cfg" % name) != OK:
+		return
 	for c in get_children():
-		if c == dynamic_control_handler: continue
-		var loaded_config:Dictionary = config.get_value("controls", c.name, {})
+		if c == dynamic_control_handler:
+			continue
+		var loaded_config: Dictionary = config.get_value("controls", c.name, {})
 		if !loaded_config.is_empty(): c.config = loaded_config
-func save_setup():
+
+func save_setup() -> void:
 	var config := ConfigFile.new()
 	for c in get_children():
-		if c == dynamic_control_handler: continue
+		if c == dynamic_control_handler:
+			continue
 		config.set_value("controls", c.name, c.config)
 	config.save("user://gas_virtualgamepad_%s.cfg" % name)
 
 ## For handling dynamic analog sticks and directional pads
-func _on_unhandled_input(i: InputEvent):
-	if edit_mode: return
+func _on_unhandled_input(i: InputEvent)-> void:
+	if edit_mode:
+		return
 	if _is_valid_drag(i) && current_dynamic_control != null:
 		i.position = current_dynamic_control.size / 2.0 + i.position - current_dynamic_control_start
 		current_dynamic_control._standard_input(i)
-	if !_is_valid_press_release(i): return
+	if !_is_valid_press_release(i):
+		return
 	if !i.pressed:
 		if current_dynamic_control != null:
 			current_dynamic_control._standard_input(i)
@@ -70,14 +79,20 @@ func _on_unhandled_input(i: InputEvent):
 			c._standard_input(i)
 			current_dynamic_control = c
 			return
-func _is_valid_press_release(i:InputEvent) -> bool:
-	if is_mobile: return i is InputEventScreenTouch
-	else: return i is InputEventMouseButton
-func _is_valid_drag(i:InputEvent) -> bool:
-	if is_mobile: return i is InputEventScreenDrag
-	else: return i is InputEventMouseMotion
 
-func _on_reset_dynamic_movement(new_dynamic: GASVirtualMovementControl):
+func _is_valid_press_release(i:InputEvent) -> bool:
+	if is_mobile:
+		return i is InputEventScreenTouch
+	else:
+		return i is InputEventMouseButton
+
+func _is_valid_drag(i:InputEvent) -> bool:
+	if is_mobile:
+		return i is InputEventScreenDrag
+	else:
+		return i is InputEventMouseMotion
+
+func _on_reset_dynamic_movement(new_dynamic: GASVirtualMovementControl) -> void:
 	for c in get_children():
 		if c == new_dynamic || !(c is GASVirtualMovementControl):
 			continue

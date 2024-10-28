@@ -1,6 +1,5 @@
 @tool
-extends Control
-class_name GASVirtualControl
+class_name GASVirtualControl extends Control
 
 ## This should be set by the developer; when true, players can make this
 ## input toggle-able, which is desirable for movement controls and buttons
@@ -32,11 +31,11 @@ func _is_valid_drag(i: InputEvent) -> bool:
 func _get_index(i: InputEvent) -> int:
 	return i.index if (i is InputEventScreenTouch || i is InputEventScreenDrag) else 0
 
-func _add_gizmo():
+func _add_gizmo() -> void:
 	gizmo = GASVirtualGizmo.new()
 	add_child(gizmo)
 	gizmo.visible = edit_mode
-func _post_edit(): pass
+func _post_edit() -> void: pass
 
 var config:
 	get:
@@ -65,13 +64,13 @@ var config:
 		can_be_toggled = c["can_be_toggled"]
 		_inner_set_config(c)
 func _inner_get_config(d: Dictionary) -> Dictionary: return d
-func _inner_set_config(c: Dictionary): pass
+func _inner_set_config(c: Dictionary) -> void: pass
 
-func _on_input(i: InputEvent): pass
+func _on_input(i: InputEvent) -> void: pass
 ## Sometimes lifting the finger doesn't work quite right and things get fucky,
 ## so this _unhandled_input is to ensure that lifting a finger up always registers.
 ## TODO: figure out a better way of handling this? or maybe this IS how to handle it.
-func _unhandled_input(i: InputEvent):
+func _unhandled_input(i: InputEvent) -> void:
 	if !(i is InputEventScreenTouch): return
 	if i.pressed: return
 	_on_input(i)

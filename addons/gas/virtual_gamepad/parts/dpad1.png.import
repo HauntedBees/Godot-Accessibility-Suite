@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvxxdwjejk7a"
-path="res://.godot/imported/dpad0.png-8d7421b096fe7c83ac6610d5e96dd8e9.ctex"
+uid="uid://bcnxbbifd27dg"
+path="res://.godot/imported/dpad1.png-352804a3b5163402dbaaa6c1a08ba0ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/gas/GASVirtualGamepad/Parts/dpad0.png"
-dest_files=["res://.godot/imported/dpad0.png-8d7421b096fe7c83ac6610d5e96dd8e9.ctex"]
+source_file="res://addons/gas/virtual_gamepad/parts/dpad1.png"
+dest_files=["res://.godot/imported/dpad1.png-352804a3b5163402dbaaa6c1a08ba0ed.ctex"]
 
 [params]
 

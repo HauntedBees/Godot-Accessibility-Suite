@@ -1,13 +1,12 @@
 @tool
-extends GASVirtualMovementControl
-class_name GASVirtualAnalogStick
+class_name GASVirtualAnalogStick extends GASVirtualMovementControl
 
-@export var front_texture: Texture2D = preload("res://addons/gas/GASVirtualGamepad/Parts/analog_front.png"):
+@export var front_texture: Texture2D = preload("res://addons/gas/virtual_gamepad/parts/analog_front.png"):
 	set(v):
 		front_texture = v
 		if front != null:
 			front.texture = v
-@export var back_texture: Texture2D = preload("res://addons/gas/GASVirtualGamepad/Parts/analog_back.png"):
+@export var back_texture: Texture2D = preload("res://addons/gas/virtual_gamepad/parts/analog_back.png"):
 	set(v):
 		back_texture = v
 		if back != null:
@@ -16,7 +15,7 @@ class_name GASVirtualAnalogStick
 var back:TextureRect = null
 var front:TextureRect = null
 
-func _ready():
+func _ready() -> void:
 	back = TextureRect.new()
 	if back_texture != null: back.texture = back_texture
 	add_child(back)
@@ -29,7 +28,7 @@ func _ready():
 	size = back.size
 	_post_edit()
 	_add_gizmo()
-func _post_edit():
+func _post_edit() -> void:
 	if back == null || front == null: return
 	center = back.position + (back.size - front.size) / 2.0
 	front.position = center
@@ -41,12 +40,12 @@ func _post_edit():
 
 func _get_delta(i:InputEvent) -> Vector2: return i.position - initial_position - front.size / 2.0
 
-func _standard_input(i:InputEvent):
+func _standard_input(i:InputEvent) -> void:
 	super._standard_input(i)
 	if !pressed:
 		front.position = center
 
-func _handle_dragging(i:InputEvent):
+func _handle_dragging(i:InputEvent) -> void:
 	super._handle_dragging(i)
 	var delta := _get_delta(i)
 	var adjusted_max_zone := max_zone * radius

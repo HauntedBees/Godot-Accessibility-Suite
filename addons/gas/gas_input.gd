@@ -77,9 +77,12 @@ func remap_action(action: String, event: InputEvent) -> bool:
 # https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
 var active_input_cooldowns := {}
 func is_action_just_pressed(s: String) -> bool:
-	if !Input.is_action_just_pressed(s): return false
-	if !GASConfig.input_cooldown_enabled: return true
-	if active_input_cooldowns.has(s): return false
+	if !Input.is_action_just_pressed(s):
+		return false
+	if !GASConfig.input_cooldown_enabled:
+		return true
+	if active_input_cooldowns.has(s):
+		return false
 	active_input_cooldowns[s] = GASConfig.input_cooldown_length
 	return true
 
@@ -169,6 +172,7 @@ func _input(event: InputEvent):
 
 func get_actions_as_json() -> String:
 	return JSON.new().stringify(get_actions_as_dictionary())
+
 func get_actions_as_dictionary() -> Dictionary[String, Array]:
 	var actions: Dictionary[String, Array] = {}
 	var action_list := InputMap.get_actions()
@@ -189,12 +193,12 @@ func get_actions_as_dictionary() -> Dictionary[String, Array]:
 		actions[action_name] = action_inputs
 	return actions
 
-func restore_actions_from_json(json: String):
+func restore_actions_from_json(json: String) -> void:
 	var test_json_conv := JSON.new()
 	test_json_conv.parse(json)
 	restore_actions_from_dictionary(test_json_conv.get_data())
 
-func restore_actions_from_dictionary(actions: Dictionary):
+func restore_actions_from_dictionary(actions: Dictionary) -> void:
 	for action_name: String in actions.keys():
 		InputMap.action_erase_events(action_name)
 		for input_type: String in actions[action_name]:

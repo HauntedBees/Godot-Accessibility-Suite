@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cg42315wl5crk"]
 
-[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualGamepad.gd" id="1"]
-[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualButton.gd" id="2"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_gamepad.gd" id="1"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_button.gd" id="2"]
 [ext_resource type="Script" path="res://VirtualControllerExample.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://d31xceav5034u" path="res://addons/gas/GASVirtualGamepad/Parts/button1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://d31xceav5034u" path="res://addons/gas/virtual_gamepad/parts/button1.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://0eyna3ngbt2k" path="res://example_assets/penguin.png" id="5"]
-[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualAnalogStick.gd" id="6"]
-[ext_resource type="Script" path="res://addons/gas/GASVirtualGamepad/GASVirtualDPad.gd" id="7"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_analog_stick.gd" id="6"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_dpad.gd" id="7"]
 
 [node name="VirtualControllerExample" type="Control"]
 layout_mode = 3

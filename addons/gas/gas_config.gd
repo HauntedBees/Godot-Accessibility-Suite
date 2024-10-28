@@ -12,11 +12,14 @@ var vision_minimum_font_size := 28
 
 # https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
 var input_toggle_actions := []
-func set_toggle_action(action: String, is_toggle: bool):
+func set_toggle_action(action: String, is_toggle: bool) -> void:
 	var idx := input_toggle_actions.find(action)
-	if (is_toggle && idx >= 0) || (!is_toggle && idx < 0): return
-	if is_toggle: input_toggle_actions.append(action)
-	else: input_toggle_actions.remove_at(idx)
+	if (is_toggle && idx >= 0) || (!is_toggle && idx < 0):
+		return
+	if is_toggle:
+		input_toggle_actions.append(action)
+	else:
+		input_toggle_actions.remove_at(idx)
 
 # https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/
 var core_game_speed := 1.0:
@@ -24,20 +27,22 @@ var core_game_speed := 1.0:
 		core_game_speed = s
 		Engine.time_scale = s
 
-func _ready():
+func _ready() -> void:
 	if !_load():
 		Engine.time_scale = core_game_speed
+
 func _load(profile := "") -> bool:
 	var config := ConfigFile.new()
-	var err := config.load("user://gas%s.cfg" % profile)
-	if err != OK: return false # nothing to load!
+	if config.load("user://gas%s.cfg" % profile) != OK: # nothing to load!
+		return false
 	core_game_speed = config.get_value("core", "core_game_speed", 1.0)
 	input_cooldown_length = config.get_value("input", "input_cooldown_length", 0.5)
 	input_cooldown_enabled = config.get_value("input", "input_cooldown_enabled", true)
 	input_toggle_actions = config.get_value("input", "input_toggle_actions", ["ui_end"])
 	vision_minimum_font_size = config.get_value("vision", "vision_minimum_font_size", 28)
 	return true
-func _save(profile := ""):
+
+func _save(profile := "") -> void:
 	var config := ConfigFile.new()
 	config.set_value("core", "core_game_speed", core_game_speed)
 	config.set_value("input", "input_cooldown_length", input_cooldown_length)

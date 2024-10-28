@@ -1,6 +1,5 @@
 @tool
-extends GASVirtualControl
-class_name GASVirtualMovementControl
+class_name GASVirtualMovementControl extends GASVirtualControl
 
 signal reset_dynamic_movement
 
@@ -28,26 +27,29 @@ var initial_position := Vector2.ZERO
 var radius := 1.0
 var current_action := "" # only used when diagonals_enabled == false
 
-func _on_input(i: InputEvent):
-	if edit_mode: pass
-	else: _standard_input(i)
+func _on_input(i: InputEvent) -> void:
+	if !edit_mode:
+		_standard_input(i)
 
-func _standard_input(i: InputEvent):
+func _standard_input(i: InputEvent) -> void:
 	if _is_valid_drag(i):
 		_handle_dragging(i)
-	if !_is_valid_press_release(i): return
-	var is_pressed:bool = i.pressed
-	var my_idx:int = _get_index(i)
+	if !_is_valid_press_release(i):
+		return
+	var is_pressed := (i as InputEventMouseButton).pressed
+	var my_idx := _get_index(i)
 	if is_pressed: press_idx = my_idx
-	elif press_idx != my_idx: return
-	
+	elif press_idx != my_idx:
+		return
+
 	if is_toggle:
 		if is_pressed: ## For toggle buttons, pressing the button will toggle its pressed state
 			pressed = !pressed
-		else: return
+		else:
+			return
 	else: ## For regular buttons, pressing/releasing the button will set the pressed state accordingly
 		pressed = is_pressed
-	
+
 	if pressed:
 		press_idx = my_idx
 		initial_position = center
@@ -60,14 +62,15 @@ func _standard_input(i: InputEvent):
 		Input.action_release(action_down)
 		if !fixed_position: visible = false
 
-func _handle_dragging(i: InputEvent):
-	var my_idx:int = _get_index(i)
-	if !pressed || my_idx != press_idx: return
-	var delta:Vector2 = _get_delta(i)
+func _handle_dragging(i: InputEvent) -> void:
+	var my_idx := _get_index(i)
+	if !pressed || my_idx != press_idx:
+		return
+	var delta := _get_delta(i)
 	var adjusted_dead_zone := dead_zone * radius
 	var adjusted_max_zone := max_zone * radius
 	if delta.length() > adjusted_max_zone: delta = delta.normalized() * adjusted_max_zone
-	
+
 	if diagonals_enabled:
 		if delta.x >= adjusted_dead_zone:
 			Input.action_release(action_left)
@@ -78,7 +81,7 @@ func _handle_dragging(i: InputEvent):
 		else:
 			Input.action_release(action_left)
 			Input.action_release(action_right)
-		
+
 		if delta.y >= adjusted_dead_zone:
 			Input.action_release(action_up)
 			Input.action_press(action_down, _get_strength(delta.y, adjusted_dead_zone, adjusted_max_zone))
@@ -103,12 +106,14 @@ func _handle_dragging(i: InputEvent):
 		elif delta.y <= -adjusted_dead_zone && delta.y < -highest_delta:
 			new_direction = action_up
 			highest_delta = -delta.y
-		
+
 		if current_action != "": Input.action_release(current_action)
 		current_action = new_direction
 		Input.action_press(current_action, _get_strength(highest_delta, adjusted_dead_zone, adjusted_max_zone))
 
-func _get_delta(i: InputEvent) -> Vector2: return i.position - initial_position
+func _get_delta(i: InputEvent) -> Vector2:
+	return i.position - initial_position
+
 func _get_strength(amount: float, adjusted_dead_zone: float, adjusted_max_zone: float) -> float:
 	var real_max := adjusted_max_zone - adjusted_dead_zone
 	return min(1.0, (abs(amount) - adjusted_dead_zone) / real_max)

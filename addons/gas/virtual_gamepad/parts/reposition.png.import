@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyktf3771v245"
-path="res://.godot/imported/analog_back.png-2d97ad625696d2f908b35cdf7332cbfc.ctex"
+uid="uid://512vcbxqcyvu"
+path="res://.godot/imported/reposition.png-7f817f7c3f2dfdf92b894e81633afe9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/gas/GASVirtualGamepad/Parts/analog_back.png"
-dest_files=["res://.godot/imported/analog_back.png-2d97ad625696d2f908b35cdf7332cbfc.ctex"]
+source_file="res://addons/gas/virtual_gamepad/parts/reposition.png"
+dest_files=["res://.godot/imported/reposition.png-7f817f7c3f2dfdf92b894e81633afe9c.ctex"]
 
 [params]
 

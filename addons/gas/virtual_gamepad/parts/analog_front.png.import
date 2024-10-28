@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfvervxv3pi2m"
-path="res://.godot/imported/analog_front.png-2f00224469f9a9c89d80eb4bb36bfba4.ctex"
+path="res://.godot/imported/analog_front.png-0f173bf69109457defedeaa023442c9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/gas/GASVirtualGamepad/Parts/analog_front.png"
-dest_files=["res://.godot/imported/analog_front.png-2f00224469f9a9c89d80eb4bb36bfba4.ctex"]
+source_file="res://addons/gas/virtual_gamepad/parts/analog_front.png"
+dest_files=["res://.godot/imported/analog_front.png-0f173bf69109457defedeaa023442c9e.ctex"]
 
 [params]
 

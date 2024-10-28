@@ -1,13 +1,15 @@
 extends Node
 
 # https://gameaccessibilityguidelines.com/provide-gameplay-thumbnails-with-game-saves/
-func save_screen(name: String):
+func save_screen(name: String) -> void:
 	var img := get_screen()
 	img.save_png("user://save_%s.png" % name)
+
 func get_screen() -> Image:
 	var img := get_viewport().get_texture().get_image()
 	img.shrink_x2()
 	return img
+
 func load_screen_as_image(name: String) -> Image:
 	var file := FileAccess.open("user://save_%s.png" % name, FileAccess.READ)
 	if file == null:
@@ -17,11 +19,13 @@ func load_screen_as_image(name: String) -> Image:
 	var img := Image.new()
 	img.load_png_from_buffer(content)
 	return img
+
 func load_screen_as_texture(name: String) -> ImageTexture:
 	var img := load_screen_as_image(name)
 	if img == null: return null
 	var texture := ImageTexture.create_from_image(img)
 	return texture
+
 func load_screen_as_texture_rect(name: String, width := 0.0, height := 0.0, keep_aspect_ratio := true) -> TextureRect:
 	var texture := load_screen_as_texture(name)
 	if texture == null: return null

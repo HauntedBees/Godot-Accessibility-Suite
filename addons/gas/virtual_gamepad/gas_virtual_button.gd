@@ -1,10 +1,9 @@
 @tool
-extends GASVirtualControl
-class_name GASVirtualButton
+class_name GASVirtualButton extends GASVirtualControl
 
 @export var action := "ui_accept"
 
-@export var texture: Texture2D = preload("res://addons/gas/GASVirtualGamepad/Parts/button0.png"):
+@export var texture: Texture2D = preload("res://addons/gas/virtual_gamepad/parts/button0.png"):
 	set(v):
 		texture = v
 		if button != null:
