@@ -1,6 +1,6 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=2]
 
-[ext_resource path="res://addons/gas/ControlConfig/Inputs.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://0huoupomtexx" path="res://addons/gas/control_config/inputs.png" id="1"]
 
 [resource]
 atlas = ExtResource( 1 )

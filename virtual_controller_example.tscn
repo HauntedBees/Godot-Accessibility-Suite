@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_gamepad.gd" id="1"]
 [ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_button.gd" id="2"]
-[ext_resource type="Script" path="res://VirtualControllerExample.gd" id="3"]
+[ext_resource type="Script" path="res://virtual_controller_example.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://d31xceav5034u" path="res://addons/gas/virtual_gamepad/parts/button1.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://0eyna3ngbt2k" path="res://example_assets/penguin.png" id="5"]
 [ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_analog_stick.gd" id="6"]
@@ -91,10 +91,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = 248.0
-offset_right = 189.0
-offset_bottom = 408.0
+offset_left = 34.0
+offset_top = -341.0
+offset_right = 194.0
+offset_bottom = -181.0
 grow_vertical = 0
 focus_mode = 2
 script = ExtResource("6")
@@ -105,10 +105,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 113.0
-offset_top = 396.0
-offset_right = 274.0
-offset_bottom = 557.0
+offset_left = 118.0
+offset_top = -193.0
+offset_right = 279.0
+offset_bottom = -32.0
 grow_vertical = 0
 script = ExtResource("7")
 diagonals_enabled = false

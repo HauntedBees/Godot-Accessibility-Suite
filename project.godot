@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Accessibility Suite"
-run/main_scene="res://VirtualControllerExample.tscn"
+run/main_scene="res://virtual_controller_example.tscn"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.png"
 

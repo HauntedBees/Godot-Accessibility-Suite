@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2t0rig70eb1r"]
 
-[ext_resource type="PackedScene" uid="uid://d213lodm33x4n" path="res://addons/gas/ControlConfig/GASActionConfig.tscn" id="1_tjcfv"]
+[ext_resource type="PackedScene" uid="uid://d213lodm33x4n" path="res://addons/gas/control_config/gas_action_config.tscn" id="1_tjcfv"]
 
 [node name="Node2d" type="Node2D"]
 

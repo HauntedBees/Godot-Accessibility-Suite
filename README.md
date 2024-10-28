@@ -16,8 +16,6 @@ If you would like to add to the project, by all means, go for it! All contributi
  - [Usage](#usage)
  - [Accessibility Audit](#accessibility-audit)
  - [Custom Nodes](#custom-nodes)
-   - [GASRichTextLabel](#gasrichtextlabel)
-   - [GASContainer](#gascontainer)
  - [Virtual Gamepad](#virtual-gamepad)
  - [Other Features](#other-features)
    - [Controller Remapping](#controller-remapping)
@@ -41,27 +39,11 @@ These audits will certainly miss things if you're doing custom/creative/weird st
 
 # Custom Nodes
 
-## GASRichTextLabel
-A **RichTextLabel** built for easy font size readjusting. In a regular **RichTextLabel**, if your text takes up more space than the control itself, it will either add a scrollbar (when `scroll_active` is true) or the overflowing text will be cut off, possibly with some percentage of the overflow still visible at the bottom of the control. When overflowing text is present in a **GASRichTextLabel** control, no scroll bar will appear, and the text will be cleanly cut (with no partial text visible); the control's `advance()` function can be called to move to the next part of the overflowed text. For example, if the control only allowed around a dozen characters, and the text is set to "Hey everybody, I'm going to the store for some milk!" the player would first see "Hey everybody," after `advance()` is called, they would then see "I'm going to" followed by "the store for" and then "some milk!" `advance()` will return `true` as long as more overflowing text is available to be displayed, and will return `false` at the last chunk of text and when called after that.
+## AccessibleScrollContainer
+A `ScrollContainer` that can be scrolled via gamepad/keyboard input by using the `gas_scroll_down` and `gas_scroll_up` actions.
 
-The **GASRichTextLabel** also has a `font_size` property that will automamatically adjust the label's font's size. This will not affect any other controls, even ones using the same `DynamicFont`. The `vision_minimum_font_size` config option will force the control to start at at least that font size, even if the control has a different font size specified in code or in its scene, but it can be resized to a smaller font by changing the `font_size` property. However, [a minimum font size of 28 is recommended, and is the default value for this config setting](https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/), so while you can allow the player to manually set a lower font size, your controls should always be at least this size.
-
-Finally, a `translation_key` property exists, and writing `control.translation_key = "x"` is equivalent to writing `control.text = tr("x")`.
-
-### Limitations
-This plays nice with some bbcode, with the same caveats as regular **RichTextLabel** controls:
- - Tags must be closed in first-in-first-out order.
-   - Bad: `[right][s][b]hey[/right][/b][/s]`
-   - Good: `[right][s][b]hey[/b][/s][/right]`
- - Certain combinations don't work together, like `[u][s]strikethrough and underline[/s][/u]`.
-
-Additionally, not all bbcode tags are supported:
- - Currently Supported: `underline`, `strikethrough`, `url`, `url (ref)`, `color`
- - Probably Can't Support (due to Godot limitations): `bold`, `italics`, `code`, `font`
- - Almost Definitely Can't Support: `center`, `right`, `fill`, `indent`, `image`, `resized image`, `table`, `cell`
-
-## GASContainer
-Does not *resize* or *scale* child nodes to fit the container, but does enforce alignment rules and [a minimum separation between the nodes](https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/). **Known Issue**: The actual container size and position have no relation to the contents.
+## AccessibleLabel and AccessibleRichTextLabel
+Setting the `GASText.override_font_scale` value from your code will resize the text in any `AccessibleLabel` and `AccessibleRichTextLabel` nodes. The `AccessibleRichTextLabel` node can also be scrolled via gamepad/keyboard input by using the `gas_scroll_down` and `gas_scroll_up` actions.
 
 # Virtual Gamepad
 For touch-screen based games, adding a virtual gamepad to the screen is common. The Virtual Gamepad in this Suite is designed to be easily configurable by the developer, and just as easily configurable by players to accommodate accessibility needs, by allowing the player to:
@@ -79,7 +61,7 @@ To scale the gamepad controls, you must use the `rect_scale` property (modified 
 ## Nodes
 
 ### GASVirtualGamepad
-The container node for your virtual gamepad. All children of a *GASVirtualGamepad* node should be virtual inputs as described below. The position and scale of these nodes will be the default values when a new player begins the game. It is recommended that you take advantage of the customization features by adding an "edit gamepad configuration" option to your options menu (and having an options menu in your game) so that players can reposition and resize the gamepad as needed. 
+The container node for your virtual gamepad. All children of a *GASVirtualGamepad* node should be virtual inputs as described below. The position and scale of these nodes will be the default values when a new player begins the game. It is recommended that you take advantage of the customization features by adding an "edit gamepad configuration" option to your options menu (and having an options menu in your game) so that players can reposition and resize the gamepad as needed.
 
 #### mobile_only
 Set this in the Godot Editor; when `true`, the gamepad will default to being invisible if `OS.has_feature("mobile")` returns false. Otherwise, the gamepad will default to being visible regardless of OS. Useful if you're making mobile and desktop OS builds from the same Godot project. If you're building for the web (with the `HTML5` export), the mobile check will likely fail, so this `mobile_only` being `true` will hide the gamepad in web builds, even if accessed from a mobile device.
@@ -160,7 +142,7 @@ Do you want this d-pad going in eight directions or four?
 
 ## [Action Config](https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/)
 The `GASActionConfig` scene can be dropped anywhere in your project and will function as an out-of-the-box pre-made controller/input remapping screen. Use a `theme` to style it, slap it in your existing options menu if you have one, and players will be able to remap their controls without you having to write any code or design anything. This control automatically reads from the `InputMap` to get available actions, but unless you want users to edit things like `ui_up` and `ui_focus_prev`, you should use the **Action Names** export (described below) to make things more presentable.
-**NOTE:** This is currently broken in Godot 4.0 beta and is in the process of being fixed.
+**NOTE:** This is currently broken since Godot 4.0 and is in the process of being fixed.
 
 ### Exports / Script Variables
 
@@ -186,7 +168,7 @@ Both `load_screen_as_texture_rect` and `load_screen_as_texture` take additional 
 `GASInput.is_action_just_pressed(action:String)` returns `true` when the action is just pressed (based on the native `Input.is_action_just_pressed` method) **unless** it was pressed within the last `COOLDOWN_LENGTH` seconds (default is 0.5), in which case it returns `false`.
 
 ## [Toggles instead of Holding Buttons](https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/)
-Add an action to the `GASConfig.input_toggle_actions` array and it will be handled by `GASInput._process` and `GASInput._input`, ensuring that a player triggering the action will trigger one `Input.is_action_just_pressed` on the first press, then the action will remain pressed until the player triggers it next. 
+Add an action to the `GASConfig.input_toggle_actions` array and it will be handled by `GASInput._process` and `GASInput._input`, ensuring that a player triggering the action will trigger one `Input.is_action_just_pressed` on the first press, then the action will remain pressed until the player triggers it next.
 
 ## [Adjust Game Speed](https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/)
 Setting `GASConfig.core_game_speed` will adjust `Engine.time_scale` automatically. As that is a built-in Engine variable, the main benefit of using `GASConfig.core_game_speed` instead is that the value will be saved with other accessibility settings and automatically loaded when the game begins. Default value is **1.0**; to run the game at half speed, set it to **0.5**, to run at double speed, set it to **2.0**, etc.

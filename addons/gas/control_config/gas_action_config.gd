@@ -1,30 +1,29 @@
 @tool
 extends Control
 
-const control_atlas: AtlasTexture = preload("res://addons/gas/ControlConfig/IconAtlas.tres")
+const control_atlas: AtlasTexture = preload("res://addons/gas/control_config/icon_atlas.tres")
 
-@export_range(1, 3)
-var number_of_columns := 1:
+@export_range(1, 3) var number_of_columns := 1:
 	set(v):
 		number_of_columns = v
 		_generate_controls_display()
-@export
-var action_names := {}:
+
+@export var action_names := {}:
 	set(v):
 		action_names = v
 		_generate_controls_display()
-@export
-var sort_order := []:
+
+@export var sort_order := []:
 	set(v):
 		sort_order = v
 		_generate_controls_display()
-@export
-var hide_default_ui_actions := false:
+
+@export var hide_default_ui_actions := false:
 	set(v):
 		hide_default_ui_actions = v
 		_generate_controls_display()
-@export
-var editor_refresh := false:
+
+@export var editor_refresh := false:
 	set(v):
 		action_names = {}
 		editor_refresh = v
@@ -121,9 +120,11 @@ func _get_control(action_key: String) -> HBoxContainer:
 	b.pressed.connect(_change_control.bind(b, display_name, action_key))
 	c.add_child(b)
 	return c
+
 func _get_icon(action_key: String) -> AtlasTexture:
 	var action: InputEvent = _get_first_action(action_key, _using_gamepad)
 	return _get_icon_from_input(action)
+
 func _get_icon_from_input(action: InputEvent) -> AtlasTexture:
 	var c: AtlasTexture = control_atlas.duplicate()
 	var idx := 0
@@ -162,6 +163,7 @@ func _get_icon_from_input(action: InputEvent) -> AtlasTexture:
 			idx = 192 + am.axis
 	c.region.position = Vector2(128 * (idx % 16), 128 * floor(idx / 16.0))
 	return c
+
 func _get_first_action(action_key: String, prefer_gamepad: bool) -> InputEvent:
 	var actions := InputMap.action_get_events(action_key)
 	for a in actions:

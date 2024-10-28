@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d213lodm33x4n"]
 
-[ext_resource type="Script" path="res://addons/gas/ControlConfig/GASActionConfig.gd" id="1"]
-[ext_resource type="Texture2D" path="res://addons/gas/ControlConfig/IconAtlas.tres" id="2"]
+[ext_resource type="Script" path="res://addons/gas/control_config/gas_action_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://addons/gas/control_config/icon_atlas.tres" id="2"]
 
 [sub_resource type="Theme" id="1"]
 HBoxContainer/constants/separation = 12
@@ -11,6 +11,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")
 number_of_columns = 3
 action_names = {
@@ -87,28 +89,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("1")
 alignment = 1
 
 [node name="Left" type="VBoxContainer" parent="Container"]
 layout_mode = 2
-offset_left = 564.0
-offset_right = 564.0
-offset_bottom = 648.0
 
 [node name="Middle" type="VBoxContainer" parent="Container"]
 layout_mode = 2
-offset_left = 576.0
-offset_right = 576.0
-offset_bottom = 648.0
 
 [node name="Right" type="VBoxContainer" parent="Container"]
 layout_mode = 2
-offset_left = 588.0
-offset_right = 588.0
-offset_bottom = 648.0
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+size = Vector2i(200, 212)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ConfirmationDialog"]
 anchors_preset = 15
@@ -117,27 +113,18 @@ anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = -8.0
-offset_bottom = -36.0
+offset_bottom = -49.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="ConfirmationDialog/VBoxContainer"]
 layout_mode = 2
-offset_top = 23.0
-offset_right = 276.0
-offset_bottom = 37.0
 text = "Current Input:"
 
 [node name="CenterContainer" type="CenterContainer" parent="ConfirmationDialog/VBoxContainer"]
 layout_mode = 2
-offset_top = 41.0
-offset_right = 276.0
-offset_bottom = 105.0
 
 [node name="NewButton" type="TextureRect" parent="ConfirmationDialog/VBoxContainer/CenterContainer"]
 layout_mode = 2
-offset_left = 74.0
-offset_right = 202.0
-offset_bottom = 128.0
 texture = ExtResource("2")
 
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
