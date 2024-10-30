@@ -19,7 +19,6 @@ const _HOVERED_COLOR := Color(0.0, 0.0, 0.0, 0.5)
 @onready var _label: AccessibleLabel = %Label
 
 func _ready() -> void:
-	print(get_tree().current_scene)
 	mouse_entered.connect(_on_entered)
 	mouse_exited.connect(_on_exited)
 

@@ -134,31 +134,26 @@ opened = true
 layout_mode = 2
 text = "Avoid flickering images and repetitive patterns"
 link = "https://gameaccessibilityguidelines.com/avoid-flickering-images-and-repetitive-patterns/"
-scene = ExtResource("13_psp6y")
 
 [node name="Option2" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
 layout_mode = 2
 text = "Allow players to progress through text prompts at their own pace"
 link = "https://gameaccessibilityguidelines.com/allow-players-to-progress-through-text-prompts-at-their-own-pace/"
-scene = ExtResource("13_psp6y")
 
 [node name="Option3" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
 layout_mode = 2
 text = "Include interactive tutorials"
 link = "https://gameaccessibilityguidelines.com/include-interactive-tutorials/"
-scene = ExtResource("13_psp6y")
 
 [node name="Option4" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
 layout_mode = 2
 text = "Use simple clear language"
 link = "https://gameaccessibilityguidelines.com/use-simple-clear-language/"
-scene = ExtResource("13_psp6y")
 
 [node name="Option5" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
 layout_mode = 2
 text = "Allow the game to be started without the need to navigate through multiple levels of menus"
 link = "https://gameaccessibilityguidelines.com/allow-the-game-to-be-started-without-the-need-to-navigate-through-multiple-levels-of-menus/d"
-scene = ExtResource("13_psp6y")
 
 [node name="Option6" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
 layout_mode = 2
@@ -171,6 +166,53 @@ layout_mode = 2
 text = "Use an easily readable default font size"
 link = "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/"
 scene = ExtResource("15_3bjal")
+
+[node name="Vision" type="VBoxContainer" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic"]
+layout_mode = 2
+
+[node name="Heading" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" node_paths=PackedStringArray("container") instance=ExtResource("4_w42a2")]
+layout_mode = 2
+text = "Vision"
+container = NodePath("..")
+
+[node name="Option" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Provide high contrast between text/UI and background"
+link = "https://gameaccessibilityguidelines.com/provide-high-contrast-between-text-ui-and-background/"
+scene = ExtResource("14_vaopp")
+
+[node name="Option2" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Use simple clear text formatting"
+link = "https://gameaccessibilityguidelines.com/use-simple-clear-text-formatting/"
+scene = ExtResource("14_vaopp")
+
+[node name="Option7" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Use an easily readable default font size"
+link = "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/"
+scene = ExtResource("15_3bjal")
+
+[node name="Option8" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Avoid VR simulation sickness triggers"
+link = "https://gameaccessibilityguidelines.com/avoid-vr-simulation-sickness-triggers/"
+
+[node name="Option9" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "If the game uses field of view (3D engine only), set an appropriate default for the expected viewing environment"
+link = "https://gameaccessibilityguidelines.com/if-the-game-uses-field-of-view-3d-engine-only-set-an-appropriate-default-for-the-expected-viewing-environment/"
+
+[node name="Option10" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Ensure no essential information is conveyed by a fixed colour alone"
+link = "https://gameaccessibilityguidelines.com/ensure-no-essential-information-is-conveyed-by-a-fixed-colour-alone/"
+
+[node name="Option11" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Ensure interactive elements / virtual controls are large and well spaced, particularly on small or touch screens"
+link = "https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/"
+scene = ExtResource("9_pt4uc")
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
