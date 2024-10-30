@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://byrmj6bmohfrl"]
+
+[ext_resource type="Script" path="res://example_scenes/haptics.gd" id="1_36o50"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_bupdr"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_osdh4"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="4_23lg1"]
+
+[node name="Haptics" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_36o50")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_bupdr")
+bbcode_enabled = true
+text = "The [code]GASInput.start_joy_vibration[/code] method is a wrapper for the native Godot [code]Input.start_joy_vibration[/code] method, but utilizes the [code]GASConfig.vibration_scale[/code] property to automatically scale your provided values with its value. The standard [code]Input.stop_joy_vibration[/code] can be used to stop vibrations. [code]GASInput.vibrate_handheld[/code] works the same way."
+fit_content = true
+script = ExtResource("3_osdh4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HLV" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Heavy Long Vibration"
+
+[node name="HSV" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Heavy Short Vibration"
+
+[node name="WLV" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Weak Long Vibration"
+
+[node name="WSV" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Weak Short Vibration"
+
+[node name="Stop" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Stop Vibration"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vibration Scale"
+horizontal_alignment = 1
+script = ExtResource("4_23lg1")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+update_on_text_changed = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HLV" to="." method="_on_hlv_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HSV" to="." method="_on_hsv_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WLV" to="." method="_on_wlv_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WSV" to="." method="_on_wsv_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Stop" to="." method="_on_stop_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/SpinBox" to="." method="_on_spin_box_value_changed"]

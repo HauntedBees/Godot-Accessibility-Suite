@@ -13,6 +13,9 @@ var warn_on_font_too_small := false
 var input_cooldown_enabled := false
 var input_cooldown_length := 0.5
 
+# https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
+var vibration_scale := 1.0
+
 # https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/
 var vision_minimum_font_size := 28
 
