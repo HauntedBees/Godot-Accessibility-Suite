@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://0xf11f6sy6f7"]
+
+[ext_resource type="Texture2D" uid="uid://dnhuhokxjtoa6" path="res://example_assets/bluebird.png" id="1_11q0d"]
+[ext_resource type="Script" path="res://example_scenes/example_scene_parts/rotato.gd" id="2_lx0sl"]
+
+[node name="Rotato" type="TextureRect"]
+custom_minimum_size = Vector2(64, 64)
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("1_11q0d")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_lx0sl")

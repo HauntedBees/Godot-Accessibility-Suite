@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpdjb5jpbq21l"]
+
+[ext_resource type="Script" path="res://example_components/heading.gd" id="1_064gg"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="2_g2sbp"]
+[ext_resource type="Texture2D" uid="uid://cge26k744pxg2" path="res://example_assets/caret.png" id="3_i8yit"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4b2xo"]
+font_size = 20
+
+[node name="Heading" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+script = ExtResource("1_064gg")
+
+[node name="AccessibleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Subheading"
+label_settings = SubResource("LabelSettings_4b2xo")
+script = ExtResource("2_g2sbp")
+
+[node name="ExpandCaret" type="TextureButton" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture_normal = ExtResource("3_i8yit")
+ignore_texture_size = true
+stretch_mode = 5

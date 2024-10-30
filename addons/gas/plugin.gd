@@ -5,6 +5,7 @@ func _enter_tree():
 	add_autoload_singleton("GASConfig", "res://addons/gas/gas_config.gd")
 	add_autoload_singleton("GASInput", "res://addons/gas/gas_input.gd")
 	add_autoload_singleton("GASText", "res://addons/gas/gas_text.gd")
+	add_autoload_singleton("GASTime", "res://addons/gas/gas_time.gd")
 	add_autoload_singleton("GASUtils", "res://addons/gas/gas_utils.gd")
 	add_custom_type(
 		"AccessibleRichTextLabel", "RichTextLabel",
@@ -30,6 +31,8 @@ func _exit_tree():
 	remove_autoload_singleton("GASInput")
 	remove_autoload_singleton("GASConfig")
 	remove_autoload_singleton("GASText")
+	remove_autoload_singleton("GASTime")
+	remove_autoload_singleton("GASUtils")
 	remove_custom_type("AccessibleRichTextLabel")
 	remove_custom_type("AccessibleLabel")
 	remove_custom_type("AccessibleScrollContainer")

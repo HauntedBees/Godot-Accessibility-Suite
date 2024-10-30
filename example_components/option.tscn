@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bje8f5cklxhd4"]
+
+[ext_resource type="Script" path="res://example_components/option.gd" id="1_6mlgs"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="2_3arpo"]
+
+[node name="Option" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_6mlgs")
+link = null
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Text"
+autowrap_mode = 3
+script = ExtResource("2_3arpo")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

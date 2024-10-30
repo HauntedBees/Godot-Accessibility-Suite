@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Accessibility Suite"
-run/main_scene="res://virtual_controller_example.tscn"
+run/main_scene="res://full_example.tscn"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.png"
 
@@ -21,6 +21,7 @@ GASUtils="*res://addons/gas/gas_utils.gd"
 GASConfig="*res://addons/gas/gas_config.gd"
 GASInput="*res://addons/gas/gas_input.gd"
 GASText="*res://addons/gas/gas_text.gd"
+GASTime="*res://addons/gas/gas_time.gd"
 
 [display]
 
@@ -29,6 +30,14 @@ window/handheld/orientation="portrait"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gas/plugin.cfg")
+
+[global_group]
+
+GASTime="Used for group-based time scales."
+
+[gui]
+
+theme/custom="res://addons/gas/themes/dark.tres"
 
 [input]
 

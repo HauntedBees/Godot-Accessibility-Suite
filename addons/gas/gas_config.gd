@@ -1,5 +1,11 @@
 extends Node
 
+enum AppMode { Light, Dark }
+var themes: Dictionary[AppMode, Theme] = {
+	AppMode.Light: null,
+	AppMode.Dark: null
+}
+
 # https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/
 var warn_on_font_too_small := false
 

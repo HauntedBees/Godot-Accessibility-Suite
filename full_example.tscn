@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmml11ta7brya"]
+
+[ext_resource type="Script" path="res://addons/gas/gas_scroll_container.gd" id="1_r3c7c"]
+[ext_resource type="Script" path="res://full_example.gd" id="1_yua77"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="2_jbo7q"]
+[ext_resource type="PackedScene" uid="uid://dolvxjh35rp24" path="res://example_components/heading.tscn" id="3_gxjln"]
+[ext_resource type="PackedScene" uid="uid://dpdjb5jpbq21l" path="res://example_components/subheading.tscn" id="4_w42a2"]
+[ext_resource type="PackedScene" uid="uid://bje8f5cklxhd4" path="res://example_components/option.tscn" id="5_acheo"]
+[ext_resource type="PackedScene" uid="uid://bllt08of6e6sx" path="res://example_scenes/game_speed.tscn" id="6_no3jo"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="8_aaj06"]
+
+[node name="FullExample" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yua77")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="AccessibleScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_r3c7c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AccessibleLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Accessibility Guidelines"
+script = ExtResource("2_jbo7q")
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Basic" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Heading" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic" node_paths=PackedStringArray("container") instance=ExtResource("3_gxjln")]
+layout_mode = 2
+text = "Basic"
+container = NodePath("..")
+opened = true
+
+[node name="Motor" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic"]
+layout_mode = 2
+
+[node name="Heading" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic/Motor" node_paths=PackedStringArray("container") instance=ExtResource("4_w42a2")]
+layout_mode = 2
+text = "Motor (Control/Mobility)"
+container = NodePath("..")
+opened = true
+
+[node name="Option" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Include an option to adjust the game speed."
+link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/"
+scene = ExtResource("6_no3jo")
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.25
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ContentInfo" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "ContentInfo"
+fit_content = true
+script = ExtResource("8_aaj06")
+
+[node name="ContentContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="meta_clicked" from="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/ContentInfo" to="." method="_on_content_info_meta_clicked"]
