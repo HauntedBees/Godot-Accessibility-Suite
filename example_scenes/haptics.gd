@@ -1,5 +1,4 @@
-extends Control
-
+extends ExampleSceneRoot
 
 func _on_hlv_pressed() -> void:
 	GASInput.start_joy_vibration(0, 0.0, 1.0, 1.0)
