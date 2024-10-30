@@ -1,6 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://bcuji0dw8gktm"]
 
 [resource]
+Button/font_sizes/font_size = 24
+Label/font_sizes/font_size = 24
 MarginContainer/constants/margin_bottom = 12
 MarginContainer/constants/margin_left = 12
 MarginContainer/constants/margin_right = 12
@@ -10,6 +12,11 @@ NoMargin/constants/margin_bottom = 0
 NoMargin/constants/margin_left = 0
 NoMargin/constants/margin_right = 0
 NoMargin/constants/margin_top = 0
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/bold_italics_font_size = 24
+RichTextLabel/font_sizes/italics_font_size = 24
+RichTextLabel/font_sizes/mono_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24
 SideMargin/base_type = &"MarginContainer"
 SideMargin/constants/margin_bottom = 0
 SideMargin/constants/margin_left = 12

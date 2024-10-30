@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://clw1sdknm8wc1"]
+
+[ext_resource type="Script" path="res://example_scenes/example_scene_root.gd" id="1_rmkk0"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_r4jwd"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_h01yx"]
+
+[node name="SimpleControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rmkk0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_r4jwd")
+bbcode_enabled = true
+text = "Consult the Game Accessibility Guidelines site by clicking the \"More Info\" link above for more information on how to best handle this. The Godot Accessibility Suite does not offer any specific tools or utilities to assist with this. Ensure that if any inaccessible options or effects need to be in your game that there are player-configurable settings that can be customized to minimize their effect on players, or warn them of their presence."
+fit_content = true
+script = ExtResource("3_h01yx")

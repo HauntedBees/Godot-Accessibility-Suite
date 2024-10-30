@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccjy7rxrnqg5i"]
+
+[ext_resource type="Script" path="res://example_scenes/font_size.gd" id="1_ku2ol"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="2_2wk25"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_k4gwa"]
+
+[node name="ClearFormatting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ku2ol")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_k4gwa")
+bbcode_enabled = true
+text = "The Godot Accessibility Suite includes themes that set the default font size to 28px for [code]Label[/code], [code]RichTextLabel[/code], and [code]Button[/code] nodes. Additionally, there are [code]AccessibleLabel[/code] and [code]AccessibleRichTextLabel[/code] nodes, which behave like their built-in counterparts, but react to the [code]GASInput.override_font_scale[/code] variable; changing its value will automatically multiply the font size of all [code]AccessibleLabel[/code] and [code]AccessibleRichTextLabel[/code] nodes by its value."
+fit_content = true
+script = ExtResource("2_2wk25")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Scale2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Set Override Font Scale to 1.5"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Scale15" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "Set Override Font Scale to 1.25"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Scale1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+text = "Set Override Font Scale to 1.0"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Scale2" to="." method="_on_scale_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/Scale15" to="." method="_on_scale_15_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer3/Scale1" to="." method="_on_scale_1_pressed"]
