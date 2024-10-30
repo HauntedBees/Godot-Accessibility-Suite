@@ -9,6 +9,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_87rc8"]
 font = ExtResource("1_p6vqq")
+font_size = 24
 
 [node name="GameSpeed" type="Control"]
 layout_mode = 3
@@ -36,6 +37,7 @@ layout_mode = 2
 theme_override_fonts/mono_font = ExtResource("1_p6vqq")
 bbcode_enabled = true
 text = "Godot has an [code]Engine.time_scale[/code] property built in that affects [code]_process[/code], [code]_physics_process[/code], and timers. However, if you want more granular control of what elements of your game are affected by a time scale change, the [code]GASTime[/code] singleton offers several ways of only adjusting the scale for certain nodes. The best strategy for your game will depend on how how many Nodes you want to be affected and how much manual effort you want to put into this. If you don't need this feature, you can disable the [code]GASTime[/code] singleton from your Autoload list."
+fit_content = true
 script = ExtResource("2_fgovc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -64,7 +66,7 @@ script = ExtResource("1_m57ba")
 [node name="AccessibleLabel2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Affects all nodes and timers. Built into Godot, so there is no performance impact regardless of how many nodes or timers are used."
+text = "Affects all nodes and timers. Built into Godot, so there is no performance impact."
 autowrap_mode = 3
 script = ExtResource("1_m57ba")
 
@@ -102,7 +104,7 @@ script = ExtResource("1_m57ba")
 [node name="AccessibleLabel2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Only uses time scale for nodes belonging to the \"GASTime\" group. Good for a relatively small number of nodes, bad when you get into the triple or quadruple digits."
+text = "Only uses time scale for nodes belonging to the \"GASTime\" group. Good for a few nodes, bad when you get into the 100-1000+ range."
 autowrap_mode = 3
 script = ExtResource("1_m57ba")
 
@@ -142,7 +144,7 @@ script = ExtResource("1_m57ba")
 layout_mode = 2
 theme_override_fonts/mono_font = ExtResource("1_p6vqq")
 bbcode_enabled = true
-text = "Requires manually connecting your nodes to the [code]GASTime.process[/code] and [code]physics_process[/code] signals and not using the default [code]_process[/code] and [code]_physics_process[/code] methods. Scales well with very large numbers of nodes."
+text = "Requires connecting nodes to the [code]GASTime.process[/code] and [code]physics_process[/code] signals and not using the standard process methods. Scales well with large node counts."
 fit_content = true
 script = ExtResource("2_fgovc")
 

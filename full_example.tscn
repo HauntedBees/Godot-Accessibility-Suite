@@ -127,7 +127,7 @@ layout_mode = 2
 [node name="Heading" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" node_paths=PackedStringArray("container") instance=ExtResource("4_w42a2")]
 layout_mode = 2
 text = "Cognitive (Thought/Memory)"
-container = NodePath("../../Motor")
+container = NodePath("..")
 opened = true
 
 [node name="Option" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
@@ -220,7 +220,7 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 3.0
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
