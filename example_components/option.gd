@@ -9,7 +9,7 @@ const _HOVERED_COLOR := Color(0.0, 0.0, 0.0, 0.5)
 		text = value
 		if !is_inside_tree():
 			await ready
-		_label.text = " - %s" % text
+		_label.text = text
 
 @export var link := ""
 

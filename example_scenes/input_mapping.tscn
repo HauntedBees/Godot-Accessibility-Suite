@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmidqn2rsimo4"]
+
+[ext_resource type="Script" path="res://example_scenes/input_mapping.gd" id="1_dwg3j"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_tj7m2"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_rka4m"]
+[ext_resource type="PackedScene" uid="uid://d213lodm33x4n" path="res://addons/gas/control_config/gas_action_config.tscn" id="4_kjk0h"]
+
+[node name="InputMapping" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dwg3j")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_tj7m2")
+bbcode_enabled = true
+text = "You can use the [code]GASInput.remap_action[/code] method to replace an action defined in the [code]Project Settings/Input Map[/code] with a new one. Since players may use gamepads and keyboards, this method will replace the current keyboard binding if the provided action is a keyboard input, and it will replace the current gamepad binding if the action is a gamepad input.
+
+To save and load player-defined input mappings, you can use the [code]GASInput.get_actions_as_json[/code], [code]GASInput.get_actions_as_dictionary[/code], [code]GASInput.restore_actions_from_json[/code], [code]GASInput.restore_actions_from_dictionary[/code] methods.
+
+The Godot Accessibility Suite also includes a [code]ControlConfig[/code] Scene that you can add to your project via [code]Instantiate Child Scene[/code] (at [code]res://addons/gas/control_config/gas_action_config.tscn[/code]), which provides a basic display to handle player input remapping. For basic use cases or quick projects where you don't need/want to make your own options menu, this should ensure players still have some way to easily remap their controls.
+
+TODO: fix bugs with this"
+fit_content = true
+script = ExtResource("3_rka4m")
+
+[node name="ControlConfig" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_kjk0h")]
+layout_mode = 2
+size_flags_vertical = 3
+number_of_columns = 2
+hide_default_ui_actions = true

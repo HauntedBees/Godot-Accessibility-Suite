@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://b716x4a2ygnjx"]
+
+[ext_resource type="Script" path="res://example_scenes/example_scene_root.gd" id="1_1ddta"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_fwms5"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_wjj2t"]
+
+[node name="ensure_all_inputs" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ddta")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_fwms5")
+bbcode_enabled = true
+text = "Godot has built-in \"focus\" functionality on all [code]Control[/code] nodes. You can use this to link UI elements together so that they can be navigated through with a keyboard or gamepad.
+
+TODO: put more information and an example here."
+fit_content = true
+script = ExtResource("3_wjj2t")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnhxrr2e54eif"]
+
+[ext_resource type="Script" path="res://example_scenes/example_scene_root.gd" id="1_1brag"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_v603o"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_1eais"]
+
+[node name="SimpleControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1brag")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_v603o")
+bbcode_enabled = true
+text = "Ensure you're using Godot's built-in [code]InputMap[/code] in your [code]Project Settings[/code], and try to keep the controls as straightforward as possible. If some player actions aren't used regularly, or are context-based, try using a single context-sensitive binding for those actions instead of requiring the player keep track of a large number of key/button mappings.
+
+If your game is complicated enough that it does need a lot of input mappings and there's no way around that, try to ensure that the most commonly used actions are easily accessible, and consider showing the player hints (either by default or if the player enables a setting for it) to remind them what button/key they need to press when certain actions are available to them."
+fit_content = true
+script = ExtResource("3_1eais")

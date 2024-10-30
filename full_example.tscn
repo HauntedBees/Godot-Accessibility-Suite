@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmml11ta7brya"]
+[gd_scene load_steps=14 format=3 uid="uid://dmml11ta7brya"]
 
 [ext_resource type="Script" path="res://addons/gas/gas_scroll_container.gd" id="1_r3c7c"]
 [ext_resource type="Script" path="res://full_example.gd" id="1_yua77"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="8_aaj06"]
 [ext_resource type="PackedScene" uid="uid://byrmj6bmohfrl" path="res://example_scenes/haptics.tscn" id="8_hv84h"]
 [ext_resource type="PackedScene" uid="uid://b6mi43lpk3nhg" path="res://example_scenes/well_spaced.tscn" id="9_pt4uc"]
+[ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="10_tng6b"]
+[ext_resource type="PackedScene" uid="uid://b716x4a2ygnjx" path="res://example_scenes/ensure_all_inputs.tscn" id="11_a474j"]
+[ext_resource type="PackedScene" uid="uid://cnhxrr2e54eif" path="res://example_scenes/simple_controls.tscn" id="12_iu6c8"]
 
 [node name="FullExample" type="Panel"]
 anchors_preset = 15
@@ -89,6 +92,29 @@ layout_mode = 2
 text = "Ensure interactive elements / virtual controls are large and well spaced, particularly on small or touch screens"
 link = "https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/"
 scene = ExtResource("9_pt4uc")
+
+[node name="Option4" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Include an option to adjust the sensitivity of controls"
+link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-sensitivity-of-controls/"
+scene = ExtResource("10_tng6b")
+
+[node name="Option5" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Ensure that all areas of the user interface can be accessed using the same input method as the gameplay"
+link = "https://gameaccessibilityguidelines.com/ensure-that-all-areas-of-the-user-interface-can-be-accessed-using-the-same-input-method-as-the-gameplay/"
+scene = ExtResource("11_a474j")
+
+[node name="Option6" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Ensure controls are as simple as possible, or provide a simpler alternative"
+link = "https://gameaccessibilityguidelines.com/ensure-controls-are-as-simple-as-possible-or-provide-a-simpler-alternative/"
+scene = ExtResource("12_iu6c8")
+
+[node name="Option7" parent="HBoxContainer/PanelContainer/MarginContainer/AccessibleScrollContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
+layout_mode = 2
+text = "Allow controls to be remapped / reconfigured"
+link = "https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2

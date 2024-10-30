@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpptp1u1c6b0l"]
+
+[ext_resource type="Script" path="res://example_scenes/example_scene_root.gd" id="1_svssq"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="2_p54qq"]
+
+[node name="ControlSensitivity" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svssq")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccessibleLabel" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "TODO"
+script = ExtResource("2_p54qq")
