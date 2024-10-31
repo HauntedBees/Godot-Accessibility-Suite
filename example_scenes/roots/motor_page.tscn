@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dv3nk0akklfws"]
 
-[ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_8jbee"]
+[ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_8jbee"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_hr6ax"]
 [ext_resource type="PackedScene" uid="uid://bllt08of6e6sx" path="res://example_scenes/game_speed.tscn" id="3_x7thm"]
 [ext_resource type="PackedScene" uid="uid://byrmj6bmohfrl" path="res://example_scenes/haptics.tscn" id="4_ptgtb"]

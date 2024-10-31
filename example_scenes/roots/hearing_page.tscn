@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ck6gh4sqhpkny"]
 
-[ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_so3ee"]
+[ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_so3ee"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_0s8yl"]
 
 [node name="Hearing" type="Control"]

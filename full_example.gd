@@ -1,6 +1,6 @@
 class_name FullExample extends Panel
 
-const _PLACEHOLDER := preload("res://example_scenes/generic.tscn")
+const _PLACEHOLDER := preload("res://example_scenes/placeholder.tscn")
 
 @onready var _info: AccessibleRichTextLabel = %ContentInfo
 @onready var _content: PanelContainer = %ContentContainer
@@ -32,7 +32,7 @@ func change_scene(p: PackedScene, label: String, link: String) -> void:
 		_content.remove_child(c)
 		c.clean_up()
 		c.queue_free()
-	var c: ExampleSceneRoot = p.instantiate()
+	var c: ExampleSceneRoot = _PLACEHOLDER.instantiate() if p == null else p.instantiate()
 	c.change_scene.connect(change_scene)
 	_content.add_child(c)
 	if link == "":

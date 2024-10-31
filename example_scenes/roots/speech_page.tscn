@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://pprfin7gor7i"]
 
-[ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_tdlys"]
+[ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_tdlys"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_a41xf"]
 [ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="3_3ympi"]
 
