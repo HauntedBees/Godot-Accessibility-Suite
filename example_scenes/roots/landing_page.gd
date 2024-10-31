@@ -4,4 +4,4 @@ extends ExampleSceneRoot
 
 func _ready() -> void:
 	for b: CategoryButton in _grid_container.get_children():
-		b.pressed.connect(func() -> void: change_scene.emit(b.scene, b.heading_name, b.link))
+		b.pressed.connect(_change_scene.bind(b))

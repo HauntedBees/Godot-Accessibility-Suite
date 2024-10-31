@@ -124,3 +124,13 @@ autowrap_mode = 3
 script = ExtResource("2_hr6ax")
 heading_name = "Motor > Cooldown Period"
 link = "https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/"
+
+[node name="Button10" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Include a configurable virtual gamepad."
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Virtual Gamepad"
+link = "https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/"
