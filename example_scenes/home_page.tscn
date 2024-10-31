@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://dayls4c282bar"]
+
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_0213p"]
+[ext_resource type="Script" path="res://example_scenes/home_page.gd" id="1_pcvxm"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="2_uqnva"]
+
+[node name="HomePage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pcvxm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Welcome to the Godot Accessibility Suite example project. Click through the categories on the left to see examples and explanations for the different accessibility features built into this Suite, many of which are based on the [url=https://gameaccessibilityguidelines.com/]Game Accessibility Guidelines[/url] website, which I am not associated with, but highly recommend you consult regularly in your game development process.
+
+This suite aims to provide as many utilities, tools, and resources as possible to help simplify the process of making your game more accessible, but every game is different, and not every accessibility feature can be cleanly implemented in a general-purpose plugin like this. Consult the Game Accessibility Guidelines site for more information, and be sure to have a diverse group of playtesters involved in the production of your game to ensure you can get the feedback you need to make your game the best game it can be for everyone."
+fit_content = true
+script = ExtResource("2_uqnva")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Font Size"
+horizontal_alignment = 1
+script = ExtResource("1_0213p")
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Bigger"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Regular"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Biggest"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Theme"
+horizontal_alignment = 1
+script = ExtResource("1_0213p")
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Dark"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Light"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "High Contrast"
+
+[connection signal="meta_clicked" from="MarginContainer/VBoxContainer/AccessibleRichTextLabel" to="." method="_on_accessible_rich_text_label_meta_clicked"]

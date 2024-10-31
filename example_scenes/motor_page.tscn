@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://dv3nk0akklfws"]
+
+[ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_8jbee"]
+[ext_resource type="Script" path="res://example_components/category_button.gd" id="2_hr6ax"]
+[ext_resource type="PackedScene" uid="uid://bllt08of6e6sx" path="res://example_scenes/game_speed.tscn" id="3_x7thm"]
+[ext_resource type="PackedScene" uid="uid://byrmj6bmohfrl" path="res://example_scenes/haptics.tscn" id="4_ptgtb"]
+[ext_resource type="PackedScene" uid="uid://b6mi43lpk3nhg" path="res://example_scenes/well_spaced.tscn" id="5_p7o58"]
+[ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="6_tai5d"]
+[ext_resource type="PackedScene" uid="uid://bmidqn2rsimo4" path="res://example_scenes/input_mapping.tscn" id="7_cnym8"]
+
+[node name="Motor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8jbee")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="Button" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Include an option to adjust the game speed"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Game Speed Adjustment"
+link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/"
+scene = ExtResource("3_x7thm")
+
+[node name="Button2" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Include toggle/slider for any haptics"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Haptics Adjustment"
+link = "https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/"
+scene = ExtResource("4_ptgtb")
+
+[node name="Button3" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Ensure interactive elements / virtual controls are large and well spaced, particularly on small or touch screens"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Spacing"
+link = "https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/"
+scene = ExtResource("5_p7o58")
+
+[node name="Button4" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Include an option to adjust the sensitivity of controls"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Control Sensitivity"
+link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-sensitivity-of-controls/"
+scene = ExtResource("6_tai5d")
+
+[node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Allow controls to be remapped / reconfigured"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Control Remapping"
+link = "https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/"
+scene = ExtResource("7_cnym8")

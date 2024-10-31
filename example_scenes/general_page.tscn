@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://da5yaxpxr68g1"]
+
+[ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_csau4"]
+[ext_resource type="Script" path="res://example_components/category_button.gd" id="2_lija0"]
+[ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="3_ynuqo"]
+
+[node name="General" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_csau4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="Button" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Ensure that all settings are saved/remembered"
+autowrap_mode = 3
+script = ExtResource("2_lija0")
+heading_name = "General > Save Settings"
+link = "https://gameaccessibilityguidelines.com/ensure-that-all-settings-are-saved-remembered/"
+scene = ExtResource("3_ynuqo")

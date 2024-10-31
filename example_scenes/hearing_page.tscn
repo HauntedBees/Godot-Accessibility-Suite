@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck6gh4sqhpkny"]
+
+[ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_so3ee"]
+[ext_resource type="Script" path="res://example_components/category_button.gd" id="2_0s8yl"]
+[ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="3_hr533"]
+[ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_j6kxq"]
+
+[node name="Hearing" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_so3ee")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="Button" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "If any subtitles / captions are used, present them in a clear, easy to read way"
+autowrap_mode = 3
+script = ExtResource("2_0s8yl")
+heading_name = "Hearing > Clear Subtitles"
+link = "https://gameaccessibilityguidelines.com/if-any-subtitles-captions-are-used-present-them-in-a-clear-easy-to-read-way/"
+scene = ExtResource("3_hr533")
+
+[node name="Button2" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide separate volume controls or mutes for effects, speech and background / music"
+autowrap_mode = 3
+script = ExtResource("2_0s8yl")
+heading_name = "Hearing > Sound Controls"
+link = "https://gameaccessibilityguidelines.com/provide-separate-volume-controls-or-mutes-for-effects-speech-and-background-music/"
+scene = ExtResource("4_j6kxq")
+
+[node name="Button3" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide subtitles for all important speech"
+autowrap_mode = 3
+script = ExtResource("2_0s8yl")
+heading_name = "Hearing > Subtitles"
+link = "https://gameaccessibilityguidelines.com/provide-subtitles-for-all-important-speech/"
+scene = ExtResource("4_j6kxq")

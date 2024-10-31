@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckgd1rq5ya46s"]
+
+[ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_oavdt"]
+[ext_resource type="Script" path="res://example_components/category_button.gd" id="2_4w61p"]
+[ext_resource type="PackedScene" uid="uid://cgq1djsxxtmei" path="res://example_scenes/clear_formatting.tscn" id="3_6d72a"]
+[ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_ackms"]
+
+[node name="Cognitive" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oavdt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="Button" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Use simple clear text formatting"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Clear Text Formatting"
+link = "https://gameaccessibilityguidelines.com/use-simple-clear-text-formatting/"
+scene = ExtResource("3_6d72a")
+
+[node name="Button2" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Use an easily readable default font size"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Readable Default Font Size"
+link = "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/"
+scene = ExtResource("4_ackms")

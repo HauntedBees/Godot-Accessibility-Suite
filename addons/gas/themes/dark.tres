@@ -2,6 +2,9 @@
 
 [resource]
 Button/font_sizes/font_size = 24
+GridContainer/constants/h_separation = 16
+GridContainer/constants/v_separation = 16
+HBoxContainer/constants/separation = 16
 Label/font_sizes/font_size = 24
 MarginContainer/constants/margin_bottom = 12
 MarginContainer/constants/margin_left = 12
@@ -27,3 +30,4 @@ TopBottomMargin/constants/margin_bottom = 12
 TopBottomMargin/constants/margin_left = 0
 TopBottomMargin/constants/margin_right = 0
 TopBottomMargin/constants/margin_top = 12
+VBoxContainer/constants/separation = 16

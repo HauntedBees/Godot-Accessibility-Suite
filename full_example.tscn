@@ -1,21 +1,36 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmml11ta7brya"]
+[gd_scene load_steps=32 format=3 uid="uid://dmml11ta7brya"]
 
-[ext_resource type="Script" path="res://addons/gas/gas_scroll_container.gd" id="1_r3c7c"]
 [ext_resource type="Script" path="res://full_example.gd" id="1_yua77"]
-[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="2_jbo7q"]
-[ext_resource type="PackedScene" uid="uid://dolvxjh35rp24" path="res://example_components/heading.tscn" id="3_gxjln"]
-[ext_resource type="PackedScene" uid="uid://dpdjb5jpbq21l" path="res://example_components/subheading.tscn" id="4_w42a2"]
-[ext_resource type="PackedScene" uid="uid://bje8f5cklxhd4" path="res://example_components/option.tscn" id="5_acheo"]
-[ext_resource type="PackedScene" uid="uid://bllt08of6e6sx" path="res://example_scenes/game_speed.tscn" id="6_no3jo"]
 [ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="8_aaj06"]
-[ext_resource type="PackedScene" uid="uid://byrmj6bmohfrl" path="res://example_scenes/haptics.tscn" id="8_hv84h"]
-[ext_resource type="PackedScene" uid="uid://b6mi43lpk3nhg" path="res://example_scenes/well_spaced.tscn" id="9_pt4uc"]
-[ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="10_tng6b"]
-[ext_resource type="PackedScene" uid="uid://b716x4a2ygnjx" path="res://example_scenes/ensure_all_inputs.tscn" id="11_a474j"]
-[ext_resource type="PackedScene" uid="uid://clw1sdknm8wc1" path="res://example_scenes/generic.tscn" id="13_psp6y"]
-[ext_resource type="PackedScene" uid="uid://bmidqn2rsimo4" path="res://example_scenes/input_mapping.tscn" id="13_t1ywe"]
-[ext_resource type="PackedScene" uid="uid://cgq1djsxxtmei" path="res://example_scenes/clear_formatting.tscn" id="14_vaopp"]
-[ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="15_3bjal"]
+[ext_resource type="PackedScene" uid="uid://ckgd1rq5ya46s" path="res://example_scenes/cognitive_page.tscn" id="14_e05e0"]
+[ext_resource type="Texture2D" uid="uid://bcclkt3yoj2t8" path="res://example_assets/buttons/console-controller.svg" id="16_h68u4"]
+[ext_resource type="Texture2D" uid="uid://e2jo847vmvk" path="res://example_assets/buttons/house.svg" id="16_qd1y1"]
+[ext_resource type="Texture2D" uid="uid://dfxj6i4qhqcv" path="res://example_assets/buttons/brain.svg" id="17_48dsd"]
+[ext_resource type="Texture2D" uid="uid://dgo1jlcnkibco" path="res://example_assets/buttons/pressed/house.svg" id="17_h8fa0"]
+[ext_resource type="Texture2D" uid="uid://bartfh7qh2jid" path="res://example_assets/buttons/spectacle-lenses.svg" id="18_pco8p"]
+[ext_resource type="Texture2D" uid="uid://bumilhqcxm84i" path="res://example_assets/buttons/hover/house.svg" id="18_pfoss"]
+[ext_resource type="PackedScene" uid="uid://cmd287h3j231s" path="res://example_scenes/vision_page.tscn" id="18_vhb1v"]
+[ext_resource type="Texture2D" uid="uid://c81xm6jluoakt" path="res://example_assets/buttons/human-ear.svg" id="19_4vrts"]
+[ext_resource type="Script" path="res://example_components/category_texture_button.gd" id="19_reen0"]
+[ext_resource type="Texture2D" uid="uid://b14n4r7tc4mu8" path="res://example_assets/buttons/pressed/console-controller.svg" id="20_k3j31"]
+[ext_resource type="Texture2D" uid="uid://dd5qp6ymsv1ln" path="res://example_assets/buttons/talk.svg" id="20_p8c04"]
+[ext_resource type="Texture2D" uid="uid://hmvcmlmijkse" path="res://example_assets/buttons/gears.svg" id="21_radub"]
+[ext_resource type="Texture2D" uid="uid://jwuuvyu5k33v" path="res://example_assets/buttons/hover/console-controller.svg" id="21_yrxj1"]
+[ext_resource type="PackedScene" uid="uid://ck6gh4sqhpkny" path="res://example_scenes/hearing_page.tscn" id="22_34bac"]
+[ext_resource type="Texture2D" uid="uid://dxh1y7npooix3" path="res://example_assets/buttons/pressed/brain.svg" id="23_hiib6"]
+[ext_resource type="Texture2D" uid="uid://glwblv60q4x" path="res://example_assets/buttons/hover/brain.svg" id="24_b1udx"]
+[ext_resource type="Texture2D" uid="uid://hpdapksdpmjw" path="res://example_assets/buttons/pressed/spectacle-lenses.svg" id="26_gcp6y"]
+[ext_resource type="PackedScene" uid="uid://pprfin7gor7i" path="res://example_scenes/speech_page.tscn" id="26_k00kk"]
+[ext_resource type="Texture2D" uid="uid://gmyrd6s823dw" path="res://example_assets/buttons/hover/spectacle-lenses.svg" id="27_0xunx"]
+[ext_resource type="Texture2D" uid="uid://x82x7e4b5y0n" path="res://example_assets/buttons/pressed/human-ear.svg" id="29_m55mk"]
+[ext_resource type="Texture2D" uid="uid://dcp7fvmd5mn73" path="res://example_assets/buttons/hover/human-ear.svg" id="30_88op5"]
+[ext_resource type="PackedScene" uid="uid://da5yaxpxr68g1" path="res://example_scenes/general_page.tscn" id="30_hfx34"]
+[ext_resource type="Texture2D" uid="uid://dhd2oblj2gj6f" path="res://example_assets/buttons/pressed/talk.svg" id="32_i8e63"]
+[ext_resource type="Texture2D" uid="uid://vxh6w5d54bk4" path="res://example_assets/buttons/hover/talk.svg" id="33_vim0u"]
+[ext_resource type="Texture2D" uid="uid://dioumdol5k8cr" path="res://example_assets/buttons/pressed/gears.svg" id="35_itm3a"]
+[ext_resource type="Texture2D" uid="uid://d2bil385au82f" path="res://example_assets/buttons/hover/gears.svg" id="36_ove1y"]
+[ext_resource type="PackedScene" uid="uid://dv3nk0akklfws" path="res://example_scenes/motor_page.tscn" id="39_4kcag"]
+[ext_resource type="PackedScene" uid="uid://dayls4c282bar" path="res://example_scenes/home_page.tscn" id="39_mqcb6"]
 
 [node name="FullExample" type="Panel"]
 anchors_preset = 15
@@ -35,184 +50,102 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="AccessibleScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer"]
-clip_contents = false
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
 layout_mode = 2
-script = ExtResource("1_r3c7c")
+alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer"]
+[node name="Home" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 16
+tooltip_text = "Home"
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("16_qd1y1")
+texture_pressed = ExtResource("17_h8fa0")
+texture_hover = ExtResource("18_pfoss")
+stretch_mode = 5
+script = ExtResource("19_reen0")
+heading_name = "Godot Accessibility Suite"
+scene = ExtResource("39_mqcb6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer"]
+[node name="Motor" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+tooltip_text = "Motor (Control/Mobility)"
+toggle_mode = true
+texture_normal = ExtResource("16_h68u4")
+texture_pressed = ExtResource("20_k3j31")
+texture_hover = ExtResource("21_yrxj1")
+stretch_mode = 5
+script = ExtResource("19_reen0")
+heading_name = "Motor"
+scene = ExtResource("39_4kcag")
 
-[node name="AccessibleLabel" type="Label" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Cognitive" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Game Accessibility Guidelines"
-script = ExtResource("2_jbo7q")
+tooltip_text = "Cognitive (Thought/Memory/Processing Information)"
+toggle_mode = true
+texture_normal = ExtResource("17_48dsd")
+texture_pressed = ExtResource("23_hiib6")
+texture_hover = ExtResource("24_b1udx")
+stretch_mode = 5
+script = ExtResource("19_reen0")
+heading_name = "Cognitive"
+scene = ExtResource("14_e05e0")
 
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Vision" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Vision"
+toggle_mode = true
+texture_normal = ExtResource("18_pco8p")
+texture_pressed = ExtResource("26_gcp6y")
+texture_hover = ExtResource("27_0xunx")
+stretch_mode = 5
+script = ExtResource("19_reen0")
+heading_name = "Vision"
+scene = ExtResource("18_vhb1v")
 
-[node name="Basic" type="VBoxContainer" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Hearing" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Hearing"
+toggle_mode = true
+texture_normal = ExtResource("19_4vrts")
+texture_pressed = ExtResource("29_m55mk")
+texture_hover = ExtResource("30_88op5")
+stretch_mode = 5
+script = ExtResource("19_reen0")
+heading_name = "Hearing"
+scene = ExtResource("22_34bac")
 
-[node name="Heading" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic" node_paths=PackedStringArray("container") instance=ExtResource("3_gxjln")]
+[node name="Speech" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Basic"
-container = NodePath("..")
-opened = true
+tooltip_text = "Speech"
+toggle_mode = true
+texture_normal = ExtResource("20_p8c04")
+texture_pressed = ExtResource("32_i8e63")
+texture_hover = ExtResource("33_vim0u")
+stretch_mode = 5
+script = ExtResource("19_reen0")
+heading_name = "Speech"
+scene = ExtResource("26_k00kk")
 
-[node name="Motor" type="VBoxContainer" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic"]
+[node name="General" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Heading" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" node_paths=PackedStringArray("container") instance=ExtResource("4_w42a2")]
-layout_mode = 2
-text = "Motor (Control/Mobility)"
-container = NodePath("..")
-opened = true
-
-[node name="Option" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Include an option to adjust the game speed."
-link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/"
-scene = ExtResource("6_no3jo")
-
-[node name="Option2" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Include toggle/slider for any haptics"
-link = "https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/"
-scene = ExtResource("8_hv84h")
-
-[node name="Option3" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Ensure interactive elements / virtual controls are large and well spaced, particularly on small or touch screens"
-link = "https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/"
-scene = ExtResource("9_pt4uc")
-
-[node name="Option4" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Include an option to adjust the sensitivity of controls"
-link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-sensitivity-of-controls/"
-scene = ExtResource("10_tng6b")
-
-[node name="Option5" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Ensure that all areas of the user interface can be accessed using the same input method as the gameplay"
-link = "https://gameaccessibilityguidelines.com/ensure-that-all-areas-of-the-user-interface-can-be-accessed-using-the-same-input-method-as-the-gameplay/"
-scene = ExtResource("11_a474j")
-
-[node name="Option6" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Ensure controls are as simple as possible, or provide a simpler alternative"
-link = "https://gameaccessibilityguidelines.com/ensure-controls-are-as-simple-as-possible-or-provide-a-simpler-alternative/"
-scene = ExtResource("13_psp6y")
-
-[node name="Option7" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Motor" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Allow controls to be remapped / reconfigured"
-link = "https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/"
-scene = ExtResource("13_t1ywe")
-
-[node name="Cognitive" type="VBoxContainer" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic"]
-layout_mode = 2
-
-[node name="Heading" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" node_paths=PackedStringArray("container") instance=ExtResource("4_w42a2")]
-layout_mode = 2
-text = "Cognitive (Thought/Memory)"
-container = NodePath("..")
-opened = true
-
-[node name="Option" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Avoid flickering images and repetitive patterns"
-link = "https://gameaccessibilityguidelines.com/avoid-flickering-images-and-repetitive-patterns/"
-
-[node name="Option2" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Allow players to progress through text prompts at their own pace"
-link = "https://gameaccessibilityguidelines.com/allow-players-to-progress-through-text-prompts-at-their-own-pace/"
-
-[node name="Option3" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Include interactive tutorials"
-link = "https://gameaccessibilityguidelines.com/include-interactive-tutorials/"
-
-[node name="Option4" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Use simple clear language"
-link = "https://gameaccessibilityguidelines.com/use-simple-clear-language/"
-
-[node name="Option5" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Allow the game to be started without the need to navigate through multiple levels of menus"
-link = "https://gameaccessibilityguidelines.com/allow-the-game-to-be-started-without-the-need-to-navigate-through-multiple-levels-of-menus/d"
-
-[node name="Option6" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Use simple clear text formatting"
-link = "https://gameaccessibilityguidelines.com/use-simple-clear-text-formatting/"
-scene = ExtResource("14_vaopp")
-
-[node name="Option7" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Cognitive" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Use an easily readable default font size"
-link = "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/"
-scene = ExtResource("15_3bjal")
-
-[node name="Vision" type="VBoxContainer" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic"]
-layout_mode = 2
-
-[node name="Heading" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" node_paths=PackedStringArray("container") instance=ExtResource("4_w42a2")]
-layout_mode = 2
-text = "Vision"
-container = NodePath("..")
-
-[node name="Option" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Provide high contrast between text/UI and background"
-link = "https://gameaccessibilityguidelines.com/provide-high-contrast-between-text-ui-and-background/"
-scene = ExtResource("14_vaopp")
-
-[node name="Option2" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Use simple clear text formatting"
-link = "https://gameaccessibilityguidelines.com/use-simple-clear-text-formatting/"
-scene = ExtResource("14_vaopp")
-
-[node name="Option7" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Use an easily readable default font size"
-link = "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/"
-scene = ExtResource("15_3bjal")
-
-[node name="Option8" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Avoid VR simulation sickness triggers"
-link = "https://gameaccessibilityguidelines.com/avoid-vr-simulation-sickness-triggers/"
-
-[node name="Option9" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "If the game uses field of view (3D engine only), set an appropriate default for the expected viewing environment"
-link = "https://gameaccessibilityguidelines.com/if-the-game-uses-field-of-view-3d-engine-only-set-an-appropriate-default-for-the-expected-viewing-environment/"
-
-[node name="Option10" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Ensure no essential information is conveyed by a fixed colour alone"
-link = "https://gameaccessibilityguidelines.com/ensure-no-essential-information-is-conveyed-by-a-fixed-colour-alone/"
-
-[node name="Option11" parent="HBoxContainer/PanelContainer/AccessibleScrollContainer/MarginContainer/VBoxContainer/Basic/Vision" instance=ExtResource("5_acheo")]
-layout_mode = 2
-text = "Ensure interactive elements / virtual controls are large and well spaced, particularly on small or touch screens"
-link = "https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/"
-scene = ExtResource("9_pt4uc")
+tooltip_text = "General"
+toggle_mode = true
+texture_normal = ExtResource("21_radub")
+texture_pressed = ExtResource("35_itm3a")
+texture_hover = ExtResource("36_ove1y")
+stretch_mode = 5
+script = ExtResource("19_reen0")
+heading_name = "General"
+scene = ExtResource("30_hfx34")
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -220,20 +153,25 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer"]
+[node name="BackButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+text = "Back"
 
-[node name="ContentInfo" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContentInfo" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "ContentInfo"
+text = "Godot Accessibility Suite"
 fit_content = true
 script = ExtResource("8_aaj06")
 
@@ -242,4 +180,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="meta_clicked" from="HBoxContainer/VBoxContainer/PanelContainer/HBoxContainer/ContentInfo" to="." method="_on_content_info_meta_clicked"]
+[node name="HomePage" parent="HBoxContainer/VBoxContainer/ContentContainer" instance=ExtResource("39_mqcb6")]
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="meta_clicked" from="HBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ContentInfo" to="." method="_on_content_info_meta_clicked"]
