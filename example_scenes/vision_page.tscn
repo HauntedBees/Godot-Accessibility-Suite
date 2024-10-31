@@ -72,3 +72,34 @@ script = ExtResource("2_rt4su")
 heading_name = "Vision > Spacing"
 link = "https://gameaccessibilityguidelines.com/ensure-interactive-elements-virtual-controls-are-large-and-well-spaced-particularly-on-small-or-touch-screens/"
 scene = ExtResource("6_lle04")
+
+[node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide separate volume controls or mutes for effects, speech and background / music"
+autowrap_mode = 3
+script = ExtResource("2_rt4su")
+heading_name = "Vision > Sound Controls"
+link = "https://gameaccessibilityguidelines.com/provide-separate-volume-controls-or-mutes-for-effects-speech-and-background-music/"
+
+[node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Allow interfaces to be resized"
+autowrap_mode = 3
+script = ExtResource("2_rt4su")
+heading_name = "Vision > Resizable Interfaces"
+link = "https://gameaccessibilityguidelines.com/allow-interfaces-to-be-resized/"
+
+[node name="Button7" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Allow the font size to be adjusted"
+autowrap_mode = 3
+script = ExtResource("2_rt4su")
+heading_name = "Vision > Adjustable Font Size"
+link = "https://gameaccessibilityguidelines.com/allow-the-font-size-to-be-adjusted/"
+scene = ExtResource("4_5u67s")

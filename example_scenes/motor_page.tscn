@@ -84,3 +84,43 @@ script = ExtResource("2_hr6ax")
 heading_name = "Motor > Control Remapping"
 link = "https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/"
 scene = ExtResource("7_cnym8")
+
+[node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Allow interfaces to be resized"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Resizable Interfaces"
+link = "https://gameaccessibilityguidelines.com/allow-interfaces-to-be-resized/"
+
+[node name="Button7" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Allow interfaces to be rearranged"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Resizable Interfaces"
+link = "https://gameaccessibilityguidelines.com/allow-interfaces-to-be-rearranged/"
+
+[node name="Button8" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Avoid / provide alternatives to requiring buttons to be held down"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Holding Down Buttons"
+link = "https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/"
+
+[node name="Button9" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Include a cool-down period (post acceptance delay) of 0.5 seconds between inputs"
+autowrap_mode = 3
+script = ExtResource("2_hr6ax")
+heading_name = "Motor > Cooldown Period"
+link = "https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/"

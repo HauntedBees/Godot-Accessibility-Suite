@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://da5yaxpxr68g1"]
+[gd_scene load_steps=3 format=3 uid="uid://da5yaxpxr68g1"]
 
 [ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_csau4"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_lija0"]
-[ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="3_ynuqo"]
 
 [node name="General" type="Control"]
 layout_mode = 3
@@ -35,4 +34,13 @@ autowrap_mode = 3
 script = ExtResource("2_lija0")
 heading_name = "General > Save Settings"
 link = "https://gameaccessibilityguidelines.com/ensure-that-all-settings-are-saved-remembered/"
-scene = ExtResource("3_ynuqo")
+
+[node name="Button2" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Allow settings to be saved to different profiles, at either game or platform level"
+autowrap_mode = 3
+script = ExtResource("2_lija0")
+heading_name = "General > Setting Profiles"
+link = "https://gameaccessibilityguidelines.com/allow-settings-to-be-saved-to-different-profiles-at-either-game-or-platform-level/"

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckgd1rq5ya46s"]
+[gd_scene load_steps=7 format=3 uid="uid://ckgd1rq5ya46s"]
 
 [ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_oavdt"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_4w61p"]
 [ext_resource type="PackedScene" uid="uid://cgq1djsxxtmei" path="res://example_scenes/clear_formatting.tscn" id="3_6d72a"]
+[ext_resource type="PackedScene" uid="uid://bllt08of6e6sx" path="res://example_scenes/game_speed.tscn" id="3_slthk"]
+[ext_resource type="PackedScene" uid="uid://byrmj6bmohfrl" path="res://example_scenes/haptics.tscn" id="4_7miv3"]
 [ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_ackms"]
 
 [node name="Cognitive" type="Control"]
@@ -48,3 +50,65 @@ script = ExtResource("2_4w61p")
 heading_name = "Cognitive > Readable Default Font Size"
 link = "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/"
 scene = ExtResource("4_ackms")
+
+[node name="Button3" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Highlight important words"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Highlighting Words"
+link = "https://gameaccessibilityguidelines.com/highlight-important-words/"
+
+[node name="Button4" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide a choice of text colour, low/high contrast choice as a minimum"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Text Colour Choices"
+link = "https://gameaccessibilityguidelines.com/provide-a-choice-of-text-colour-low-high-contrast-choice-as-a-minimum/"
+
+[node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide gameplay thumbnails with game saves"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Save Thumbnails"
+link = "https://gameaccessibilityguidelines.com/provide-gameplay-thumbnails-with-game-saves/"
+
+[node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide separate volume controls or mutes for effects, speech and background / music"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Sound Controls"
+link = "https://gameaccessibilityguidelines.com/provide-separate-volume-controls-or-mutes-for-effects-speech-and-background-music/"
+
+[node name="Button7" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Include an option to adjust the game speed"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Game Speed"
+link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/"
+scene = ExtResource("3_slthk")
+
+[node name="Button8" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Include toggle/slider for any haptics"
+autowrap_mode = 3
+script = ExtResource("2_4w61p")
+heading_name = "Cognitive > Haptics"
+link = "https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/"
+scene = ExtResource("4_7miv3")

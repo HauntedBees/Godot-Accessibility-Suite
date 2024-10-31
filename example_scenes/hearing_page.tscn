@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck6gh4sqhpkny"]
+[gd_scene load_steps=3 format=3 uid="uid://ck6gh4sqhpkny"]
 
 [ext_resource type="Script" path="res://example_scenes/landing_page.gd" id="1_so3ee"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_0s8yl"]
-[ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="3_hr533"]
-[ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_j6kxq"]
 
 [node name="Hearing" type="Control"]
 layout_mode = 3
@@ -36,7 +34,6 @@ autowrap_mode = 3
 script = ExtResource("2_0s8yl")
 heading_name = "Hearing > Clear Subtitles"
 link = "https://gameaccessibilityguidelines.com/if-any-subtitles-captions-are-used-present-them-in-a-clear-easy-to-read-way/"
-scene = ExtResource("3_hr533")
 
 [node name="Button2" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -47,7 +44,6 @@ autowrap_mode = 3
 script = ExtResource("2_0s8yl")
 heading_name = "Hearing > Sound Controls"
 link = "https://gameaccessibilityguidelines.com/provide-separate-volume-controls-or-mutes-for-effects-speech-and-background-music/"
-scene = ExtResource("4_j6kxq")
 
 [node name="Button3" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -58,4 +54,33 @@ autowrap_mode = 3
 script = ExtResource("2_0s8yl")
 heading_name = "Hearing > Subtitles"
 link = "https://gameaccessibilityguidelines.com/provide-subtitles-for-all-important-speech/"
-scene = ExtResource("4_j6kxq")
+
+[node name="Button4" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Allow subtitle/caption presentation to be customised"
+autowrap_mode = 3
+script = ExtResource("2_0s8yl")
+heading_name = "Hearing > Subtitle Customization"
+link = "https://gameaccessibilityguidelines.com/allow-subtitle-caption-presentation-to-be-customised/"
+
+[node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide captions or visuals for significant background sounds"
+autowrap_mode = 3
+script = ExtResource("2_0s8yl")
+heading_name = "Hearing > Captions for Background Sounds"
+link = "https://gameaccessibilityguidelines.com/provide-captions-or-visuals-for-significant-background-sounds/"
+
+[node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Provide subtitles for supplementary speech"
+autowrap_mode = 3
+script = ExtResource("2_0s8yl")
+heading_name = "Hearing > Captions for Supplementary Speech"
+link = "https://gameaccessibilityguidelines.com/provide-subtitles-for-supplementary-speech/"
