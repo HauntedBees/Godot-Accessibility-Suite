@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://nocjipb5w33m"]
 
-[ext_resource type="Script" path="res://example_scenes/save_settings.gd" id="1_bkekd"]
-[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_dghtp"]
-[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_xbisw"]
-[ext_resource type="Texture2D" uid="uid://b3d2bpp40ucbc" path="res://example_assets/parrot.png" id="4_guqka"]
-[ext_resource type="Texture2D" uid="uid://dnhuhokxjtoa6" path="res://example_assets/bluebird.png" id="5_6pamn"]
+[ext_resource type="Script" path="res://example_scenes/save_screen.gd" id="1_1t2es"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_4vxba"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_ogsut"]
+[ext_resource type="Texture2D" uid="uid://b3d2bpp40ucbc" path="res://example_assets/parrot.png" id="4_btibr"]
+[ext_resource type="Texture2D" uid="uid://dnhuhokxjtoa6" path="res://example_assets/bluebird.png" id="5_nyl05"]
 
-[node name="SaveSettings" type="Control"]
+[node name="SaveScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bkekd")
+script = ExtResource("1_1t2es")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -28,11 +28,11 @@ layout_mode = 2
 
 [node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/mono_font = ExtResource("2_dghtp")
+theme_override_fonts/mono_font = ExtResource("2_4vxba")
 bbcode_enabled = true
 text = "[code]GASUtils.get_screen()[/code] will return an [code]Image[/code] of what's currently onscreen, with its resolution halved. [code]GASUtils.save_screen(name: String)[/code] will save this image to [code]user://save_%s.png[/code], where [code]%s[/code] is the [code]name[/code] argument passed to the method. You can then retrieve the saved image with [code]GASUtils.load_screen_as_image[/code] or, to get an [code]ImageTexture[/code] or [code]TextureRect[/code] you can use [code]GASUtils.load_screen_as_texture[/code] and [code]GASUtils.load_screen_as_texture_rect[/code] respectively."
 fit_content = true
-script = ExtResource("3_xbisw")
+script = ExtResource("3_ogsut")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -44,7 +44,7 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
 layout_mode = 2
-texture = ExtResource("4_guqka")
+texture = ExtResource("4_btibr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -59,7 +59,7 @@ text = "Save Screen to TextureRect"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(640, 480)
 layout_mode = 2
-texture = ExtResource("5_6pamn")
+texture = ExtResource("5_nyl05")
 expand_mode = 1
 stretch_mode = 5
 

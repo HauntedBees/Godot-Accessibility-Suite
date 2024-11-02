@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bllt08of6e6sx" path="res://example_scenes/game_speed.tscn" id="3_slthk"]
 [ext_resource type="PackedScene" uid="uid://byrmj6bmohfrl" path="res://example_scenes/haptics.tscn" id="4_7miv3"]
 [ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_ackms"]
-[ext_resource type="PackedScene" uid="uid://nocjipb5w33m" path="res://example_scenes/save_settings.tscn" id="5_vha0u"]
+[ext_resource type="PackedScene" uid="uid://nocjipb5w33m" path="res://example_scenes/save_screen.tscn" id="5_vha0u"]
 
 [node name="Cognitive" type="Control"]
 layout_mode = 3
