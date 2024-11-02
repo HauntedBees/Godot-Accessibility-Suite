@@ -16,6 +16,10 @@ var input_cooldown_length := 0.5
 # https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
 var vibration_scale := 1.0
 
+# https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/
+var group_time_scale := 1.0
+var signal_time_scale := 1.0
+
 # https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
 var input_toggle_actions := []
 func set_toggle_action(action: String, is_toggle: bool) -> void:
@@ -45,6 +49,8 @@ func _load(profile := "") -> bool:
 	input_cooldown_length = config.get_value("input", "input_cooldown_length", 0.5)
 	input_cooldown_enabled = config.get_value("input", "input_cooldown_enabled", true)
 	input_toggle_actions = config.get_value("input", "input_toggle_actions", ["ui_end"])
+	group_time_scale = config.get_value("time", "group_time_scale", 1.0)
+	signal_time_scale = config.get_value("time", "signal_time_scale", 1.0)
 	return true
 
 func _save(profile := "") -> void:
@@ -53,4 +59,6 @@ func _save(profile := "") -> void:
 	config.set_value("input", "input_cooldown_length", input_cooldown_length)
 	config.set_value("input", "input_cooldown_enabled", input_cooldown_enabled)
 	config.set_value("input", "input_toggle_actions", input_toggle_actions)
+	config.set_value("time", "group_time_scale", group_time_scale)
+	config.set_value("time", "signal_time_scale", signal_time_scale)
 	config.save("user://gas%s.cfg" % profile)

@@ -4,18 +4,18 @@ extends Node
 signal process(delta: float)
 signal physics_process(delta: float)
 
-var group_time_scale := 1.0:
-	set(value):
-		group_time_scale = value
-		_update_group_time_scale()
-
-var signal_time_scale := 1.0
-
 var _group_time_scale_enabled := false
+
+func _ready() -> void:
+	_update_group_time_scale()
+
+func set_group_time_scale(time_scale := 1.0) -> void:
+	GASConfig.group_time_scale = time_scale
+	_update_group_time_scale()
 
 ## TODO: how to set this on GASTime nodes added to the scene after this has been called
 func _update_group_time_scale() -> void:
-	if group_time_scale == 1.0:
+	if GASConfig.group_time_scale == 1.0:
 		_group_time_scale_enabled = false
 		get_tree().call_group("GASTime", "set_process", true)
 		get_tree().call_group("GASTime", "set_physics_process", true)
@@ -26,10 +26,10 @@ func _update_group_time_scale() -> void:
 
 func _process(delta: float) -> void:
 	if _group_time_scale_enabled:
-		get_tree().call_group("GASTime", "_process", delta * group_time_scale)
-	process.emit(delta * signal_time_scale)
+		get_tree().call_group("GASTime", "_process", delta * GASConfig.group_time_scale)
+	process.emit(delta * GASConfig.signal_time_scale)
 
 func _physics_process(delta: float) -> void:
 	if _group_time_scale_enabled:
-		get_tree().call_group("GASTime", "_physics_process", delta * group_time_scale)
-	physics_process.emit(delta * signal_time_scale)
+		get_tree().call_group("GASTime", "_physics_process", delta * GASConfig.group_time_scale)
+	physics_process.emit(delta * GASConfig.signal_time_scale)
