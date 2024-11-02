@@ -74,6 +74,7 @@ link = "https://gameaccessibilityguidelines.com/ensure-interactive-elements-virt
 scene = ExtResource("6_lle04")
 
 [node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -84,6 +85,7 @@ heading_name = "Vision > Sound Controls"
 link = "https://gameaccessibilityguidelines.com/provide-separate-volume-controls-or-mutes-for-effects-speech-and-background-music/"
 
 [node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -94,6 +96,7 @@ heading_name = "Vision > Resizable Interfaces"
 link = "https://gameaccessibilityguidelines.com/allow-interfaces-to-be-resized/"
 
 [node name="Button7" type="Button" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

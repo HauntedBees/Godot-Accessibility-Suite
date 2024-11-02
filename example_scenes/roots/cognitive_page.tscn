@@ -52,6 +52,7 @@ link = "https://gameaccessibilityguidelines.com/use-an-easily-readable-default-f
 scene = ExtResource("4_ackms")
 
 [node name="Button3" type="Button" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -62,6 +63,7 @@ heading_name = "Cognitive > Highlighting Words"
 link = "https://gameaccessibilityguidelines.com/highlight-important-words/"
 
 [node name="Button4" type="Button" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -72,6 +74,7 @@ heading_name = "Cognitive > Text Colour Choices"
 link = "https://gameaccessibilityguidelines.com/provide-a-choice-of-text-colour-low-high-contrast-choice-as-a-minimum/"
 
 [node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -82,6 +85,7 @@ heading_name = "Cognitive > Save Thumbnails"
 link = "https://gameaccessibilityguidelines.com/provide-gameplay-thumbnails-with-game-saves/"
 
 [node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
