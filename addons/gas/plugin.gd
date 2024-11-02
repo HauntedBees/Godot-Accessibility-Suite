@@ -10,6 +10,7 @@ func _enter_tree():
 	ProjectSettings.set(GASConstant.AUTOSAVE_SETTINGS, true)
 	ProjectSettings.set(GASConstant.WARN_ON_FONT_SIZE, true)
 	ProjectSettings.set(GASConstant.USE_GAS_TIME, true)
+	ProjectSettings.set(GASConstant.TEXT_HIGHLIGHT_KEYS, ["person", "place", "thing"])
 	add_custom_type(
 		"AccessibleRichTextLabel", "RichTextLabel",
 		load("res://addons/gas/gas_richtextlabel.gd"),
@@ -39,6 +40,7 @@ func _exit_tree():
 	ProjectSettings.clear(GASConstant.AUTOSAVE_SETTINGS)
 	ProjectSettings.clear(GASConstant.WARN_ON_FONT_SIZE)
 	ProjectSettings.clear(GASConstant.USE_GAS_TIME)
+	ProjectSettings.clear(GASConstant.TEXT_HIGHLIGHT_KEYS)
 	remove_custom_type("AccessibleRichTextLabel")
 	remove_custom_type("AccessibleLabel")
 	remove_custom_type("AccessibleScrollContainer")

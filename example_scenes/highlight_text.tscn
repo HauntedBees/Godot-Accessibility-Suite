@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://djw1bjbwfkb0q"]
+
+[ext_resource type="Script" path="res://example_scenes/example_scene_root.gd" id="1_dn8cg"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_qlxn4"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_2bqfj"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="4_ifq8f"]
+
+[node name="HighlightText" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dn8cg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_qlxn4")
+bbcode_enabled = true
+text = "With [code]RichTextLabel[/code] nodes and BBCode, you can easily highlight important words [color=red]like this[/color] with [lb]color=red]the color tag[lb]/color], but if your game has multiple themes, or you're highlighting a lot of words, typing all that out every time and handling the colors conditionally can be a hassle!
+
+If you specify some keys in the [code]Text Highlight Keys[/code] Project Setting and create a [code]RichTextHighlights[/code] type on your game's theme, using any of the keys in that type's colors section will allow you to just use that key as a BBCode tag and the right color for the current theme will automatically be used! You just need to use the [code]AccessibleRichTextLabel.raw_highlight_text[/code] property instead of the regular [code]text[/code] one!
+
+The themes that come with the Godot Accessibility Suite aleady have some values pre-populated, as you can see in the example below:"
+fit_content = true
+script = ExtResource("3_2bqfj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "This text:"
+script = ExtResource("4_ifq8f")
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
+fit_content = true
+script = ExtResource("3_2bqfj")
+
+[node name="AccessibleLabel2" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "becomes:"
+script = ExtResource("4_ifq8f")
+
+[node name="AccessibleRichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
+fit_content = true
+script = ExtResource("3_2bqfj")
+raw_highlight_text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
+
+[node name="AccessibleLabel3" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "(TODO: actually create the light theme so you can see how it updates when you change the theme)"
+script = ExtResource("4_ifq8f")

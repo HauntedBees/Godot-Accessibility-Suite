@@ -7,7 +7,12 @@ const _FONT_SIZE_KEYS: Array[String] = [
 
 @export var scroll_speed := 1000.0
 @export var action_scroll_enabled := true
+@export_multiline var raw_highlight_text := "":
+	set(value):
+		raw_highlight_text = value
+		_set_highlighted_text()
 
+var _colors: Dictionary[String, Color] = {}
 var _original_font_sizes: Dictionary[String, int] = {}
 var _current_line_no := 0:
 	set(value):
@@ -19,11 +24,30 @@ func _set(name: StringName, _value: Variant) -> bool:
 		_current_line_no = 0
 	return false
 
+func _set_highlighted_text() -> void:
+	if _colors.size() == 0 || !bbcode_enabled || raw_highlight_text == "":
+		return
+	var fixed_val := raw_highlight_text
+	for color_key: String in _colors.keys():
+		fixed_val = fixed_val \
+						.replace("[%s]" % color_key, "[color=%s]" % _colors[color_key].to_html()) \
+						.replace("[/%s]" % color_key, "[/color]")
+	text = fixed_val
+
 func _ready() -> void:
 	for f in _FONT_SIZE_KEYS:
 		_original_font_sizes[f] = get_theme_font_size(f)
 	GASText.font_scale_changed.connect(_on_font_scale_changed)
 	_on_font_scale_changed() # initialize
+	_on_theme_changed()
+
+func _on_theme_changed() -> void:
+	_colors.clear()
+	for color_key: String in ProjectSettings.get_setting(GASConstant.TEXT_HIGHLIGHT_KEYS, []):
+		var color := get_theme_color(color_key, "RichTextHighlights")
+		if color:
+			_colors[color_key] = color
+	_set_highlighted_text()
 
 func _on_font_scale_changed() -> void:
 	for f in _FONT_SIZE_KEYS:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://duvxogp47mb0s"]
 
-[ext_resource type="Script" path="res://example_scenes/save_settings.gd" id="1_bkekd"]
+[ext_resource type="Script" path="res://example_scenes/example_scene_root.gd" id="1_anjc3"]
 [ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_dghtp"]
 [ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_xbisw"]
 [ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="4_p7ohl"]
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bkekd")
+script = ExtResource("1_anjc3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

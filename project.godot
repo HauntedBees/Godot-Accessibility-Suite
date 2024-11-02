@@ -42,6 +42,7 @@ GASTime="Used for group-based time scales."
 config/autosave_settings_changes_to_default_profile=true
 config/warn_on_font_too_small=true
 config/use_gastime_autoload=true
+config/text_highlight_keys=["person", "place", "thing"]
 
 [gui]
 
