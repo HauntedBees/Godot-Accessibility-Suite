@@ -16,9 +16,6 @@ var input_cooldown_length := 0.5
 # https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
 var vibration_scale := 1.0
 
-# https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/
-var vision_minimum_font_size := 28
-
 # https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
 var input_toggle_actions := []
 func set_toggle_action(action: String, is_toggle: bool) -> void:
@@ -48,7 +45,6 @@ func _load(profile := "") -> bool:
 	input_cooldown_length = config.get_value("input", "input_cooldown_length", 0.5)
 	input_cooldown_enabled = config.get_value("input", "input_cooldown_enabled", true)
 	input_toggle_actions = config.get_value("input", "input_toggle_actions", ["ui_end"])
-	vision_minimum_font_size = config.get_value("vision", "vision_minimum_font_size", 28)
 	return true
 
 func _save(profile := "") -> void:
@@ -57,5 +53,4 @@ func _save(profile := "") -> void:
 	config.set_value("input", "input_cooldown_length", input_cooldown_length)
 	config.set_value("input", "input_cooldown_enabled", input_cooldown_enabled)
 	config.set_value("input", "input_toggle_actions", input_toggle_actions)
-	config.set_value("vision", "vision_minimum_font_size", vision_minimum_font_size)
 	config.save("user://gas%s.cfg" % profile)
