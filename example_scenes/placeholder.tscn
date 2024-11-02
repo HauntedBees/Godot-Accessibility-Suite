@@ -21,7 +21,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AccessibleLabel" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_vertical = 1
 text = "This guideline should be implemented in this Suite, but hasn't been yet. If you'd like to contribute, here's a good place to start!"
+autowrap_mode = 3
 script = ExtResource("2_7ht3u")

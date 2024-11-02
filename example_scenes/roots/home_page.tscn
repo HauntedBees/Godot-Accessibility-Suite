@@ -51,19 +51,20 @@ text = "Font Size"
 horizontal_alignment = 1
 script = ExtResource("1_0213p")
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Bigger"
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="FontReg" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Regular"
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="FontBig" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Bigger"
+
+[node name="FontBigger" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Biggest"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -86,3 +87,6 @@ layout_mode = 2
 text = "High Contrast"
 
 [connection signal="meta_clicked" from="MarginContainer/VBoxContainer/AccessibleRichTextLabel" to="." method="_on_accessible_rich_text_label_meta_clicked"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FontReg" to="." method="_on_font_reg_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FontBig" to="." method="_on_font_big_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FontBigger" to="." method="_on_font_bigger_pressed"]
