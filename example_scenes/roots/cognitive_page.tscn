@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckgd1rq5ya46s"]
+[gd_scene load_steps=8 format=3 uid="uid://ckgd1rq5ya46s"]
 
 [ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_oavdt"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_4w61p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bllt08of6e6sx" path="res://example_scenes/game_speed.tscn" id="3_slthk"]
 [ext_resource type="PackedScene" uid="uid://byrmj6bmohfrl" path="res://example_scenes/haptics.tscn" id="4_7miv3"]
 [ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_ackms"]
+[ext_resource type="PackedScene" uid="uid://nocjipb5w33m" path="res://example_scenes/save_settings.tscn" id="5_vha0u"]
 
 [node name="Cognitive" type="Control"]
 layout_mode = 3
@@ -74,7 +75,6 @@ heading_name = "Cognitive > Text Colour Choices"
 link = "https://gameaccessibilityguidelines.com/provide-a-choice-of-text-colour-low-high-contrast-choice-as-a-minimum/"
 
 [node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
-modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -83,6 +83,7 @@ autowrap_mode = 3
 script = ExtResource("2_4w61p")
 heading_name = "Cognitive > Save Thumbnails"
 link = "https://gameaccessibilityguidelines.com/provide-gameplay-thumbnails-with-game-saves/"
+scene = ExtResource("5_vha0u")
 
 [node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
 modulate = Color(1, 0, 0, 1)
