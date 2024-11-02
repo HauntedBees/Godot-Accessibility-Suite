@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckgd1rq5ya46s"]
+[gd_scene load_steps=9 format=3 uid="uid://ckgd1rq5ya46s"]
 
 [ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_oavdt"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_4w61p"]
@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_ackms"]
 [ext_resource type="PackedScene" uid="uid://djw1bjbwfkb0q" path="res://example_scenes/highlight_text.tscn" id="5_l1wed"]
 [ext_resource type="PackedScene" uid="uid://nocjipb5w33m" path="res://example_scenes/save_screen.tscn" id="5_vha0u"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_v1ldc"]
 
 [node name="Cognitive" type="Control"]
 layout_mode = 3
@@ -60,7 +58,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Highlight important words"
-icon = SubResource("ViewportTexture_v1ldc")
 autowrap_mode = 3
 script = ExtResource("2_4w61p")
 heading_name = "Cognitive > Highlighting Words"
