@@ -31,6 +31,7 @@ bbcode_enabled = true
 text = "You should always use [code]MarginContainer[/code] nodes to space things out. You can also set the [code]custom_minimum_size[/code] of any node, such as buttons, to ensure they are large enough for mobile devices. The themes included with the Godot Accessibility Suite have a reasonable default for [code]MarginContainer[/code], [code]VBoxContainer[/code], [code]HBoxContainer[/code], and [code]GridContainer[/code] spacing, with several Type Variations for different margins."
 fit_content = true
 script = ExtResource("3_1wjur")
+accessible_text = "You should always use [code]MarginContainer[/code] nodes to space things out. You can also set the [code]custom_minimum_size[/code] of any node, such as buttons, to ensure they are large enough for mobile devices. The themes included with the Godot Accessibility Suite have a reasonable default for [code]MarginContainer[/code], [code]VBoxContainer[/code], [code]HBoxContainer[/code], and [code]GridContainer[/code] spacing, with several Type Variations for different margins."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

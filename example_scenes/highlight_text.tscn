@@ -36,6 +36,11 @@ If you specify some keys in the [code]Text Highlight Keys[/code] Project Setting
 The themes that come with the Godot Accessibility Suite aleady have some values pre-populated, as you can see in the example below:"
 fit_content = true
 script = ExtResource("3_2bqfj")
+accessible_text = "With [code]RichTextLabel[/code] nodes and BBCode, you can easily highlight important words [color=red]like this[/color] with [lb]color=red]the color tag[lb]/color], but if your game has multiple themes, or you're highlighting a lot of words, typing all that out every time and handling the colors conditionally can be a hassle!
+
+If you specify some keys in the [code]Text Highlight Keys[/code] Project Setting and create a [code]RichTextHighlights[/code] type on your game's theme, using any of the keys in that type's colors section will allow you to just use that key as a BBCode tag and the right color for the current theme will automatically be used! You just need to use the [code]AccessibleRichTextLabel.raw_highlight_text[/code] property instead of the regular [code]text[/code] one!
+
+The themes that come with the Godot Accessibility Suite aleady have some values pre-populated, as you can see in the example below:"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -49,9 +54,9 @@ script = ExtResource("4_ifq8f")
 [node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
 fit_content = true
 script = ExtResource("3_2bqfj")
+accessible_text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
 
 [node name="AccessibleLabel2" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -65,7 +70,7 @@ bbcode_enabled = true
 text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
 fit_content = true
 script = ExtResource("3_2bqfj")
-raw_highlight_text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
+accessible_text = "    [person]Susan[/person] needs to go to the [place]laundromat[/place] to pick up her [thing]clean clothes[/thing]."
 
 [node name="AccessibleLabel3" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2

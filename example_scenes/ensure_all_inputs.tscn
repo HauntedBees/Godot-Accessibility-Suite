@@ -30,3 +30,6 @@ text = "Godot has built-in \"focus\" functionality on all [code]Control[/code] n
 TODO: put more information and an example here."
 fit_content = true
 script = ExtResource("3_wjj2t")
+accessible_text = "Godot has built-in \"focus\" functionality on all [code]Control[/code] nodes. You can use this to link UI elements together so that they can be navigated through with a keyboard or gamepad.
+
+TODO: put more information and an example here."

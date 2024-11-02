@@ -1,8 +1,6 @@
 extends ExampleSceneRoot
 
 @onready var _log: AccessibleRichTextLabel = %Log
-@onready var _enabled: CheckButton = %Enabled
-@onready var _value: SpinBox = %Value
 
 func _ready() -> void:
 	GASInput.input_cooldown_enabled = true

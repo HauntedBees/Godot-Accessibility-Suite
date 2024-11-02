@@ -33,6 +33,7 @@ bbcode_enabled = true
 text = "The [code]GASInput.start_joy_vibration[/code] method is a wrapper for the native Godot [code]Input.start_joy_vibration[/code] method, but utilizes the [code]GASConfig.vibration_scale[/code] property to automatically scale your provided values with its value. The standard [code]Input.stop_joy_vibration[/code] can be used to stop vibrations. [code]GASInput.vibrate_handheld[/code] works the same way."
 fit_content = true
 script = ExtResource("3_osdh4")
+accessible_text = "The [code]GASInput.start_joy_vibration[/code] method is a wrapper for the native Godot [code]Input.start_joy_vibration[/code] method, but utilizes the [code]GASConfig.vibration_scale[/code] property to automatically scale your provided values with its value. The standard [code]Input.stop_joy_vibration[/code] can be used to stop vibrations. [code]GASInput.vibrate_handheld[/code] works the same way."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

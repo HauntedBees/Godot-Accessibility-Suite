@@ -33,6 +33,9 @@ text = "Welcome to the Godot Accessibility Suite example project. Click through 
 This suite aims to provide as many utilities, tools, and resources as possible to help simplify the process of making your game more accessible, but every game is different, and not every accessibility feature can be cleanly implemented in a general-purpose plugin like this. Consult the Game Accessibility Guidelines site for more information, and be sure to have a diverse group of playtesters involved in the production of your game to ensure you can get the feedback you need to make your game the best game it can be for everyone."
 fit_content = true
 script = ExtResource("2_uqnva")
+accessible_text = "Welcome to the Godot Accessibility Suite example project. Click through the categories on the left to see examples and explanations for the different accessibility features built into this Suite, many of which are based on the [url=https://gameaccessibilityguidelines.com/]Game Accessibility Guidelines[/url] website, which I am not associated with, but highly recommend you consult regularly in your game development process.
+
+This suite aims to provide as many utilities, tools, and resources as possible to help simplify the process of making your game more accessible, but every game is different, and not every accessibility feature can be cleanly implemented in a general-purpose plugin like this. Consult the Game Accessibility Guidelines site for more information, and be sure to have a diverse group of playtesters involved in the production of your game to ensure you can get the feedback you need to make your game the best game it can be for everyone."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -39,6 +39,7 @@ bbcode_enabled = true
 text = "Godot has an [code]Engine.time_scale[/code] property built in that affects [code]_process[/code], [code]_physics_process[/code], and timers. However, if you want more granular control of what elements of your game are affected by a time scale change, the [code]GASTime[/code] singleton offers several ways of only adjusting the scale for certain nodes. The best strategy for your game will depend on how how many Nodes you want to be affected and how much manual effort you want to put into this. If you don't need this feature, you can disable it by unchecking the [code]Use Gastime[/code] setting in the Project Settings."
 fit_content = true
 script = ExtResource("2_fgovc")
+accessible_text = "Godot has an [code]Engine.time_scale[/code] property built in that affects [code]_process[/code], [code]_physics_process[/code], and timers. However, if you want more granular control of what elements of your game are affected by a time scale change, the [code]GASTime[/code] singleton offers several ways of only adjusting the scale for certain nodes. The best strategy for your game will depend on how how many Nodes you want to be affected and how much manual effort you want to put into this. If you don't need this feature, you can disable it by unchecking the [code]Use Gastime[/code] setting in the Project Settings."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -147,6 +148,7 @@ bbcode_enabled = true
 text = "Requires connecting nodes to the [code]GASTime.process[/code] and [code]physics_process[/code] signals and not using the standard process methods. Scales well with large node counts."
 fit_content = true
 script = ExtResource("2_fgovc")
+accessible_text = "Requires connecting nodes to the [code]GASTime.process[/code] and [code]physics_process[/code] signals and not using the standard process methods. Scales well with large node counts."
 
 [node name="SignalTimeScale2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2

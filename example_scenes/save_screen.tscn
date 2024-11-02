@@ -33,6 +33,7 @@ bbcode_enabled = true
 text = "[code]GASUtils.get_screen()[/code] will return an [code]Image[/code] of what's currently onscreen, with its resolution halved. [code]GASUtils.save_screen(name: String)[/code] will save this image to [code]user://save_%s.png[/code], where [code]%s[/code] is the [code]name[/code] argument passed to the method. You can then retrieve the saved image with [code]GASUtils.load_screen_as_image[/code] or, to get an [code]ImageTexture[/code] or [code]TextureRect[/code] you can use [code]GASUtils.load_screen_as_texture[/code] and [code]GASUtils.load_screen_as_texture_rect[/code] respectively."
 fit_content = true
 script = ExtResource("3_ogsut")
+accessible_text = "[code]GASUtils.get_screen()[/code] will return an [code]Image[/code] of what's currently onscreen, with its resolution halved. [code]GASUtils.save_screen(name: String)[/code] will save this image to [code]user://save_%s.png[/code], where [code]%s[/code] is the [code]name[/code] argument passed to the method. You can then retrieve the saved image with [code]GASUtils.load_screen_as_image[/code] or, to get an [code]ImageTexture[/code] or [code]TextureRect[/code] you can use [code]GASUtils.load_screen_as_texture[/code] and [code]GASUtils.load_screen_as_texture_rect[/code] respectively."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
