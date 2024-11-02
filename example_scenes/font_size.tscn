@@ -28,7 +28,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/mono_font = ExtResource("2_k4gwa")
 bbcode_enabled = true
-text = "The Godot Accessibility Suite includes themes that set the default font size to 28px for [code]Label[/code], [code]RichTextLabel[/code], and [code]Button[/code] nodes. Additionally, there are [code]AccessibleLabel[/code] and [code]AccessibleRichTextLabel[/code] nodes, which behave like their built-in counterparts, but react to the [code]GASInput.override_font_scale[/code] variable; changing its value will automatically multiply the font size of all [code]AccessibleLabel[/code] and [code]AccessibleRichTextLabel[/code] nodes by its value."
+text = "The Godot Accessibility Suite includes themes that set the default font size to 28px for [code]Label[/code], [code]RichTextLabel[/code], and [code]Button[/code] nodes. Additionally, there are [code]AccessibleLabel[/code] and [code]AccessibleRichTextLabel[/code] nodes, which behave like their built-in counterparts, but react to the [code]GASInput.override_font_scale[/code] variable; changing its value will automatically multiply the font size of all [code]AccessibleLabel[/code] and [code]AccessibleRichTextLabel[/code] nodes by its value.
+
+When enabled, the [code]Warn on Font too Small[/code] setting in the Project Settings will trigger warnings in the console if any fonts in the current scene are less than 28px in size."
 fit_content = true
 script = ExtResource("2_2wk25")
 
@@ -37,14 +39,14 @@ layout_mode = 2
 
 [node name="Scale2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "Set Override Font Scale to 1.5"
+text = "Set Override Font Scale to 1.25"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Scale15" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-text = "Set Override Font Scale to 1.25"
+text = "Set Override Font Scale to 1.1"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

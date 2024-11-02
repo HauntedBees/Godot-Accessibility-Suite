@@ -9,7 +9,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_87rc8"]
 font = ExtResource("1_p6vqq")
-font_size = 24
+font_size = 28
 
 [node name="GameSpeed" type="Control"]
 layout_mode = 3
@@ -36,7 +36,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/mono_font = ExtResource("1_p6vqq")
 bbcode_enabled = true
-text = "Godot has an [code]Engine.time_scale[/code] property built in that affects [code]_process[/code], [code]_physics_process[/code], and timers. However, if you want more granular control of what elements of your game are affected by a time scale change, the [code]GASTime[/code] singleton offers several ways of only adjusting the scale for certain nodes. The best strategy for your game will depend on how how many Nodes you want to be affected and how much manual effort you want to put into this. If you don't need this feature, you can disable the [code]GASTime[/code] singleton from your Autoload list."
+text = "Godot has an [code]Engine.time_scale[/code] property built in that affects [code]_process[/code], [code]_physics_process[/code], and timers. However, if you want more granular control of what elements of your game are affected by a time scale change, the [code]GASTime[/code] singleton offers several ways of only adjusting the scale for certain nodes. The best strategy for your game will depend on how how many Nodes you want to be affected and how much manual effort you want to put into this. If you don't need this feature, you can disable it by unchecking the [code]Use Gastime[/code] setting in the Project Settings."
 fit_content = true
 script = ExtResource("2_fgovc")
 

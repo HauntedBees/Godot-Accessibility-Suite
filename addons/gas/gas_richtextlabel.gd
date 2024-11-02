@@ -29,7 +29,7 @@ func _on_font_scale_changed() -> void:
 	for f in _FONT_SIZE_KEYS:
 		var new_font_size := GASText.get_adjusted_theme_override_font_size(_original_font_sizes[f])
 		add_theme_font_size_override(f, new_font_size)
-		if GASConfig.warn_on_font_too_small && new_font_size < 28:
+		if _warn_on_font_too_small() && new_font_size < 28:
 			printerr("RichTextLabel \"%s\" has a %s of %d, when the recommended minimum is 28 (see https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/)." % [
 				get_path(), f, new_font_size
 			])
@@ -44,3 +44,6 @@ func _process(_delta: float) -> void:
 		_current_line_no = min(_current_line_no + 1, get_line_count())
 	elif GASInput.is_action_just_pressed("gas_scroll_up"):
 		_current_line_no = maxi(_current_line_no - 1, 0)
+
+func _warn_on_font_too_small() -> bool:
+	return ProjectSettings.get_setting(GASConstant.WARN_ON_FONT_SIZE, true)

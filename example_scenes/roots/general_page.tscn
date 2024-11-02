@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://da5yaxpxr68g1"]
+[gd_scene load_steps=4 format=3 uid="uid://da5yaxpxr68g1"]
 
 [ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_csau4"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_lija0"]
+[ext_resource type="PackedScene" uid="uid://duvxogp47mb0s" path="res://example_scenes/save_settings.tscn" id="3_l3haq"]
 
 [node name="General" type="Control"]
 layout_mode = 3
@@ -26,23 +27,13 @@ layout_mode = 2
 columns = 2
 
 [node name="Button" type="Button" parent="MarginContainer/GridContainer"]
-modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Ensure that all settings are saved/remembered"
+text = "Ensure that all settings are saved/remembered.
+Allow settings to be saved to different profiles, at either game or platform level."
 autowrap_mode = 3
 script = ExtResource("2_lija0")
 heading_name = "General > Save Settings"
 link = "https://gameaccessibilityguidelines.com/ensure-that-all-settings-are-saved-remembered/"
-
-[node name="Button2" type="Button" parent="MarginContainer/GridContainer"]
-modulate = Color(1, 1, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Allow settings to be saved to different profiles, at either game or platform level"
-autowrap_mode = 3
-script = ExtResource("2_lija0")
-heading_name = "General > Setting Profiles"
-link = "https://gameaccessibilityguidelines.com/allow-settings-to-be-saved-to-different-profiles-at-either-game-or-platform-level/"
+scene = ExtResource("3_l3haq")

@@ -6,6 +6,7 @@ var override_font_scale := 1.0:
 	set(value):
 		override_font_scale = value
 		font_scale_changed.emit()
+		GASConfig.try_autosave()
 
 var _label_settings_cache: Dictionary[LabelSettings, LabelSettingsInfo] = {}
 

@@ -17,11 +17,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GASUtils="*res://addons/gas/gas_utils.gd"
 GASConfig="*res://addons/gas/gas_config.gd"
 GASInput="*res://addons/gas/gas_input.gd"
 GASText="*res://addons/gas/gas_text.gd"
 GASTime="*res://addons/gas/gas_time.gd"
+GASUtils="*res://addons/gas/gas_utils.gd"
 
 [display]
 
@@ -36,6 +36,12 @@ enabled=PackedStringArray("res://addons/gas/plugin.cfg")
 [global_group]
 
 GASTime="Used for group-based time scales."
+
+[godot_accessibility_suite]
+
+config/autosave_settings_changes_to_default_profile=true
+config/warn_on_font_too_small=true
+config/use_gastime_autoload=true
 
 [gui]
 

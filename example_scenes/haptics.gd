@@ -16,4 +16,4 @@ func _on_stop_pressed() -> void:
 	Input.stop_joy_vibration(0)
 
 func _on_spin_box_value_changed(value: float) -> void:
-	GASConfig.vibration_scale = value
+	GASInput.vibration_scale = value

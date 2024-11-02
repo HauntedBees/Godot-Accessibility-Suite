@@ -6,59 +6,55 @@ var themes: Dictionary[AppMode, Theme] = {
 	AppMode.Dark: null
 }
 
-# https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/
-var warn_on_font_too_small := false
-
- # https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
-var input_cooldown_enabled := false
-var input_cooldown_length := 0.5
-
-# https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
-var vibration_scale := 1.0
-
-# https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/
-var group_time_scale := 1.0
-var signal_time_scale := 1.0
-
-# https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
-var input_toggle_actions := []
-func set_toggle_action(action: String, is_toggle: bool) -> void:
-	var idx := input_toggle_actions.find(action)
-	if (is_toggle && idx >= 0) || (!is_toggle && idx < 0):
-		return
-	if is_toggle:
-		input_toggle_actions.append(action)
-	else:
-		input_toggle_actions.remove_at(idx)
-
-# https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-game-speed/
-var core_game_speed := 1.0:
-	set(s):
-		core_game_speed = s
-		Engine.time_scale = s
+var _use_default_profile := true
+var _is_loading := false
+var _custom_settings: Dictionary[String, Variant] = {}
 
 func _ready() -> void:
-	if !_load():
-		Engine.time_scale = core_game_speed
+	_use_default_profile = ProjectSettings.get_setting("addons/godot_accessibility_suite/autosave_settings_changes_to_default_profile", true)
+	if _use_default_profile:
+		load_settings.call_deferred()
 
-func _load(profile := "") -> bool:
+func get_custom_setting(key: String) -> Variant:
+	return _custom_settings[key] if _custom_settings.has(key) else null
+
+func set_custom_setting(key: String, value: Variant) -> void:
+	_custom_settings[key] = value
+	try_autosave()
+
+func load_settings(profile := "default") -> bool:
 	var config := ConfigFile.new()
-	if config.load("user://gas%s.cfg" % profile) != OK: # nothing to load!
+	if config.load("user://gas-%s.cfg" % profile) != OK: # nothing to load!
 		return false
-	core_game_speed = config.get_value("core", "core_game_speed", 1.0)
-	input_cooldown_length = config.get_value("input", "input_cooldown_length", 0.5)
-	input_cooldown_enabled = config.get_value("input", "input_cooldown_enabled", true)
-	input_toggle_actions = config.get_value("input", "input_toggle_actions", ["ui_end"])
-	group_time_scale = config.get_value("time", "group_time_scale", 1.0)
-	signal_time_scale = config.get_value("time", "signal_time_scale", 1.0)
+	_is_loading = true
+	GASInput.vibration_scale = config.get_value("input", "vibration_scale", 1.0)
+	GASInput.input_cooldown_length = config.get_value("input", "input_cooldown_length", 0.5)
+	GASInput.input_cooldown_enabled = config.get_value("input", "input_cooldown_enabled", true)
+	GASInput.input_toggle_actions = config.get_value("input", "input_toggle_actions", ["ui_end"])
+	var default_custom_settings: Dictionary[String, Variant] = {}
+	_custom_settings = config.get_value("core", "custom_settings", default_custom_settings)
+	GASText.override_font_scale = config.get_value("text", "override_font_scale", 1.0)
+	Engine.time_scale = config.get_value("time", "engine_time_scale", 1.0)
+	if is_instance_valid(GASTime):
+		GASTime.group_time_scale = config.get_value("time", "group_time_scale", 1.0)
+		GASTime.signal_time_scale = config.get_value("time", "signal_time_scale", 1.0)
+	_is_loading = false
 	return true
 
-func _save(profile := "") -> void:
+func try_autosave() -> void:
+	if !_is_loading && _use_default_profile:
+		save_settings()
+
+func save_settings(profile := "default") -> void:
 	var config := ConfigFile.new()
-	config.set_value("core", "core_game_speed", core_game_speed)
-	config.set_value("input", "input_cooldown_length", input_cooldown_length)
-	config.set_value("input", "input_cooldown_enabled", input_cooldown_enabled)
-	config.set_value("input", "input_toggle_actions", input_toggle_actions)
-	config.set_value("time", "group_time_scale", group_time_scale)
-	config.set_value("time", "signal_time_scale", signal_time_scale)
-	config.save("user://gas%s.cfg" % profile)
+	config.set_value("input", "input_cooldown_length", GASInput.input_cooldown_length)
+	config.set_value("input", "input_cooldown_enabled", GASInput.input_cooldown_enabled)
+	config.set_value("input", "input_toggle_actions", GASInput.input_toggle_actions)
+	config.set_value("input", "vibration_scale", GASInput.vibration_scale)
+	config.set_value("text", "override_font_scale", GASText.override_font_scale)
+	config.set_value("time", "engine_time_scale", Engine.time_scale)
+	config.set_value("core", "custom_settings", _custom_settings)
+	if is_instance_valid(GASTime):
+		config.set_value("time", "group_time_scale", GASTime.group_time_scale)
+		config.set_value("time", "signal_time_scale", GASTime.signal_time_scale)
+	config.save("user://gas-%s.cfg" % profile)

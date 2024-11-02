@@ -79,5 +79,5 @@ func _standard_input(i:InputEvent):
 		Input.action_press(action)
 	else:
 		Input.action_release(action)
-		if GASConfig.input_toggle_actions.find(action) >= 0:
+		if GASInput.input_toggle_actions.find(action) >= 0:
 			GASInput.active_toggle_actions.erase(action)

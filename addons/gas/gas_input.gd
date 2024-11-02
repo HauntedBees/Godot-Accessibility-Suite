@@ -5,6 +5,34 @@ signal virtual_mouse_toggled(enabled: bool)
 
 enum InputMethodType { Joypad, Keyboard }
 
+# https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
+var vibration_scale := 1.0:
+	set(value):
+		vibration_scale = value
+		GASConfig.try_autosave()
+
+ # https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
+var input_cooldown_enabled := false:
+	set(value):
+		input_cooldown_enabled = value
+		GASConfig.try_autosave()
+var input_cooldown_length := 0.5:
+	set(value):
+		input_cooldown_length = value
+		GASConfig.try_autosave()
+
+# https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
+var input_toggle_actions := []
+func set_toggle_action(action: String, is_toggle: bool) -> void:
+	var idx := input_toggle_actions.find(action)
+	if (is_toggle && idx >= 0) || (!is_toggle && idx < 0):
+		return
+	if is_toggle:
+		input_toggle_actions.append(action)
+	else:
+		input_toggle_actions.remove_at(idx)
+	GASConfig.try_autosave()
+
 #var using_virtual_cursor := false:
 	#set(value):
 		#using_virtual_cursor = value
@@ -14,6 +42,9 @@ enum InputMethodType { Joypad, Keyboard }
 			#DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CONFINED)
 		#else:
 			#DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+
+# https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
+var _active_input_cooldowns := {}
 
 var _last_input := InputMethodType.Keyboard
 var _previous_mouse_mode := DisplayServer.MOUSE_MODE_VISIBLE
@@ -35,9 +66,9 @@ func get_last_input_method() -> InputMethodType:
 
 # https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
 func start_joy_vibration(device: int, weak_magnitude: float, strong_magnitude: float, duration: float = 0) -> void:
-	Input.start_joy_vibration(device, weak_magnitude * GASConfig.vibration_scale, strong_magnitude * GASConfig.vibration_scale, duration)
+	Input.start_joy_vibration(device, weak_magnitude * vibration_scale, strong_magnitude * vibration_scale, duration)
 func vibrate_handheld(duration_ms: int = 500, amplitude: float = -1.0) -> void:
-	Input.vibrate_handheld(duration_ms, amplitude * GASConfig.vibration_scale)
+	Input.vibrate_handheld(duration_ms, amplitude * vibration_scale)
 
 func is_click(i: InputEvent, button := MOUSE_BUTTON_LEFT) -> bool:
 	var iemb := i as InputEventMouseButton
@@ -80,26 +111,24 @@ func remap_action(action: String, event: InputEvent) -> bool:
 			return true
 	return false
 
-# https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
-var active_input_cooldowns := {}
 func is_action_just_pressed(s: String) -> bool:
 	if !Input.is_action_just_pressed(s):
 		return false
-	if !GASConfig.input_cooldown_enabled:
+	if !input_cooldown_enabled:
 		return true
-	if active_input_cooldowns.has(s):
+	if _active_input_cooldowns.has(s):
 		return false
-	active_input_cooldowns[s] = GASConfig.input_cooldown_length
+	_active_input_cooldowns[s] = input_cooldown_length
 	return true
 
 func is_event_action_just_pressed(input_event: InputEvent, action_name: String) -> bool:
 	if !input_event.is_action_pressed(action_name, false):
 		return false
-	if !GASConfig.input_cooldown_enabled:
+	if !input_cooldown_enabled:
 		return true
-	if active_input_cooldowns.has(action_name):
+	if _active_input_cooldowns.has(action_name):
 		return false
-	active_input_cooldowns[action_name] = GASConfig.input_cooldown_length
+	_active_input_cooldowns[action_name] = input_cooldown_length
 	return true
 
 var active_toggle_actions := []
@@ -107,13 +136,13 @@ func _process(delta: float) -> void:
 #	_handle_virtual_mouse(delta)
 
 	# https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
-	for action in active_input_cooldowns.keys():
-		active_input_cooldowns[action] -= delta
-		if active_input_cooldowns[action] <= 0:
-			active_input_cooldowns.erase(action)
+	for action in _active_input_cooldowns.keys():
+		_active_input_cooldowns[action] -= delta
+		if _active_input_cooldowns[action] <= 0:
+			_active_input_cooldowns.erase(action)
 
 	# https://gameaccessibilityguidelines.com/avoid-provide-alternatives-to-requiring-buttons-to-be-held-down/
-	for action in GASConfig.input_toggle_actions:
+	for action in input_toggle_actions:
 		var idx := active_toggle_actions.find(action)
 		if Input.is_action_just_pressed(action) && idx < 0:
 			active_toggle_actions.append(action)

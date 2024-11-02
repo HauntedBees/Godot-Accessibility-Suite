@@ -21,7 +21,10 @@ func _on_font_scale_changed() -> void:
 	else:
 		new_font_size = GASText.get_adjusted_theme_override_font_size(_original_font_size)
 		add_theme_font_size_override("font_size", new_font_size)
-	if GASConfig.warn_on_font_too_small && new_font_size < 28:
+	if _warn_on_font_too_small() && new_font_size < 28:
 		printerr("Label \"%s\" has a font size of %d, when the recommended minimum is 28 (see https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/)." % [
 			get_path(), new_font_size
 		])
+
+func _warn_on_font_too_small() -> bool:
+	return ProjectSettings.get_setting(GASConstant.WARN_ON_FONT_SIZE, true)
