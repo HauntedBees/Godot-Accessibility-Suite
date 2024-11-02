@@ -123,6 +123,7 @@ scene = ExtResource("22_34bac")
 
 [node name="Speech" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 tooltip_text = "Speech"
 toggle_mode = true
