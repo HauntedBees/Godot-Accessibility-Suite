@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs0xdgvvnggxj"]
+
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_wfn5g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfp6w"]
+font_size = 12
+
+[sub_resource type="Theme" id="Theme_ymls7"]
+Label/font_sizes/font_size = 16
+
+[node name="AuditTester" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BadLabelInaccessible" type="Label" parent="."]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 94.0
+offset_right = 308.0
+offset_bottom = 133.0
+text = "OK Label"
+
+[node name="BadLabelSettings" type="Label" parent="."]
+layout_mode = 0
+offset_left = 686.0
+offset_top = 259.0
+offset_right = 838.0
+offset_bottom = 298.0
+text = "Bad Label"
+label_settings = SubResource("LabelSettings_nfp6w")
+
+[node name="BadLabelThemeOverride" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 476.0
+offset_right = 1201.0
+offset_bottom = 515.0
+theme_override_font_sizes/font_size = 10
+text = "Bad Label"
+
+[node name="BadLabelTheme" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1393.0
+offset_top = 584.0
+offset_right = 1545.0
+offset_bottom = 623.0
+theme = SubResource("Theme_ymls7")
+text = "Bad Label"
+
+[node name="GoodLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 85.0
+offset_right = 987.0
+offset_bottom = 124.0
+text = "Good Label"
+script = ExtResource("1_wfn5g")
