@@ -20,7 +20,7 @@ func _init(file_path: String, scene_path: String) -> void:
 
 func close_and_get_entries(subresources: Dictionary[String, GASAuditSceneResourceInfo]) -> Array[GASAuditEntry]:
 	var notes: Array[GASAuditEntry] = []
-	if ["Label", "AccessibleLabel", "RichTextLabel", "AccessibleRichTextLabel"].has(type):
+	if ["Label", "RichTextLabel"].has(type):
 		var p := GASAuditLabelParser.new(self, notes, subresources)
 		p.process()
 	return notes

@@ -22,4 +22,6 @@ func parse(file: Resource) -> Array[GASAuditEntry]:
 		elif current_part == null:
 			continue
 		current_part.try_add_detail(line)
+	if current_part != null && current_part is GASAuditSceneNodeInfo:
+		notes.append_array((current_part as GASAuditSceneNodeInfo).close_and_get_entries(subresources))
 	return notes

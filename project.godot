@@ -20,8 +20,6 @@ config/icon="res://icon.png"
 GASConfig="*res://addons/gas/gas_config.gd"
 GASInput="*res://addons/gas/gas_input.gd"
 GASText="*res://addons/gas/gas_text.gd"
-GASTime="*res://addons/gas/gas_time.gd"
-GASUtils="*res://addons/gas/gas_utils.gd"
 
 [display]
 
@@ -49,6 +47,7 @@ config/text_highlight_keys=["person", "place", "thing"]
 [gui]
 
 theme/custom="res://addons/gas/themes/dark.tres"
+theme/accessibility_audit_messages_to_ignore=["res://audit_tester.tscn::./BadLabelTheme", "res://audit_tester.tscn::./BadLabelTheme::rtl-fs-nfs"]
 
 [input]
 
