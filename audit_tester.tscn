@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_wfn5g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2qohw"]
-font_size = 12
+font_size = 48
 
 [sub_resource type="Theme" id="Theme_ymls7"]
 Label/font_sizes/font_size = 16

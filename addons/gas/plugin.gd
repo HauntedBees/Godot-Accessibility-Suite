@@ -15,6 +15,7 @@ func _enter_tree():
 	add_autoload_singleton("GASTime", "res://addons/gas/gas_time.gd")
 	add_autoload_singleton("GASUtils", "res://addons/gas/gas_utils.gd")
 	ProjectSettings.set(GASConstant.AUTOSAVE_SETTINGS, true)
+	ProjectSettings.set(GASConstant.AUDIT_IGNORES, [])
 	ProjectSettings.set(GASConstant.AUDIT_PARSERS, [
 		"res://addons/gas/audit/parsers/audit_scene_parser.gd"
 	])
@@ -54,6 +55,7 @@ func _exit_tree():
 	ProjectSettings.clear(GASConstant.USE_GAS_TIME)
 	ProjectSettings.clear(GASConstant.TEXT_HIGHLIGHT_KEYS)
 	ProjectSettings.clear(GASConstant.AUDIT_PARSERS)
+	ProjectSettings.clear(GASConstant.AUDIT_IGNORES)
 	remove_custom_type("AccessibleRichTextLabel")
 	remove_custom_type("AccessibleLabel")
 	remove_custom_type("AccessibleScrollContainer")

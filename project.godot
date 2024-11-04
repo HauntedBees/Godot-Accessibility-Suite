@@ -40,6 +40,7 @@ GASTime="Used for group-based time scales."
 [godot_accessibility_suite]
 
 config/autosave_settings_changes_to_default_profile=true
+config/accessibility_audit_messages_to_ignore=["res://audit_tester.tscn::./BadLabelTheme::rtl-fs-nfs"]
 config/accessibility_audit_parsers=["res://addons/gas/audit/parsers/audit_scene_parser.gd"]
 config/warn_on_font_too_small=true
 config/use_gastime_autoload=true

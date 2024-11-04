@@ -55,23 +55,28 @@ func _on_try_audit() -> void:
 	for p in _parsers:
 		if p.can_parse(file):
 			parsed = true
-			var results := p.parse(file)
-			results.sort_custom(func(a: GASAuditEntry, b: GASAuditEntry) -> bool:
-				if a.grade == GASAuditEntry.Grade.Failed && a.grade != b.grade:
-					return true
-				if b.grade == GASAuditEntry.Grade.Failed && a.grade != b.grade:
-					return false
-				if a.grade == GASAuditEntry.Grade.Warning && a.grade != b.grade:
-					return true
-				return false
-			)
-			for r in results:
-				var a: GASAuditRow = _AUDIT_ROW_SCENE.instantiate()
-				_records.add_child(a)
-				a.set_entry(r)
+			_parse(p, file)
 	if !parsed:
 		_error_message.visible = true
 		_error_message.text = "No parser exists to handle this file's format."
+
+func _parse(parser: GASAuditFileParser, file: Resource) -> void:
+	var results := parser.parse(file)
+	var ignored: Array = ProjectSettings.get_setting(GASConstant.AUDIT_IGNORES, [])
+	for r in results:
+		if ignored.has(r.key):
+			r.ignored = true
+	results.sort_custom(func(a: GASAuditEntry, b: GASAuditEntry) -> bool:
+		if a.ignored && !b.ignored:
+			return false
+		elif !a.ignored && b.ignored:
+			return true
+		return a.grade_as_int() < b.grade_as_int()
+	)
+	for r in results:
+		var a: GASAuditRow = _AUDIT_ROW_SCENE.instantiate()
+		_records.add_child(a)
+		a.entry = r
 
 func _on_path_changed() -> void:
 	_test_file()
