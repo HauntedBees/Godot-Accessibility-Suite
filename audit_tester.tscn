@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs0xdgvvnggxj"]
+[gd_scene load_steps=5 format=3 uid="uid://cs0xdgvvnggxj"]
 
+[ext_resource type="LabelSettings" uid="uid://i6biifa5b0if" path="res://audit_example_parts/small_font_label_settings.tres" id="1_8v2g8"]
 [ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_wfn5g"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_nfp6w"]
+[sub_resource type="LabelSettings" id="LabelSettings_2qohw"]
 font_size = 12
 
 [sub_resource type="Theme" id="Theme_ymls7"]
 Label/font_sizes/font_size = 16
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 16
 
 [node name="AuditTester" type="Control"]
 layout_mode = 3
@@ -31,7 +37,16 @@ offset_top = 259.0
 offset_right = 838.0
 offset_bottom = 298.0
 text = "Bad Label"
-label_settings = SubResource("LabelSettings_nfp6w")
+label_settings = SubResource("LabelSettings_2qohw")
+
+[node name="BadLabelExtSettings" type="Label" parent="."]
+layout_mode = 0
+offset_left = 667.0
+offset_top = 323.0
+offset_right = 819.0
+offset_bottom = 362.0
+text = "Bad Label"
+label_settings = ExtResource("1_8v2g8")
 
 [node name="BadLabelThemeOverride" type="Label" parent="."]
 layout_mode = 0

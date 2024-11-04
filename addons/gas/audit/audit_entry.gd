@@ -4,11 +4,11 @@ enum Grade { Passed, Warning, Failed }
 
 var source: String
 var message: String
-var passed: Grade
+var grade: Grade
 var ignored: bool
 
 func _init(s: String, m: String, p := Grade.Failed) -> void:
 	source = s
 	message = m
-	passed = p
+	grade = p
 	ignored = false

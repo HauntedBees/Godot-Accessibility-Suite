@@ -1,6 +1,8 @@
 @tool
 class_name GASAuditScreen extends Control
 
+const _AUDIT_ROW_SCENE := preload("res://addons/gas/audit/audit_row.tscn")
+
 var _parsers: Array[GASAuditFileParser] = []
 
 @onready var _file_path: TextEdit = %FilePath
@@ -8,6 +10,7 @@ var _parsers: Array[GASAuditFileParser] = []
 @onready var _audit_button: Button = %AuditButton
 @onready var _file_dialog: FileDialog = %FileDialog
 @onready var _error_message: AccessibleLabel = %ErrorMessage
+@onready var _records: VBoxContainer = %Records
 
 func _ready() -> void:
 	_browse_button.pressed.connect(_file_dialog.popup)
@@ -46,11 +49,26 @@ func _on_try_audit() -> void:
 		_error_message.visible = true
 		_error_message.text = "Couldn't read file %s." % _file_path.text
 		return
+	for p in _records.get_children():
+		p.queue_free()
 	var parsed := false
 	for p in _parsers:
 		if p.can_parse(file):
 			parsed = true
-			p.parse(file)
+			var results := p.parse(file)
+			results.sort_custom(func(a: GASAuditEntry, b: GASAuditEntry) -> bool:
+				if a.grade == GASAuditEntry.Grade.Failed && a.grade != b.grade:
+					return true
+				if b.grade == GASAuditEntry.Grade.Failed && a.grade != b.grade:
+					return false
+				if a.grade == GASAuditEntry.Grade.Warning && a.grade != b.grade:
+					return true
+				return false
+			)
+			for r in results:
+				var a: GASAuditRow = _AUDIT_ROW_SCENE.instantiate()
+				_records.add_child(a)
+				a.set_entry(r)
 	if !parsed:
 		_error_message.visible = true
 		_error_message.text = "No parser exists to handle this file's format."
@@ -59,8 +77,7 @@ func _on_path_changed() -> void:
 	_test_file()
 
 func _test_file() -> bool:
-	var file_exists := FileAccess.file_exists(_file_path.text)
-	if !file_exists:
+	if !FileAccess.file_exists(_file_path.text):
 		_error_message.visible = true
 		_error_message.text = "File %s not found." % _file_path.text
 		return false

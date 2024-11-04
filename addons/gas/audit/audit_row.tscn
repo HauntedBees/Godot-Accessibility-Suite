@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://ey4ps76uyxfa"]
+
+[ext_resource type="Script" path="res://addons/gas/audit/audit_row.gd" id="1_fn12k"]
+[ext_resource type="Texture2D" uid="uid://dln02x6cnurwp" path="res://addons/gas/icons/hazard-sign.png" id="2_n0ai4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lixv3"]
+
+[node name="AuditRow" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_fn12k")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_n0ai4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Source" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Issue" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lixv3")
+bbcode_enabled = true
+fit_content = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Ignored" type="CheckBox" parent="CenterContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
