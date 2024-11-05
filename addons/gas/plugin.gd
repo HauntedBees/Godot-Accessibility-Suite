@@ -83,5 +83,5 @@ func _make_visible(visible: bool) -> void:
 		_main_panel.visible = visible
 
 func _on_scene_changed(root: Node) -> void:
-	if _main_panel && root.scene_file_path != "":
+	if _main_panel && root && root.scene_file_path != "":
 		_main_panel.force_path_change(root.scene_file_path)
