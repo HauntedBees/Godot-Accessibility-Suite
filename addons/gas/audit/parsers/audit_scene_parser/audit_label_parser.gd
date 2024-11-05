@@ -11,9 +11,9 @@ func process() -> void:
 	elif _node.details.has("theme_override_font_sizes/font_size"): # Theme Override takes second priority
 		var size := int(_node.details["theme_override_font_sizes/font_size"])
 		if size < 28:
-			_add_audit_entry("to-fs", "Theme Override Font Size of %d is under 28px." % size)
+			_add_audit_entry("to-fs", "Theme Override Font Size of %d is under 28px." % size, GASGuidelineURL.FONT_SIZE)
 		else:
-			_add_audit_entry("to-fs", "Theme Override Font Size of %d is over 28px." % size, GASAuditEntry.Grade.Passed)
+			_add_audit_entry("to-fs", "Theme Override Font Size of %d is over 28px." % size, GASGuidelineURL.FONT_SIZE, GASAuditEntry.Grade.Passed)
 	elif _node.details.has("theme"): # Theme takes third priority
 		_try_check_resource_font_size("l-fs-fs", "theme", "Label/font_sizes/font_size", "Theme [code]Label[/code] Font Size of %d is under 28px.", "Theme [code]Label[/code] Font Size of %d is over 28px.")
 		_try_check_resource_font_size("rtl-fs-bfs", "theme", "RichTextLabel/font_sizes/bold_font_size", "Theme [code]RichTextLabel[/code] Bold Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Bold Font Size of %d is over 28px.")
@@ -44,18 +44,18 @@ func process() -> void:
 		if !found_font_size:
 			var font_size = ThemeDB.fallback_font_size
 			if font_size < 28:
-				_add_audit_entry("theme-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is below 28px." % font_size)
+				_add_audit_entry("theme-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is below 28px." % font_size, GASGuidelineURL.FONT_SIZE)
 			else:
-				_add_audit_entry("theme-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is over 28px." % font_size, GASAuditEntry.Grade.Passed)
+				_add_audit_entry("theme-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is over 28px." % font_size, GASGuidelineURL.FONT_SIZE, GASAuditEntry.Grade.Passed)
 
 func _check_theme_font_size(theme: Theme, name: String, theme_type: String, prefix_string: String) -> bool:
 	if !theme.has_font_size(name, theme_type):
 		return false
 	var font_size := theme.get_font_size(name, theme_type)
 	if font_size < 28:
-		_add_audit_entry("theme-font-size", "%s, %d, which is below 28px." % [prefix_string, font_size])
+		_add_audit_entry("theme-font-size", "%s, %d, which is below 28px." % [prefix_string, font_size], GASGuidelineURL.FONT_SIZE)
 	else:
-		_add_audit_entry("theme-font-size", "%s, %d, which is over 28px." % [prefix_string, font_size], GASAuditEntry.Grade.Passed)
+		_add_audit_entry("theme-font-size", "%s, %d, which is over 28px." % [prefix_string, font_size], GASGuidelineURL.FONT_SIZE, GASAuditEntry.Grade.Passed)
 	return true
 
 func _try_check_resource_font_size(id: String, resource_key: String, resource_value_key: String, message: String, success_message: String) -> void:
@@ -69,6 +69,6 @@ func _try_check_resource_font_size(id: String, resource_key: String, resource_va
 			if resource.details.has(resource_value_key):
 				var size := int(resource.details[resource_value_key])
 				if size < 28:
-					_add_audit_entry(id, message % size)
+					_add_audit_entry(id, message % size, GASGuidelineURL.FONT_SIZE)
 				else:
-					_add_audit_entry(id, success_message % size, GASAuditEntry.Grade.Passed)
+					_add_audit_entry(id, success_message % size, GASGuidelineURL.FONT_SIZE, GASAuditEntry.Grade.Passed)

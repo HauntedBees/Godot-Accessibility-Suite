@@ -2,8 +2,12 @@
 class_name GASAuditScreen extends Control
 
 const _AUDIT_ROW_SCENE := preload("res://addons/gas/audit/audit_row.tscn")
+const _INVALID_PATH_ICON := preload("res://addons/gas/icons/hazard-sign.png")
+const _VALID_PATH_ICON := preload("res://addons/gas/icons/confirmed.png")
 
 var _parsers: Array[GASAuditFileParser] = []
+var _time_since_last_parse := 0.0
+var _no_results := false
 
 @onready var _file_path: TextEdit = %FilePath
 @onready var _browse_button: Button = %BrowseButton
@@ -11,12 +15,17 @@ var _parsers: Array[GASAuditFileParser] = []
 @onready var _file_dialog: FileDialog = %FileDialog
 @onready var _error_message: AccessibleLabel = %ErrorMessage
 @onready var _records: VBoxContainer = %Records
+@onready var _results_label: Label = %ResultsLabel
+@onready var _results_timer: Label = %ResultsTimer
+@onready var _path_check_icon: TextureRect = %PathCheckIcon
+@onready var _heading: HBoxContainer = %Heading
 
 func _ready() -> void:
 	_browse_button.pressed.connect(_file_dialog.popup)
-	_file_path.text_changed.connect(_on_path_changed)
+	_file_path.text_changed.connect(_test_file)
 	_file_dialog.file_selected.connect(func(path: String) -> void:
 		_file_path.text = path
+		_test_file()
 	)
 	_audit_button.pressed.connect(_on_try_audit)
 	_load_parsers.call_deferred()
@@ -45,9 +54,11 @@ func _on_try_audit() -> void:
 	if !_test_file():
 		return
 	var file := load(_file_path.text)
+	_error_message.visible = false
 	if !file:
 		_error_message.visible = true
 		_error_message.text = "Couldn't read file %s." % _file_path.text
+		_heading.visible = false
 		return
 	for p in _records.get_children():
 		p.queue_free()
@@ -59,6 +70,13 @@ func _on_try_audit() -> void:
 	if !parsed:
 		_error_message.visible = true
 		_error_message.text = "No parser exists to handle this file's format."
+		_heading.visible = false
+	elif _no_results:
+		_error_message.visible = true
+		_error_message.text = "No accessibility issues found in this file."
+		_heading.visible = false
+	else:
+		_heading.visible = true
 
 func _parse(parser: GASAuditFileParser, file: Resource) -> void:
 	var results := parser.parse(file)
@@ -77,18 +95,30 @@ func _parse(parser: GASAuditFileParser, file: Resource) -> void:
 		var a: GASAuditRow = _AUDIT_ROW_SCENE.instantiate()
 		_records.add_child(a)
 		a.entry = r
+	_no_results = results.size() == 0
+	_results_label.text = "Audit Results for %s" % file.resource_path.split("/")[-1]
+	_results_timer.text = "(Just Now)"
+	_results_timer.visible = true
+	_time_since_last_parse = 0.0
+
+func _process(delta: float) -> void:
+	_time_since_last_parse += delta
+	if _time_since_last_parse >= 60.0:
+		_results_timer.text = "(%dm ago)" % floori(_time_since_last_parse / 60.0)
+	elif _time_since_last_parse >= 10.0:
+		_results_timer.text = "(%ds ago)" % (10 * floori(_time_since_last_parse / 10.0))
 
 func force_path_change(path: String) -> void:
 	_file_path.text = path
-
-func _on_path_changed() -> void:
-	print(get_tree().edited_scene_root.scene_file_path)
 	_test_file()
 
 func _test_file() -> bool:
 	if !FileAccess.file_exists(_file_path.text):
-		_error_message.visible = true
-		_error_message.text = "File %s not found." % _file_path.text
+		_path_check_icon.texture = _INVALID_PATH_ICON
+		_path_check_icon.tooltip_text = "This is not a valid file path."
+		_audit_button.disabled = true
 		return false
-	_error_message.visible = false
+	_audit_button.disabled = false
+	_path_check_icon.texture = _VALID_PATH_ICON
+	_path_check_icon.tooltip_text = "This is a valid file path."
 	return true

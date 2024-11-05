@@ -12,6 +12,7 @@ var entry: GASAuditEntry:
 		if !is_inside_tree():
 			await ready
 		_source.text = entry.source
+		_source.tooltip_text = entry.source
 		_issue.text = entry.message
 		_ignored.button_pressed = entry.ignored
 		modulate = _IGNORED_COLOR if entry.ignored else Color.WHITE
@@ -30,10 +31,15 @@ var entry: GASAuditEntry:
 @onready var _icon: TextureRect = %Icon
 @onready var _source: Label = %Source
 @onready var _issue: RichTextLabel = %Issue
+@onready var _link: TextureButton = %Link
 @onready var _ignored: CheckBox = %Ignored
 
 func _ready() -> void:
+	_link.pressed.connect(_on_link_clicked)
 	_ignored.toggled.connect(_on_toggle)
+
+func _on_link_clicked() -> void:
+	OS.shell_open(entry.url)
 
 func _on_toggle(toggled_on: bool) -> void:
 	entry.ignored = toggled_on

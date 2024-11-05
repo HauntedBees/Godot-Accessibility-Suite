@@ -1,21 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0fj0kgo6j8aw"]
+[gd_scene load_steps=7 format=3 uid="uid://c0fj0kgo6j8aw"]
 
 [ext_resource type="Script" path="res://addons/gas/audit/audit_screen.gd" id="1_0m8lc"]
 [ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_c8bur"]
+[ext_resource type="Texture2D" uid="uid://dln02x6cnurwp" path="res://addons/gas/icons/hazard-sign.png" id="2_68fl1"]
 [ext_resource type="Script" path="res://addons/gas/gas_scroll_container.gd" id="3_j7l3n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ce207"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7yarq"]
-font_size = 18
-outline_size = 3
-
-[sub_resource type="LabelSettings" id="LabelSettings_wqxsi"]
-font_size = 18
-outline_size = 3
-
-[sub_resource type="LabelSettings" id="LabelSettings_fr1ty"]
-font_size = 18
 outline_size = 2
 
 [node name="AuditScreen" type="Control"]
@@ -60,6 +52,14 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Browse"
 
+[node name="PathCheckIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("2_68fl1")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -68,14 +68,8 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_ce207")
 [node name="AuditButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+disabled = true
 text = "Audit"
-
-[node name="ErrorMessage" type="Label" parent="MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Error: File not found."
-script = ExtResource("1_c8bur")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -95,7 +89,31 @@ theme_override_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResultsLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select a file and click \"Audit\" to generate an audit report."
+label_settings = SubResource("LabelSettings_7yarq")
+
+[node name="ResultsTimer" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "(Just Now)"
+label_settings = SubResource("LabelSettings_7yarq")
+
+[node name="ErrorMessage" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Error: File not found."
+script = ExtResource("1_c8bur")
+
 [node name="Heading" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Heading"]
@@ -113,13 +131,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 text = "Issue"
-label_settings = SubResource("LabelSettings_wqxsi")
+label_settings = SubResource("LabelSettings_7yarq")
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Heading"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Link"
+label_settings = SubResource("LabelSettings_7yarq")
+horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Heading"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 text = "Ignore"
-label_settings = SubResource("LabelSettings_fr1ty")
+label_settings = SubResource("LabelSettings_7yarq")
 
 [node name="AccessibleScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

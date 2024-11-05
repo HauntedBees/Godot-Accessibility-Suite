@@ -6,11 +6,13 @@ var source: String
 var message: String
 var grade: Grade
 var ignored: bool
+var url: String
 var key: String
 
-func _init(id: String, p: String, s: String, m: String, g := Grade.Failed) -> void:
+func _init(id: String, p: String, s: String, m: String, u: String, g := Grade.Failed) -> void:
 	source = s
 	message = m
+	url = u
 	grade = g
 	ignored = false
 	key = "%s::%s::%s" % [p, s, id]
