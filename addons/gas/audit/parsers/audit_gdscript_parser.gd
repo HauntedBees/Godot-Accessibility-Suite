@@ -1,5 +1,8 @@
 class_name GASAuditGDScriptParser extends GASAuditFileParser
 
+func get_supported_filters() -> String:
+	return "*.gd"
+
 func get_supported_types() -> String:
 	return ".gd Script files"
 

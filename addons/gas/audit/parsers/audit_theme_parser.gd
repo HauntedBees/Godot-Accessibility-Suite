@@ -1,5 +1,8 @@
 class_name GASAuditThemeParser extends GASAuditFileParser
 
+func get_supported_filters() -> String:
+	return "*.tres"
+
 func get_supported_types() -> String:
 	return ".tres Theme files"
 

@@ -52,9 +52,12 @@ func _load_parsers() -> void:
 	else:
 		print("Parsers loaded.")
 		var supported: PackedStringArray = []
+		var filters: PackedStringArray = []
 		for p in _parsers:
 			supported.append(p.get_supported_types())
+			filters.append(p.get_supported_filters())
 		_support_string.text = "Supports %s." % ", ".join(supported)
+		_file_dialog.filters = filters
 
 func _on_try_audit() -> void:
 	if !_test_file():

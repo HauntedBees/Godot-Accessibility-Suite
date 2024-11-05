@@ -1,5 +1,8 @@
 class_name GASAuditSceneParser extends GASAuditFileParser
 
+func get_supported_filters() -> String:
+	return "*.tscn"
+
 func get_supported_types() -> String:
 	return ".tscn PackedScene files"
 

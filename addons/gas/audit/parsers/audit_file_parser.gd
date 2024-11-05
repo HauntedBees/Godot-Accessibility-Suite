@@ -1,5 +1,8 @@
 class_name GASAuditFileParser extends RefCounted
 
+func get_supported_filters() -> String:
+	return ""
+
 func get_supported_types() -> String:
 	return ""
 
