@@ -31,7 +31,23 @@ texture = ExtResource("2_n0ai4")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Source" type="Label" parent="HBoxContainer"]
+[node name="SourceContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/SourceContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="SourceIcon" type="TextureRect" parent="HBoxContainer/SourceContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_n0ai4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Source" type="Label" parent="HBoxContainer/SourceContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2

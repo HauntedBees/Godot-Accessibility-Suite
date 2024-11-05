@@ -11,7 +11,11 @@ var entry: GASAuditEntry:
 		entry = value
 		if !is_inside_tree():
 			await ready
-		_source.text = entry.source
+		if entry.source.count("/") >= 2:
+			var split := entry.source.split("/")
+			_source.text = ".../%s/%s" % [split[-2], split[-1]]
+		else:
+			_source.text = entry.source
 		_source.tooltip_text = entry.source
 		_issue.text = entry.message
 		_ignored.button_pressed = entry.ignored
@@ -27,12 +31,18 @@ var entry: GASAuditEntry:
 			GASAuditEntry.Grade.Failed:
 				_icon.texture = _HAZARD_SIGN
 				_icon.tooltip_text = "Accessibility Issue"
+		if entry.icon:
+			_source_icon.visible = true
+			_source_icon.texture = entry.icon
+		else:
+			_source_icon.visible = false
 
 @onready var _icon: TextureRect = %Icon
 @onready var _source: Label = %Source
 @onready var _issue: RichTextLabel = %Issue
 @onready var _link: TextureButton = %Link
 @onready var _ignored: CheckBox = %Ignored
+@onready var _source_icon: TextureRect = %SourceIcon
 
 func _ready() -> void:
 	_link.pressed.connect(_on_link_clicked)

@@ -9,5 +9,5 @@ func _init(node: GASAuditSceneNodeInfo, notes: Array[GASAuditEntry], subresource
 	_notes = notes
 	_resources = subresources
 
-func _add_audit_entry(id: String, message: String, url: String, grade := GASAuditEntry.Grade.Failed) -> void:
-	_notes.append(GASAuditEntry.new(id, _node.source_path, _node.path, message, url, grade))
+func _add_audit_entry(id: String, message: String, url: String, icon: Texture2D = null, grade := GASAuditEntry.Grade.Failed) -> void:
+	_notes.append(GASAuditEntry.new(id, _node.source_path, _node.path, message, url, icon, grade))
