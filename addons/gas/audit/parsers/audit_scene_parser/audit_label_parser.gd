@@ -2,7 +2,7 @@ class_name GASAuditLabelParser extends AuditSceneNodeParser
 
 var LABEL_ICON := EditorInterface.get_editor_theme().get_icon("Label", "EditorIcons")
 var RICH_TEXT_LABEL_ICON := EditorInterface.get_editor_theme().get_icon("RichTextLabel", "EditorIcons")
-var THEME_ICON := EditorInterface.get_editor_theme().get_icon("Theme", "EditorIcons")
+var FONT_SIZE_ICON := EditorInterface.get_editor_theme().get_icon("FontSize", "EditorIcons")
 
 func process() -> void:
 	var script := _node.get_potential_script()
@@ -22,12 +22,12 @@ func process() -> void:
 		else:
 			_add_audit_entry("to-fs", "Theme Override Font Size of %d is over 28px." % size, GASGuidelineURL.FONT_SIZE, icon, GASAuditEntry.Grade.Passed)
 	elif _node.details.has("theme"): # Theme takes third priority
-		_try_check_resource_font_size("l-fs-fs", "theme", "Label/font_sizes/font_size", THEME_ICON, "Theme [code]Label[/code] Font Size of %d is under 28px.", "Theme [code]Label[/code] Font Size of %d is over 28px.")
-		_try_check_resource_font_size("rtl-fs-bfs", "theme", "RichTextLabel/font_sizes/bold_font_size", THEME_ICON, "Theme [code]RichTextLabel[/code] Bold Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Bold Font Size of %d is over 28px.")
-		_try_check_resource_font_size("rtl-fs-bifs", "theme", "RichTextLabel/font_sizes/bold_italics_font_size", THEME_ICON, "Theme [code]RichTextLabel[/code] Bold Italics Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Bold Italics Font Size of %d is over 28px.")
-		_try_check_resource_font_size("rtl-fs-ifs", "theme", "RichTextLabel/font_sizes/italics_font_size", THEME_ICON, "Theme [code]RichTextLabel[/code] Italics Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Italics Font Size of %d is over 28px.")
-		_try_check_resource_font_size("rtl-fs-mfs", "theme", "RichTextLabel/font_sizes/mono_font_size", THEME_ICON, "Theme [code]RichTextLabel[/code] Monospace Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Monospace Font Size of %d is over 28px.")
-		_try_check_resource_font_size("rtl-fs-nfs", "theme", "RichTextLabel/font_sizes/normal_font_size", THEME_ICON, "Theme [code]RichTextLabel[/code] Normal Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Normal Font Size of %d is over 28px.")
+		_try_check_resource_font_size("l-fs-fs", "theme", "Label/font_sizes/font_size", FONT_SIZE_ICON, "Theme [code]Label[/code] Font Size of %d is under 28px.", "Theme [code]Label[/code] Font Size of %d is over 28px.")
+		_try_check_resource_font_size("rtl-fs-bfs", "theme", "RichTextLabel/font_sizes/bold_font_size", FONT_SIZE_ICON, "Theme [code]RichTextLabel[/code] Bold Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Bold Font Size of %d is over 28px.")
+		_try_check_resource_font_size("rtl-fs-bifs", "theme", "RichTextLabel/font_sizes/bold_italics_font_size", FONT_SIZE_ICON, "Theme [code]RichTextLabel[/code] Bold Italics Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Bold Italics Font Size of %d is over 28px.")
+		_try_check_resource_font_size("rtl-fs-ifs", "theme", "RichTextLabel/font_sizes/italics_font_size", FONT_SIZE_ICON, "Theme [code]RichTextLabel[/code] Italics Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Italics Font Size of %d is over 28px.")
+		_try_check_resource_font_size("rtl-fs-mfs", "theme", "RichTextLabel/font_sizes/mono_font_size", FONT_SIZE_ICON, "Theme [code]RichTextLabel[/code] Monospace Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Monospace Font Size of %d is over 28px.")
+		_try_check_resource_font_size("rtl-fs-nfs", "theme", "RichTextLabel/font_sizes/normal_font_size", FONT_SIZE_ICON, "Theme [code]RichTextLabel[/code] Normal Font Size of %d is under 28px.", "Theme [code]RichTextLabel[/code] Normal Font Size of %d is over 28px.")
 	else: # Check for custom theme
 		var theme := ThemeDB.get_project_theme()
 		var theme_text := "a custom"
@@ -41,13 +41,13 @@ func process() -> void:
 			theme_type = "RichTextLabel"
 		var found_font_size := false
 		if _node.type == "Label":
-			found_font_size = _check_theme_font_size(theme, "l-font_size", theme_type, THEME_ICON, "This node uses %s theme's [code]Label[/code] font size" % theme_text)
+			found_font_size = _check_theme_font_size(theme, "l-font_size", theme_type, FONT_SIZE_ICON, "This node uses %s theme's [code]Label[/code] font size" % theme_text)
 		elif _node.type == "RichTextLabel":
-			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-normal_font_size", theme_type, THEME_ICON, "This node uses %s theme's [code]RichTextLabel[/code] normal font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-bold_font_size", theme_type, THEME_ICON, "This node uses %s theme's [code]RichTextLabel[/code] bold font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-bold_italics_font_size", theme_type, THEME_ICON, "This node uses %s theme's [code]RichTextLabel[/code] bold italics font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-italics_font_size", theme_type, THEME_ICON, "This node uses %s theme's [code]RichTextLabel[/code] italics font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-mono_font_size", theme_type, THEME_ICON, "This node uses %s theme's [code]RichTextLabel[/code] monospace font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-normal_font_size", theme_type, FONT_SIZE_ICON, "This node uses %s theme's [code]RichTextLabel[/code] normal font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-bold_font_size", theme_type, FONT_SIZE_ICON, "This node uses %s theme's [code]RichTextLabel[/code] bold font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-bold_italics_font_size", theme_type, FONT_SIZE_ICON, "This node uses %s theme's [code]RichTextLabel[/code] bold italics font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-italics_font_size", theme_type, FONT_SIZE_ICON, "This node uses %s theme's [code]RichTextLabel[/code] italics font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-mono_font_size", theme_type, FONT_SIZE_ICON, "This node uses %s theme's [code]RichTextLabel[/code] monospace font size" % theme_text)
 		if !found_font_size:
 			var font_size = ThemeDB.fallback_font_size
 			if font_size < 28:
