@@ -41,10 +41,12 @@ func _enter_tree():
 	InputMap.action_add_event("gas_scroll_down", _get_keypress(KEY_K))
 	InputMap.add_action("gas_scroll_up")
 	InputMap.action_add_event("gas_scroll_up", _get_keypress(KEY_I))
+	scene_changed.connect(_on_scene_changed)
 
 func _exit_tree():
 	if _main_panel:
 		_main_panel.queue_free()
+	scene_changed.disconnect(_on_scene_changed)
 	remove_autoload_singleton("GASInput")
 	remove_autoload_singleton("GASConfig")
 	remove_autoload_singleton("GASText")
@@ -79,3 +81,7 @@ func _get_keypress(keycode: Key) -> InputEventKey:
 func _make_visible(visible: bool) -> void:
 	if _main_panel:
 		_main_panel.visible = visible
+
+func _on_scene_changed(root: Node) -> void:
+	if _main_panel && root.scene_file_path != "":
+		_main_panel.force_path_change(root.scene_file_path)

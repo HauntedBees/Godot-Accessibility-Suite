@@ -78,7 +78,11 @@ func _parse(parser: GASAuditFileParser, file: Resource) -> void:
 		_records.add_child(a)
 		a.entry = r
 
+func force_path_change(path: String) -> void:
+	_file_path.text = path
+
 func _on_path_changed() -> void:
+	print(get_tree().edited_scene_root.scene_file_path)
 	_test_file()
 
 func _test_file() -> bool:
