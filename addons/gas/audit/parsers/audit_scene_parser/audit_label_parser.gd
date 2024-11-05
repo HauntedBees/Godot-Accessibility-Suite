@@ -3,11 +3,11 @@ class_name GASAuditLabelParser extends AuditSceneNodeParser
 func process() -> void:
 	var script := _node.get_potential_script()
 	if script != "":
-		var script_path: String = _resources[script].name if _resources.has(script) else ""
-		if _node.type == "Label" && !script_path.ends_with("gas_label.gd"):
-			_add_audit_entry("use-al", "You can use [code]AccessibleLabel[/code] to get built-in font scaling.", GASGuidelineURL.RESIZE_FONT, GASAuditEntry.Grade.Warning)
-		elif _node.type == "RichTextLabel" && !script_path.ends_with("gas_richtextlabel.gd"):
-			_add_audit_entry("use-artl", "You can use [code]AccessibleRichTextLabel[/code] to get built-in font scaling.", GASGuidelineURL.RESIZE_FONT, GASAuditEntry.Grade.Warning)
+		script = _resources[script].name if _resources.has(script) else ""
+	if _node.type == "Label" && !script.ends_with("gas_label.gd"):
+		_add_audit_entry("use-al", "You can use [code]AccessibleLabel[/code] to get built-in font scaling.", GASGuidelineURL.RESIZE_FONT, GASAuditEntry.Grade.Warning)
+	elif _node.type == "RichTextLabel" && !script.ends_with("gas_richtextlabel.gd"):
+		_add_audit_entry("use-artl", "You can use [code]AccessibleRichTextLabel[/code] to get built-in font scaling.", GASGuidelineURL.RESIZE_FONT, GASAuditEntry.Grade.Warning)
 	if _node.details.has("label_settings"): # LabelSettings takes priority for font size
 		_try_check_resource_font_size("lsfs", "label_settings", "font_size", "[code]LabelSettings[/code] Font Size of %d is under 28px.", "[code]LabelSettings[/code] Font Size of %d is over 28px.")
 	elif _node.details.has("theme_override_font_sizes/font_size"): # Theme Override takes second priority

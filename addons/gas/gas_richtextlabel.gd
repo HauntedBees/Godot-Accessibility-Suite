@@ -25,7 +25,8 @@ func _ready() -> void:
 	_regex.compile("\\[(font_size=\\d+)")
 	for f in _FONT_SIZE_KEYS:
 		_original_font_sizes[f] = get_theme_font_size(f)
-	GASText.font_scale_changed.connect(_on_font_scale_changed)
+	if !Engine.is_editor_hint():
+		GASText.font_scale_changed.connect(_on_font_scale_changed)
 	_on_font_scale_changed() # initialize
 	_on_theme_changed()
 
