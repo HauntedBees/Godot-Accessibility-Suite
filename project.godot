@@ -40,8 +40,7 @@ GASTime="Used for group-based time scales."
 [godot_accessibility_suite]
 
 config/autosave_settings_changes_to_default_profile=true
-config/accessibility_audit_messages_to_ignore=[]
-config/accessibility_audit_parsers=["res://addons/gas/audit/parsers/audit_scene_parser.gd"]
+config/accessibility_audit_parsers=["res://addons/gas/audit/parsers/audit_scene_parser.gd", "res://addons/gas/audit/parsers/audit_gdscript_parser.gd"]
 config/warn_on_font_too_small=true
 config/use_gastime_autoload=true
 config/text_highlight_keys=["person", "place", "thing"]
@@ -49,7 +48,6 @@ config/text_highlight_keys=["person", "place", "thing"]
 [gui]
 
 theme/custom="res://addons/gas/themes/dark.tres"
-theme/accessibility_audit_messages_to_ignore=["res://audit_tester.tscn::./BadLabelTheme", "res://audit_tester.tscn::./BadLabelTheme::rtl-fs-nfs"]
 
 [input]
 

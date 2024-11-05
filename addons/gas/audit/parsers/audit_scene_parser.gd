@@ -19,6 +19,10 @@ func parse(file: Resource) -> Array[GASAuditEntry]:
 			var sub := GASAuditSceneResourceInfo.new(file_path, line)
 			subresources[sub.name] = sub
 			current_part = sub
+		elif line.begins_with("[ext_resource"):
+			var sub := GASAuditSceneResourceInfo.new(file_path, line, true)
+			subresources[sub.id] = sub
+			current_part = sub
 		elif current_part == null:
 			continue
 		current_part.try_add_detail(line)

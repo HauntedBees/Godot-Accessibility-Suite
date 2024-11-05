@@ -24,3 +24,6 @@ func close_and_get_entries(subresources: Dictionary[String, GASAuditSceneResourc
 		var p := GASAuditLabelParser.new(self, notes, subresources)
 		p.process()
 	return notes
+
+func get_potential_script() -> String:
+	return details["script"].split("\"")[1] if details.has("script") else ""

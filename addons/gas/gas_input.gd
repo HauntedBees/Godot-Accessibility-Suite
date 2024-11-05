@@ -66,9 +66,11 @@ func get_last_input_method() -> InputMethodType:
 
 # https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
 func start_joy_vibration(device: int, weak_magnitude: float, strong_magnitude: float, duration: float = 0) -> void:
-	Input.start_joy_vibration(device, weak_magnitude * vibration_scale, strong_magnitude * vibration_scale, duration)
+	if vibration_scale > 0.0:
+		Input.start_joy_vibration(device, weak_magnitude * vibration_scale, strong_magnitude * vibration_scale, duration)
 func vibrate_handheld(duration_ms: int = 500, amplitude: float = -1.0) -> void:
-	Input.vibrate_handheld(duration_ms, amplitude * vibration_scale)
+	if vibration_scale > 0.0:
+		Input.vibrate_handheld(duration_ms, amplitude * vibration_scale)
 
 func is_click(i: InputEvent, button := MOUSE_BUTTON_LEFT) -> bool:
 	var iemb := i as InputEventMouseButton
