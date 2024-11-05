@@ -35,20 +35,20 @@ func process() -> void:
 		elif theme_type == "AccessibleRichTextLabel":
 			theme_type = "RichTextLabel"
 		var found_font_size := false
-		if _node.type == "Label" || _node.type == "AccessibleLabel":
-			found_font_size = _check_theme_font_size(theme, "font_size", theme_type, "This node uses %s theme's [code]Label[/code] font size" % theme_text)
-		elif _node.type == "RichTextLabel" || _node.type == "AccessibleRichTextLabel":
-			found_font_size = found_font_size || _check_theme_font_size(theme, "normal_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] normal font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "bold_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] bold font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "bold_italics_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] bold italics font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "italics_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] italics font size" % theme_text)
-			found_font_size = found_font_size || _check_theme_font_size(theme, "mono_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] monospace font size" % theme_text)
+		if _node.type == "Label":
+			found_font_size = _check_theme_font_size(theme, "l-font_size", theme_type, "This node uses %s theme's [code]Label[/code] font size" % theme_text)
+		elif _node.type == "RichTextLabel":
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-normal_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] normal font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-bold_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] bold font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-bold_italics_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] bold italics font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-italics_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] italics font size" % theme_text)
+			found_font_size = found_font_size || _check_theme_font_size(theme, "rtl-mono_font_size", theme_type, "This node uses %s theme's [code]RichTextLabel[/code] monospace font size" % theme_text)
 		if !found_font_size:
 			var font_size = ThemeDB.fallback_font_size
 			if font_size < 28:
-				_add_audit_entry("theme-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is below 28px." % font_size, GASGuidelineURL.FONT_SIZE)
+				_add_audit_entry("fallback-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is below 28px." % font_size, GASGuidelineURL.FONT_SIZE)
 			else:
-				_add_audit_entry("theme-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is over 28px." % font_size, GASGuidelineURL.FONT_SIZE, GASAuditEntry.Grade.Passed)
+				_add_audit_entry("fallback-font-size", "This node has no custom styles, so it is using Godot's default font size, %d, which is over 28px." % font_size, GASGuidelineURL.FONT_SIZE, GASAuditEntry.Grade.Passed)
 
 func _check_theme_font_size(theme: Theme, name: String, theme_type: String, prefix_string: String) -> bool:
 	if !theme.has_font_size(name, theme_type):

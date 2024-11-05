@@ -18,7 +18,8 @@ func _enter_tree():
 	ProjectSettings.set(GASConstant.AUDIT_IGNORES, [])
 	ProjectSettings.set(GASConstant.AUDIT_PARSERS, [
 		"res://addons/gas/audit/parsers/audit_scene_parser.gd",
-		"res://addons/gas/audit/parsers/audit_gdscript_parser.gd"
+		"res://addons/gas/audit/parsers/audit_gdscript_parser.gd",
+		"res://addons/gas/audit/parsers/audit_theme_parser.gd"
 	])
 	ProjectSettings.set(GASConstant.WARN_ON_FONT_SIZE, true)
 	ProjectSettings.set(GASConstant.USE_GAS_TIME, true)
