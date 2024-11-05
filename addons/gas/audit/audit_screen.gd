@@ -19,6 +19,7 @@ var _no_results := false
 @onready var _results_timer: Label = %ResultsTimer
 @onready var _path_check_icon: TextureRect = %PathCheckIcon
 @onready var _heading: HBoxContainer = %Heading
+@onready var _support_string: Label = %SupportString
 
 func _ready() -> void:
 	_browse_button.pressed.connect(_file_dialog.popup)
@@ -47,8 +48,13 @@ func _load_parsers() -> void:
 		_parsers.append(parser)
 	if _parsers.size() == 0:
 		printerr("No parsers found, audit will not work. Please specify some parsers in Project Settings, or disable and re-enable the Godot Accessibility Suite plugin to restore the default parsers.")
+		_support_string.text = "No parsers found."
 	else:
 		print("Parsers loaded.")
+		var supported: PackedStringArray = []
+		for p in _parsers:
+			supported.append(p.get_supported_types())
+		_support_string.text = "Supports %s." % ", ".join(supported)
 
 func _on_try_audit() -> void:
 	if !_test_file():

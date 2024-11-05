@@ -1,5 +1,8 @@
 class_name GASAuditSceneParser extends GASAuditFileParser
 
+func get_supported_types() -> String:
+	return ".tscn PackedScene files"
+
 func can_parse(file: Resource) -> bool:
 	return file is PackedScene && file.resource_path.ends_with(".tscn")
 

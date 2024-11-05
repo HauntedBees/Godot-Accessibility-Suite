@@ -1,5 +1,8 @@
 class_name GASAuditThemeParser extends GASAuditFileParser
 
+func get_supported_types() -> String:
+	return ".tres Theme files"
+
 func can_parse(file: Resource) -> bool:
 	return file is Theme
 

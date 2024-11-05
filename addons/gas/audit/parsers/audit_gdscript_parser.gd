@@ -1,5 +1,8 @@
 class_name GASAuditGDScriptParser extends GASAuditFileParser
 
+func get_supported_types() -> String:
+	return ".gd Script files"
+
 func can_parse(file: Resource) -> bool:
 	return file is GDScript
 
