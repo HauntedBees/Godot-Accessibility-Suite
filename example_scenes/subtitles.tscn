@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cwbynhhi3c0lp"]
+[gd_scene load_steps=2 format=3 uid="uid://cwbynhhi3c0lp"]
+
+[ext_resource type="AudioStream" uid="uid://br261si2julqv" path="res://example_scenes/subtitles/franz.ogg" id="1_g0wl0"]
 
 [node name="Subtitles" type="Control"]
 layout_mode = 3
@@ -7,3 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Franz" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(452, 564)
+stream = ExtResource("1_g0wl0")
