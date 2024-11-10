@@ -4,11 +4,13 @@ extends EditorPlugin
 const _AUDIT_SCENE := preload("res://addons/gas/audit/audit_screen.tscn")
 
 var _main_panel: GASAuditScreen
+var _import_plugin := preload("res://addons/gas/captions/subtitle_importer.gd").new()
 
 func _enter_tree():
 	_main_panel = _AUDIT_SCENE.instantiate()
 	EditorInterface.get_editor_main_screen().add_child(_main_panel)
 	_make_visible(false)
+	add_import_plugin(_import_plugin)
 	add_autoload_singleton("GASConfig", "res://addons/gas/gas_config.gd")
 	add_autoload_singleton("GASInput", "res://addons/gas/gas_input.gd")
 	add_autoload_singleton("GASText", "res://addons/gas/gas_text.gd")
@@ -49,6 +51,8 @@ func _exit_tree():
 	if _main_panel:
 		_main_panel.queue_free()
 	scene_changed.disconnect(_on_scene_changed)
+	remove_import_plugin(_import_plugin)
+	_import_plugin = null
 	remove_autoload_singleton("GASInput")
 	remove_autoload_singleton("GASConfig")
 	remove_autoload_singleton("GASText")
