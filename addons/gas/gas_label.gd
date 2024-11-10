@@ -5,6 +5,8 @@ var _original_font_size := 0
 var _original_label_settings: LabelSettings
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	if label_settings == null:
 		_original_font_size = get_theme_font_size("font_size")
 	else:
@@ -14,6 +16,8 @@ func _ready() -> void:
 	_on_font_scale_changed() # initialize
 
 func _on_font_scale_changed() -> void:
+	if Engine.is_editor_hint():
+		return
 	var new_font_size := 0
 	if _original_label_settings:
 		label_settings = GASText.get_adjusted_label_settings(_original_label_settings)
