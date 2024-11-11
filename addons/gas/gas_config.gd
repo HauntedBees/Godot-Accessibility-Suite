@@ -38,6 +38,10 @@ func load_settings(profile := "default") -> bool:
 	if is_instance_valid(GASTime):
 		GASTime.group_time_scale = config.get_value("time", "group_time_scale", 1.0)
 		GASTime.signal_time_scale = config.get_value("time", "signal_time_scale", 1.0)
+	if is_instance_valid(GASCaptions):
+		var path := "user://gas-caption-theme-%s.tres" % profile
+		if FileAccess.file_exists(path):
+			GASCaptions.custom_theme = load(path)
 	_is_loading = false
 	return true
 
@@ -57,4 +61,6 @@ func save_settings(profile := "default") -> void:
 	if is_instance_valid(GASTime):
 		config.set_value("time", "group_time_scale", GASTime.group_time_scale)
 		config.set_value("time", "signal_time_scale", GASTime.signal_time_scale)
+	if is_instance_valid(GASCaptions) && GASCaptions.custom_theme:
+		ResourceSaver.save(GASCaptions.custom_theme, "user://gas-caption-theme-%s.tres" % profile)
 	config.save("user://gas-%s.cfg" % profile)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyrm0upgb4itq"]
+[gd_scene load_steps=6 format=3 uid="uid://cyrm0upgb4itq"]
 
 [ext_resource type="Script" path="res://example_scenes/captions.gd" id="1_cr1uh"]
 [ext_resource type="Script" path="res://addons/gas/captions/gas_audio_stream_player.gd" id="1_gk0q8"]
 [ext_resource type="AudioStream" uid="uid://br261si2julqv" path="res://example_scenes/subtitles/franz.ogg" id="1_t4rrj"]
 [ext_resource type="Resource" uid="uid://d2uumc8phg1gr" path="res://example_scenes/subtitles/franz.srt" id="2_teiv6"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="5_220bm"]
 
 [node name="Captions" type="Control"]
 layout_mode = 3
@@ -35,5 +36,131 @@ offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play Message"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 49.0
+offset_right = 393.0
+offset_bottom = 370.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Configure Caption Settings"
+horizontal_alignment = 1
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font Color"
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="FontColor" type="ColorPickerButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Color"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Outline Color"
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="OutlineColor" type="ColorPickerButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Color"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background Color"
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="BGColor" type="ColorPickerButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Color"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Outline Thickness"
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="OutlineThickness" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font Size"
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="FontSize" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Screen Margin"
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="ScreenMargin" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 200.0
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background Margin"
+script = ExtResource("5_220bm")
+metadata/_custom_type_script = ExtResource("5_220bm")
+
+[node name="BGMargin" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

@@ -17,10 +17,8 @@ var _active: GASActiveCaption
 @onready var _c: CaptionLayer = get_tree().root.get_node("/root/GASCaptions")
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		set_process_mode(Node.PROCESS_MODE_DISABLED)
-	else:
-		finished.connect(_clean_up)
+	set_process_mode(Node.PROCESS_MODE_DISABLED if Engine.is_editor_hint() else Node.PROCESS_MODE_ALWAYS)
+	finished.connect(_clean_up)
 
 func play_captioned(from_position := 0.0) -> void:
 	play(from_position)

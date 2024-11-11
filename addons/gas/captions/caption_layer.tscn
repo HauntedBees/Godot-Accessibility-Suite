@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dg45y0ds7447"]
 
 [ext_resource type="Script" path="res://addons/gas/captions/caption_layer.gd" id="1_6caar"]
-[ext_resource type="Theme" uid="uid://bcuji0dw8gktm" path="res://addons/gas/themes/dark.tres" id="1_j5lk1"]
+[ext_resource type="Theme" uid="uid://c57i5um6smklf" path="res://addons/gas/themes/captions.tres" id="2_6caar"]
 
 [node name="CaptionLayer" type="CanvasLayer"]
 layer = 128
@@ -9,6 +9,7 @@ follow_viewport_enabled = true
 script = ExtResource("1_6caar")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,10 +18,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_constants/margin_left = 128
-theme_override_constants/margin_top = 128
-theme_override_constants/margin_right = 128
-theme_override_constants/margin_bottom = 128
+theme = ExtResource("2_6caar")
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -32,8 +30,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2
-theme = ExtResource("1_j5lk1")
-theme_type_variation = &"Caption"
+theme = ExtResource("2_6caar")
+theme_type_variation = &"Primary"
 bbcode_enabled = true
 text = "Placeholder"
 fit_content = true

@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://c57i5um6smklf"]
+
+[ext_resource type="FontFile" uid="uid://c0e73mlm5uvo6" path="res://addons/gas/fonts/decalotype/Decalotype-Bold.ttf" id="1_yhdi4"]
+[ext_resource type="FontFile" uid="uid://b658jp7unkp6d" path="res://addons/gas/fonts/decalotype/Decalotype-BoldItalic.ttf" id="2_13l86"]
+[ext_resource type="FontFile" uid="uid://bgj8ckobhqtjh" path="res://addons/gas/fonts/decalotype/Decalotype-Italic.ttf" id="3_y5mjx"]
+[ext_resource type="FontFile" uid="uid://iti5qebpe4rx" path="res://addons/gas/fonts/decalotype/Decalotype-Regular.ttf" id="4_imuv3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvpct"]
+bg_color = Color(0, 0, 0, 0.501961)
+border_width_left = 16
+border_width_top = 8
+border_width_right = 16
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 0.501961)
+
+[resource]
+MarginContainer/constants/margin_bottom = 128
+MarginContainer/constants/margin_left = 128
+MarginContainer/constants/margin_right = 128
+MarginContainer/constants/margin_top = 128
+Primary/base_type = &"RichTextLabel"
+Primary/colors/default_color = Color(1, 1, 1, 1)
+Primary/colors/font_outline_color = Color(0, 0, 0, 1)
+Primary/constants/outline_size = 16
+Primary/font_sizes/bold_font_size = 48
+Primary/font_sizes/bold_italics_font_size = 48
+Primary/font_sizes/italics_font_size = 48
+Primary/font_sizes/mono_font_size = 48
+Primary/font_sizes/normal_font_size = 48
+Primary/fonts/bold_font = ExtResource("1_yhdi4")
+Primary/fonts/bold_italics_font = ExtResource("2_13l86")
+Primary/fonts/italics_font = ExtResource("3_y5mjx")
+Primary/fonts/mono_font = null
+Primary/fonts/normal_font = ExtResource("4_imuv3")
+Primary/styles/normal = SubResource("StyleBoxFlat_hvpct")
