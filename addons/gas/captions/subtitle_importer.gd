@@ -36,6 +36,10 @@ func _import(source_file: String, save_path: String, options: Dictionary, platfo
 	if res.audio == null:
 		res.audio = _try_get_with_extension(source_file, ".ogg")
 	if res.audio == null:
+		res.audio = _try_get_with_extension(source_file, ".wav")
+	if res.audio == null:
+		res.audio = _try_get_with_extension(source_file, ".mp3")
+	if res.audio == null:
 		printerr("No valid .ogg, .wav, or .mp3 file exists to accompany %s" % source_file)
 		return FAILED
 	var current_string: PackedStringArray = []
