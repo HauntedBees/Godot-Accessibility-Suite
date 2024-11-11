@@ -23,6 +23,7 @@ This was originally written for Godot 3.5, and while certain parts of it have be
  - Helpers for highlighting important words.
  - Utility for saving the game screen to a file.
  - Saving/loading of accessibility settings.
+ - `.srt` resource importing and a `CaptionedAudioStreamPlayer` node that syncs captions and audio.
 
 ### Remaining Features
 
@@ -34,4 +35,6 @@ See the [Issues list](https://github.com/HauntedBees/Godot-Accessibility-Suite/i
  - Subtitles/captions.
 
 ## Contributing
-If you would like to contribute to the project, please do! All contributions must be made with a permissive MIT-compatible open source license to ensure as many game developers as possible have access to this code.
+If there's a feature you want included in this suite, whether you're a game developer or a game player, create an [issue](https://github.com/HauntedBees/Godot-Accessibility-Suite/issues) for it! My goal is to make a tool helpful for everyone, so the most important thing you can do is let me know how!
+
+And if you would like to contribute to the project with code, please do! All contributions must be made with a permissive MIT-compatible open source license to ensure as many game developers as possible have access to this code.
