@@ -22,6 +22,7 @@ GASInput="*res://addons/gas/gas_input.gd"
 GASText="*res://addons/gas/gas_text.gd"
 GASTime="*res://addons/gas/gas_time.gd"
 GASUtils="*res://addons/gas/gas_utils.gd"
+GASCaptions="*res://addons/gas/captions/caption_layer.tscn"
 
 [display]
 

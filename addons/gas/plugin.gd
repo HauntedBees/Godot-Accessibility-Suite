@@ -45,7 +45,7 @@ func _enter_tree():
 	add_custom_type(
 		"CaptionedAudioStreamPlayer", "AudioStreamPlayer",
 		load("res://addons/gas/captions/gas_audio_stream_player.gd"),
-		load("res://addons/gas/icons/gas_label.svg")
+		load("res://addons/gas/icons/captioned_audio_stream_player.svg")
 	)
 	InputMap.add_action("gas_scroll_down")
 	InputMap.action_add_event("gas_scroll_down", _get_keypress(KEY_K))

@@ -18,6 +18,7 @@ script = ExtResource("1_cr1uh")
 
 [node name="BasePlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+process_mode = 4
 stream = ExtResource("1_t4rrj")
 script = ExtResource("1_gk0q8")
 stream_with_captions = ExtResource("2_teiv6")
