@@ -23,6 +23,7 @@ This was originally written for Godot 3.5, and while certain parts of it have be
  - Helpers for highlighting important words.
  - Utility for saving the game screen to a file.
  - Saving/loading of accessibility settings.
+ - Accessibility Audit Tool that programatically scans scenes and scripts for some accessibility issues (still in progress).
  - `.srt` resource importing and a `CaptionedAudioStreamPlayer` node that syncs captions and audio.
 
 ### Remaining Features
