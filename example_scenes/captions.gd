@@ -1,10 +1,26 @@
 extends Control
 
+const _FONT_A: Dictionary[String, FontFile] = {
+	"bold_font": preload("res://addons/gas/fonts/decalotype/Decalotype-Bold.ttf"),
+	"bold_italics_font": preload("res://addons/gas/fonts/decalotype/Decalotype-BoldItalic.ttf"),
+	"italics_font": preload("res://addons/gas/fonts/decalotype/Decalotype-Italic.ttf"),
+	"normal_font": preload("res://addons/gas/fonts/decalotype/Decalotype-Regular.ttf")
+}
+const _FONT_B: Dictionary[String, FontFile] = {
+	"bold_font": preload("res://addons/gas/fonts/libra_sans_modern/LibraSansModern-Bold.ttf"),
+	"bold_italics_font": preload("res://addons/gas/fonts/libra_sans_modern/LibraSansModern-BoldItalic.ttf"),
+	"italics_font": preload("res://addons/gas/fonts/libra_sans_modern/LibraSansModern-Italic.ttf"),
+	"normal_font": preload("res://addons/gas/fonts/libra_sans_modern/LibraSansModern.ttf")
+}
+
+var _is_font_b := false
+
 @onready var _base_player: CaptionedAudioStreamPlayer = %BasePlayer
 
 @onready var _font_color: ColorPickerButton = %FontColor
 @onready var _outline_color: ColorPickerButton = %OutlineColor
 @onready var _bg_color: ColorPickerButton = %BGColor
+@onready var _line_separation: SpinBox = %LineSeparation
 @onready var _outline_thickness: SpinBox = %OutlineThickness
 @onready var _font_size: SpinBox = %FontSize
 @onready var _screen_margin: SpinBox = %ScreenMargin
@@ -20,6 +36,10 @@ func _ready() -> void:
 	_bg_color.color_changed.connect(func(c: Color) -> void:
 		style_box.bg_color = c
 		style_box.border_color = c
+	)
+	_line_separation.value = GASCaptions.custom_theme.get_constant("line_separation", "Primary")
+	_line_separation.value_changed.connect(func(v: float) -> void:
+		GASCaptions.custom_theme.set_constant("line_separation", "Primary", roundi(v))
 	)
 	_outline_thickness.value = GASCaptions.custom_theme.get_constant("outline_size", "Primary")
 	_outline_thickness.value_changed.connect(func(v: float) -> void:
@@ -57,3 +77,9 @@ func _on_play_button_pressed() -> void:
 func _bind_color_input(picker: ColorPickerButton, element_name: String, theme_type: String) -> void:
 	picker.color = GASCaptions.custom_theme.get_color(element_name, theme_type)
 	picker.color_changed.connect(func(c: Color) -> void: GASCaptions.custom_theme.set_color(element_name, theme_type, c))
+
+func _on_font_button_pressed() -> void:
+	_is_font_b = !_is_font_b
+	var font := _FONT_B if _is_font_b else _FONT_A
+	for k in font.keys():
+		GASCaptions.custom_theme.set_font(k, "Primary", font[k])

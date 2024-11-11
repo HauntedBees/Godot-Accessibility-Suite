@@ -21,6 +21,7 @@ MarginContainer/constants/margin_top = 128
 Primary/base_type = &"RichTextLabel"
 Primary/colors/default_color = Color(1, 1, 1, 1)
 Primary/colors/font_outline_color = Color(0, 0, 0, 1)
+Primary/constants/line_separation = 10
 Primary/constants/outline_size = 16
 Primary/font_sizes/bold_font_size = 48
 Primary/font_sizes/bold_italics_font_size = 48

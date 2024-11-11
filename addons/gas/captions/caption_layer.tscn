@@ -33,6 +33,7 @@ mouse_filter = 2
 theme = ExtResource("2_6caar")
 theme_type_variation = &"Primary"
 bbcode_enabled = true
-text = "Placeholder"
+text = "Placeholder
+Placeholder"
 fit_content = true
 autowrap_mode = 0
