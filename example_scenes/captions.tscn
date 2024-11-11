@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyrm0upgb4itq"]
+
+[ext_resource type="Script" path="res://example_scenes/captions.gd" id="1_cr1uh"]
+[ext_resource type="Script" path="res://addons/gas/captions/gas_audio_stream_player.gd" id="1_gk0q8"]
+[ext_resource type="AudioStream" uid="uid://br261si2julqv" path="res://example_scenes/subtitles/franz.ogg" id="1_t4rrj"]
+[ext_resource type="Resource" uid="uid://d2uumc8phg1gr" path="res://example_scenes/subtitles/franz.srt" id="2_teiv6"]
+
+[node name="Captions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cr1uh")
+
+[node name="BasePlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_t4rrj")
+script = ExtResource("1_gk0q8")
+stream_with_captions = ExtResource("2_teiv6")
+metadata/_custom_type_script = ExtResource("1_gk0q8")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -21.0
+offset_right = 81.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Message"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

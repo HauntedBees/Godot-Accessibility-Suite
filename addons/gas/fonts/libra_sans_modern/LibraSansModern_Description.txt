@@ -1,0 +1,7 @@
+Family: Libra Sans Modern
+Designer: Stefan Peev
+Foundry: Context Ltd.
+Category: San-serif
+Description: 
+Libra Sans Modern is a free-to-use non-commercial font derivated by Stefan Peev (https://www.contextbg.net) and released under the SIL Open Font License (OFL) (http://scripts.sil.org/OFL).
+Libra Sans Modern is based on Libra Sans (https://fontlibrary.org/en/font/libra-sans) and contains two models of cyrillic glyph. The base range of the cyrillic glyphs (uni0410:uni044F) represents the modern Bulgarian letterform model. The traditional cyrillic letterform model is included as a local feature for Russian language. This is the main difference with Libra Sans where the traditional cyrillic letterform model is in the range uni0410:uni044F and the modern Bulgarian letterform model is included as local feature for Bulgarian language.

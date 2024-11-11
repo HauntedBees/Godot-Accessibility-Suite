@@ -53,6 +53,7 @@ func _import(source_file: String, save_path: String, options: Dictionary, platfo
 			res.caption_timings.append(_time_string_to_seconds(split[1].strip_edges()))
 		else:
 			current_string.append(l)
+	res.caption_texts.append("\n".join(current_string))
 	return ResourceSaver.save(res, "%s.%s" % [save_path, _get_save_extension()])
 
 func _try_get_with_extension(source_file: String, new_extension: String) -> AudioStream:

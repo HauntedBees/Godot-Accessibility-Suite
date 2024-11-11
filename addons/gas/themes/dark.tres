@@ -1,4 +1,17 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bcuji0dw8gktm"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bcuji0dw8gktm"]
+
+[ext_resource type="FontFile" uid="uid://c0e73mlm5uvo6" path="res://addons/gas/fonts/decalotype/Decalotype-Bold.ttf" id="1_2u456"]
+[ext_resource type="FontFile" uid="uid://b658jp7unkp6d" path="res://addons/gas/fonts/decalotype/Decalotype-BoldItalic.ttf" id="2_0oxn7"]
+[ext_resource type="FontFile" uid="uid://bgj8ckobhqtjh" path="res://addons/gas/fonts/decalotype/Decalotype-Italic.ttf" id="3_vjmvw"]
+[ext_resource type="FontFile" uid="uid://iti5qebpe4rx" path="res://addons/gas/fonts/decalotype/Decalotype-Regular.ttf" id="4_pgcx6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvpct"]
+bg_color = Color(0, 0, 0, 0.501961)
+border_width_left = 16
+border_width_top = 8
+border_width_right = 16
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84i3x"]
 bg_color = Color(0.133333, 0.133333, 0.133333, 1)
@@ -18,6 +31,21 @@ Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 24
+Caption/base_type = &"RichTextLabel"
+Caption/colors/default_color = Color(1, 1, 1, 1)
+Caption/colors/font_outline_color = Color(0, 0, 0, 1)
+Caption/constants/outline_size = 16
+Caption/font_sizes/bold_font_size = 48
+Caption/font_sizes/bold_italics_font_size = 48
+Caption/font_sizes/italics_font_size = 48
+Caption/font_sizes/mono_font_size = 48
+Caption/font_sizes/normal_font_size = 48
+Caption/fonts/bold_font = ExtResource("1_2u456")
+Caption/fonts/bold_italics_font = ExtResource("2_0oxn7")
+Caption/fonts/italics_font = ExtResource("3_vjmvw")
+Caption/fonts/mono_font = null
+Caption/fonts/normal_font = ExtResource("4_pgcx6")
+Caption/styles/normal = SubResource("StyleBoxFlat_hvpct")
 CheckBox/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 CheckBox/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 CheckBox/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
