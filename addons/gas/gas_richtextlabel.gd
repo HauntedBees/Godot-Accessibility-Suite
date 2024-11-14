@@ -39,6 +39,8 @@ func _on_theme_changed() -> void:
 	_refresh_text()
 
 func _on_font_scale_changed() -> void:
+	if Engine.is_editor_hint():
+		return
 	for f in _FONT_SIZE_KEYS:
 		var new_font_size := GASText.get_adjusted_theme_override_font_size(_original_font_sizes[f])
 		add_theme_font_size_override(f, new_font_size)
