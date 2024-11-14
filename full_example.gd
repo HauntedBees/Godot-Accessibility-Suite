@@ -12,6 +12,7 @@ const _PLACEHOLDER := preload("res://example_scenes/placeholder.tscn")
 @onready var _btn_speech: TextureButton = %Speech
 @onready var _btn_general: TextureButton = %General
 @onready var _back_button: Button = %BackButton
+@onready var _scene_path: AccessibleLabel = %ScenePath
 
 var _current_back: CategoryTextureButton
 
@@ -35,6 +36,7 @@ func change_scene(p: PackedScene, label: String, link: String) -> void:
 	var c: ExampleSceneRoot = _PLACEHOLDER.instantiate() if p == null else p.instantiate()
 	c.change_scene.connect(change_scene)
 	_content.add_child(c)
+	_scene_path.text = "" if p == null else p.resource_path
 	if link == "":
 		_info.text = label
 		_back_button.visible = false
