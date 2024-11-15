@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmidqn2rsimo4"]
+[gd_scene load_steps=6 format=3 uid="uid://bmidqn2rsimo4"]
 
 [ext_resource type="Script" path="res://example_scenes/input_mapping.gd" id="1_dwg3j"]
 [ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_tj7m2"]
 [ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_rka4m"]
 [ext_resource type="PackedScene" uid="uid://d213lodm33x4n" path="res://addons/gas/control_config/gas_action_config.tscn" id="4_kjk0h"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="5_cuy24"]
 
 [node name="InputMapping" type="Control"]
 layout_mode = 3
@@ -29,25 +30,30 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/mono_font = ExtResource("2_tj7m2")
 bbcode_enabled = true
-text = "You can use the [code]GASInput.remap_action[/code] method to replace an action defined in the [code]Project Settings/Input Map[/code] with a new one. Since players may use gamepads and keyboards, this method will replace the current keyboard binding if the provided action is a keyboard input, and it will replace the current gamepad binding if the action is a gamepad input.
+text = "You can use the [code]GASInput.remap_action[/code] method to replace an action defined in the [code]Project Settings/Input Map[/code] with a new one. Since players may use different input methods, this method will replace the current keyboard or mouse binding if the provided action is a keyboard or mouse input, and it will replace the current gamepad binding if the action is a gamepad input. To save and load player-defined input mappings, you can use the [code]GASInput.get_actions_as_json[/code], [code]GASInput.get_actions_as_dictionary[/code], [code]GASInput.restore_actions_from_json[/code], and [code]GASInput.restore_actions_from_dictionary[/code] methods.
 
-To save and load player-defined input mappings, you can use the [code]GASInput.get_actions_as_json[/code], [code]GASInput.get_actions_as_dictionary[/code], [code]GASInput.restore_actions_from_json[/code], [code]GASInput.restore_actions_from_dictionary[/code] methods.
-
-The Godot Accessibility Suite also includes a [code]ControlConfig[/code] Scene that you can add to your project via [code]Instantiate Child Scene[/code] (at [code]res://addons/gas/control_config/gas_action_config.tscn[/code]), which provides a basic display to handle player input remapping. For basic use cases or quick projects where you don't need/want to make your own options menu, this should ensure players still have some way to easily remap their controls.
-
-TODO: fix bugs with this"
+The Godot Accessibility Suite also includes a \"ControlConfig\" Scene that you can add to your project via [code]Instantiate Child Scene[/code] (at [code]res://addons/gas/control_config/gas_action_config.tscn[/code]), which provides a basic display with some customiztions to handle player input remapping. For basic use cases or quick projects where you don't need/want to make your own options menu, this should ensure players still have some way to easily remap their controls."
 fit_content = true
 script = ExtResource("3_rka4m")
-accessible_text = "You can use the [code]GASInput.remap_action[/code] method to replace an action defined in the [code]Project Settings/Input Map[/code] with a new one. Since players may use gamepads and keyboards, this method will replace the current keyboard binding if the provided action is a keyboard input, and it will replace the current gamepad binding if the action is a gamepad input.
+accessible_text = "You can use the [code]GASInput.remap_action[/code] method to replace an action defined in the [code]Project Settings/Input Map[/code] with a new one. Since players may use different input methods, this method will replace the current keyboard or mouse binding if the provided action is a keyboard or mouse input, and it will replace the current gamepad binding if the action is a gamepad input. To save and load player-defined input mappings, you can use the [code]GASInput.get_actions_as_json[/code], [code]GASInput.get_actions_as_dictionary[/code], [code]GASInput.restore_actions_from_json[/code], and [code]GASInput.restore_actions_from_dictionary[/code] methods.
 
-To save and load player-defined input mappings, you can use the [code]GASInput.get_actions_as_json[/code], [code]GASInput.get_actions_as_dictionary[/code], [code]GASInput.restore_actions_from_json[/code], [code]GASInput.restore_actions_from_dictionary[/code] methods.
+The Godot Accessibility Suite also includes a \"ControlConfig\" Scene that you can add to your project via [code]Instantiate Child Scene[/code] (at [code]res://addons/gas/control_config/gas_action_config.tscn[/code]), which provides a basic display with some customiztions to handle player input remapping. For basic use cases or quick projects where you don't need/want to make your own options menu, this should ensure players still have some way to easily remap their controls."
 
-The Godot Accessibility Suite also includes a [code]ControlConfig[/code] Scene that you can add to your project via [code]Instantiate Child Scene[/code] (at [code]res://addons/gas/control_config/gas_action_config.tscn[/code]), which provides a basic display to handle player input remapping. For basic use cases or quick projects where you don't need/want to make your own options menu, this should ensure players still have some way to easily remap their controls.
-
-TODO: fix bugs with this"
-
-[node name="ControlConfig" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_kjk0h")]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-number_of_columns = 2
-hide_default_ui_actions = true
+
+[node name="ControlConfig" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_kjk0h")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+input_type = 0
+
+[node name="InputHistory" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+script = ExtResource("5_cuy24")
+metadata/_custom_type_script = ExtResource("5_cuy24")

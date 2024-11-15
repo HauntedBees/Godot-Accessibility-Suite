@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkru1ooweh6iq"]
+
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_nfro4"]
+[ext_resource type="Script" path="res://addons/gas/control_config/gas_input_map_display.gd" id="1_x323m"]
+[ext_resource type="Texture2D" uid="uid://0huoupomtexx" path="res://addons/gas/control_config/inputs.png" id="3_x323m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx5ht"]
+atlas = ExtResource("3_x323m")
+region = Rect2(0, 0, 128, 128)
+
+[node name="GASInputMapDisplay" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_x323m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="AccessibleLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "Placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_nfro4")
+metadata/_custom_type_script = ExtResource("1_nfro4")
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = SubResource("AtlasTexture_hx5ht")
+flat = true
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]

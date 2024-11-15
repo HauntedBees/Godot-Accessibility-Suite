@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d213lodm33x4n"]
+[gd_scene load_steps=5 format=3 uid="uid://d213lodm33x4n"]
 
 [ext_resource type="Script" path="res://addons/gas/control_config/gas_action_config.gd" id="1"]
 [ext_resource type="Texture2D" path="res://addons/gas/control_config/icon_atlas.tres" id="2"]
+[ext_resource type="Script" path="res://addons/gas/control_config/control_confirm_dialog.gd" id="2_6h5lh"]
 
 [sub_resource type="Theme" id="1"]
 HBoxContainer/constants/separation = 12
@@ -14,97 +15,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
+input_type = null
+action_display_names = Array[String](["Ui Accept", "Ui Select", "Ui Cancel", "Ui Left", "Ui Right", "Ui Up", "Ui Down", "Gas Scroll Down", "Gas Scroll Up"])
+action_input_maps = Array[String](["ui_accept", "ui_select", "ui_cancel", "ui_left", "ui_right", "ui_up", "ui_down", "gas_scroll_down", "gas_scroll_up"])
 number_of_columns = 3
-action_names = {
-"spatial_editor/freelook_backwards": &"spatial_editor/freelook_backwards",
-"spatial_editor/freelook_down": &"spatial_editor/freelook_down",
-"spatial_editor/freelook_forward": &"spatial_editor/freelook_forward",
-"spatial_editor/freelook_left": &"spatial_editor/freelook_left",
-"spatial_editor/freelook_right": &"spatial_editor/freelook_right",
-"spatial_editor/freelook_slow_modifier": &"spatial_editor/freelook_slow_modifier",
-"spatial_editor/freelook_speed_modifier": &"spatial_editor/freelook_speed_modifier",
-"spatial_editor/freelook_up": &"spatial_editor/freelook_up",
-"ui_accept": "ui_accept",
-"ui_cancel": "ui_cancel",
-"ui_copy": &"ui_copy",
-"ui_cut": &"ui_cut",
-"ui_down": "Move Backward",
-"ui_end": "ui_end",
-"ui_filedialog_refresh": &"ui_filedialog_refresh",
-"ui_filedialog_show_hidden": &"ui_filedialog_show_hidden",
-"ui_filedialog_up_one_level": &"ui_filedialog_up_one_level",
-"ui_focus_next": "ui_focus_next",
-"ui_focus_prev": "ui_focus_prev",
-"ui_graph_delete": &"ui_graph_delete",
-"ui_graph_duplicate": &"ui_graph_duplicate",
-"ui_home": "ui_home",
-"ui_left": "Move Left",
-"ui_menu": &"ui_menu",
-"ui_page_down": "ui_page_down",
-"ui_page_up": "ui_page_up",
-"ui_paste": &"ui_paste",
-"ui_redo": &"ui_redo",
-"ui_right": "Move Right",
-"ui_select": "ui_select",
-"ui_swap_input_direction": &"ui_swap_input_direction",
-"ui_text_backspace": &"ui_text_backspace",
-"ui_text_backspace_all_to_left": &"ui_text_backspace_all_to_left",
-"ui_text_backspace_word": &"ui_text_backspace_word",
-"ui_text_caret_document_end": &"ui_text_caret_document_end",
-"ui_text_caret_document_start": &"ui_text_caret_document_start",
-"ui_text_caret_down": &"ui_text_caret_down",
-"ui_text_caret_left": &"ui_text_caret_left",
-"ui_text_caret_line_end": &"ui_text_caret_line_end",
-"ui_text_caret_line_start": &"ui_text_caret_line_start",
-"ui_text_caret_page_down": &"ui_text_caret_page_down",
-"ui_text_caret_page_up": &"ui_text_caret_page_up",
-"ui_text_caret_right": &"ui_text_caret_right",
-"ui_text_caret_up": &"ui_text_caret_up",
-"ui_text_caret_word_left": &"ui_text_caret_word_left",
-"ui_text_caret_word_right": &"ui_text_caret_word_right",
-"ui_text_completion_accept": &"ui_text_completion_accept",
-"ui_text_completion_query": &"ui_text_completion_query",
-"ui_text_completion_replace": &"ui_text_completion_replace",
-"ui_text_dedent": &"ui_text_dedent",
-"ui_text_delete": &"ui_text_delete",
-"ui_text_delete_all_to_right": &"ui_text_delete_all_to_right",
-"ui_text_delete_word": &"ui_text_delete_word",
-"ui_text_indent": &"ui_text_indent",
-"ui_text_newline": &"ui_text_newline",
-"ui_text_newline_above": &"ui_text_newline_above",
-"ui_text_newline_blank": &"ui_text_newline_blank",
-"ui_text_scroll_down": &"ui_text_scroll_down",
-"ui_text_scroll_up": &"ui_text_scroll_up",
-"ui_text_select_all": &"ui_text_select_all",
-"ui_text_select_word_under_caret": &"ui_text_select_word_under_caret",
-"ui_text_submit": &"ui_text_submit",
-"ui_text_toggle_insert_mode": &"ui_text_toggle_insert_mode",
-"ui_undo": &"ui_undo",
-"ui_up": "Move Forward"
-}
-sort_order = ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_select", "ui_cancel", "ui_focus_next", "ui_focus_prev", "ui_end", "ui_home", "ui_page_up", "ui_page_down", &"ui_accept", &"ui_select", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down", &"ui_page_up", &"ui_page_down", &"ui_home", &"ui_end", &"ui_cut", &"ui_copy", &"ui_paste", &"ui_undo", &"ui_redo", &"ui_text_completion_query", &"ui_text_completion_accept", &"ui_text_completion_replace", &"ui_text_newline", &"ui_text_newline_blank", &"ui_text_newline_above", &"ui_text_indent", &"ui_text_dedent", &"ui_text_backspace", &"ui_text_backspace_word", &"ui_text_backspace_all_to_left", &"ui_text_delete", &"ui_text_delete_word", &"ui_text_delete_all_to_right", &"ui_text_caret_left", &"ui_text_caret_word_left", &"ui_text_caret_right", &"ui_text_caret_word_right", &"ui_text_caret_up", &"ui_text_caret_down", &"ui_text_caret_line_start", &"ui_text_caret_line_end", &"ui_text_caret_page_up", &"ui_text_caret_page_down", &"ui_text_caret_document_start", &"ui_text_caret_document_end", &"ui_text_scroll_up", &"ui_text_scroll_down", &"ui_text_select_all", &"ui_text_select_word_under_caret", &"ui_text_toggle_insert_mode", &"ui_menu", &"ui_text_submit", &"ui_graph_duplicate", &"ui_graph_delete", &"ui_filedialog_up_one_level", &"ui_filedialog_refresh", &"ui_filedialog_show_hidden", &"ui_swap_input_direction", &"spatial_editor/freelook_left", &"spatial_editor/freelook_right", &"spatial_editor/freelook_forward", &"spatial_editor/freelook_backwards", &"spatial_editor/freelook_up", &"spatial_editor/freelook_down", &"spatial_editor/freelook_speed_modifier", &"spatial_editor/freelook_slow_modifier"]
 
-[node name="Container" type="HBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Container" type="HBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = SubResource("1")
 alignment = 1
 
-[node name="Left" type="VBoxContainer" parent="Container"]
-layout_mode = 2
-
-[node name="Middle" type="VBoxContainer" parent="Container"]
-layout_mode = 2
-
-[node name="Right" type="VBoxContainer" parent="Container"]
-layout_mode = 2
-
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-size = Vector2i(200, 212)
+size = Vector2i(208, 251)
+transient = false
+exclusive = false
+always_on_top = true
+script = ExtResource("2_6h5lh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ConfirmationDialog"]
 anchors_preset = 15
@@ -113,7 +50,7 @@ anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = -8.0
-offset_bottom = -49.0
+offset_bottom = -60.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="ConfirmationDialog/VBoxContainer"]
@@ -127,4 +64,6 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("2")
 
+[connection signal="binding_changed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_binding_changed"]
+[connection signal="canceled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]

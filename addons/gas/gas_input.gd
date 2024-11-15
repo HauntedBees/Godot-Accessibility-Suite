@@ -98,6 +98,7 @@ func remap_action(action: String, event: InputEvent) -> bool:
 	var is_motion := event is InputEventJoypadMotion
 	for mapping in existing_mappings:
 		var is_mapping_button_or_joy := mapping is InputEventJoypadMotion || mapping is InputEventJoypadButton
+		var is_mapping_key_or_mouse := mapping is InputEventKey || mapping is InputEventMouseButton
 		if is_motion && is_mapping_button_or_joy:
 			InputMap.action_erase_event(action, mapping)
 			event.axis_value = 1 if event.axis_value > 0 else -1
@@ -107,7 +108,7 @@ func remap_action(action: String, event: InputEvent) -> bool:
 			InputMap.action_erase_event(action, mapping)
 			InputMap.action_add_event(action, event)
 			return true
-		elif mapping is InputEventKey && event is InputEventKey:
+		elif is_mapping_key_or_mouse && (event is InputEventKey || event is InputEventMouseButton):
 			InputMap.action_erase_event(action, mapping)
 			InputMap.action_add_event(action, event)
 			return true
