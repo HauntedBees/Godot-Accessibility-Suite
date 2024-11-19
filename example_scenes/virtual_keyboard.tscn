@@ -1,0 +1,180 @@
+[gd_scene load_steps=23 format=3 uid="uid://dkgyswwckcr23"]
+
+[ext_resource type="Theme" uid="uid://b26jseabiiivv" path="res://addons/gas/virtual_keyboard/defaults/keyboard_theme.tres" id="1_7f0b2"]
+[ext_resource type="Script" path="res://example_scenes/virtual_keyboard.gd" id="1_dn2x2"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_base.gd" id="1_ulioy"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_ag7as"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_layout.gd" id="2_bopw8"]
+[ext_resource type="Resource" uid="uid://ct7na76fgxeao" path="res://addons/gas/virtual_keyboard/defaults/layouts/qwerty_lowercase.tres" id="3_ag7as"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_dn2x2"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="4_7f0b2"]
+[ext_resource type="Resource" uid="uid://g3yb1jpc63sn" path="res://addons/gas/virtual_keyboard/defaults/layouts/qwerty_uppercase.tres" id="4_ag7as"]
+[ext_resource type="Resource" uid="uid://ctxq3rdobtygp" path="res://addons/gas/virtual_keyboard/defaults/layouts/abc_lowercase.tres" id="5_b4teg"]
+[ext_resource type="Resource" uid="uid://de5hjw62rnwa4" path="res://addons/gas/virtual_keyboard/defaults/layouts/qwerty_numpunc.tres" id="5_dn2x2"]
+[ext_resource type="Resource" uid="uid://b16n8p0vx4rkg" path="res://addons/gas/virtual_keyboard/defaults/layouts/abc_numpunc.tres" id="6_8h6sc"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/defaults/virtual_keyboard_qwerty.gd" id="7_b4teg"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/defaults/virtual_keyboard_three_column.gd" id="11_ltc61"]
+[ext_resource type="Resource" uid="uid://civcvy1dbbsyg" path="res://addons/gas/virtual_keyboard/defaults/layouts/abc_uppercase.tres" id="13_gfvdo"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_key.gd" id="16_y4yf6"]
+
+[sub_resource type="Resource" id="Resource_1hbsc"]
+script = ExtResource("16_y4yf6")
+display_text = "た"
+custom_keycode = 0
+custom_signal_value = ""
+metadata/_custom_type_script = ExtResource("16_y4yf6")
+
+[sub_resource type="Resource" id="Resource_587oy"]
+script = ExtResource("16_y4yf6")
+display_text = "て"
+custom_keycode = 0
+custom_signal_value = ""
+metadata/_custom_type_script = ExtResource("16_y4yf6")
+
+[sub_resource type="Resource" id="Resource_37pqf"]
+script = ExtResource("16_y4yf6")
+display_text = "Љ"
+custom_keycode = 0
+custom_signal_value = ""
+metadata/_custom_type_script = ExtResource("16_y4yf6")
+
+[sub_resource type="Resource" id="Resource_5po7u"]
+script = ExtResource("16_y4yf6")
+display_text = "Custom Signal"
+custom_keycode = 0
+custom_signal_value = "test"
+metadata/_custom_type_script = ExtResource("16_y4yf6")
+
+[sub_resource type="Resource" id="Resource_kk0cg"]
+script = ExtResource("16_y4yf6")
+display_text = "ui_left action"
+custom_keycode = 0
+custom_signal_value = "action:ui_left"
+metadata/_custom_type_script = ExtResource("16_y4yf6")
+
+[sub_resource type="Resource" id="Resource_4hyyj"]
+script = ExtResource("2_bopw8")
+keys = Array[ExtResource("16_y4yf6")]([SubResource("Resource_1hbsc"), SubResource("Resource_587oy"), SubResource("Resource_37pqf"), SubResource("Resource_5po7u"), SubResource("Resource_kk0cg")])
+keys_string = ""
+metadata/_custom_type_script = ExtResource("2_bopw8")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dn2x2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_ag7as")
+bbcode_enabled = true
+text = "You can add a [code]GASVirtualKeyboardQwerty[/code] or [code]GASVirtualKeyboardThreeColumn[/code] node to your scene and immediately get a functional virtual keyboard that works with the player's mouse, touch screen, keyboard, or gamepad. You can add a [code]GASVirtualKeyboardBase[/code] to customize the keys used and visuals of the keyboard. You can even create your own theme and button scene to easily handle a wide range of styles."
+fit_content = true
+script = ExtResource("3_dn2x2")
+accessible_text = "You can add a [code]GASVirtualKeyboardQwerty[/code] or [code]GASVirtualKeyboardThreeColumn[/code] node to your scene and immediately get a functional virtual keyboard that works with the player's mouse, touch screen, keyboard, or gamepad. You can add a [code]GASVirtualKeyboardBase[/code] to customize the keys used and visuals of the keyboard. You can even create your own theme and button scene to easily handle a wide range of styles."
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Click inside the textbox below and then select any of the keyboard keys on the right to type into it! "
+autowrap_mode = 3
+script = ExtResource("4_7f0b2")
+metadata/_custom_type_script = ExtResource("4_7f0b2")
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+
+[node name="KeyboardContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+
+[node name="Qwerty" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/KeyboardContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_7f0b2")
+script = ExtResource("7_b4teg")
+layouts = Array[ExtResource("2_bopw8")]([ExtResource("3_ag7as"), ExtResource("4_ag7as"), ExtResource("5_dn2x2")])
+show_empty_buttons = false
+expand_buttons = false
+horizontal_alignment = 1
+columns_per_section = 10
+metadata/_custom_type_script = ExtResource("7_b4teg")
+
+[node name="Three" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/KeyboardContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("1_7f0b2")
+script = ExtResource("11_ltc61")
+layouts = Array[ExtResource("2_bopw8")]([ExtResource("5_b4teg"), ExtResource("13_gfvdo"), ExtResource("6_8h6sc")])
+layouts_to_show = 3
+metadata/_custom_type_script = ExtResource("11_ltc61")
+
+[node name="Custom" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/KeyboardContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("1_ulioy")
+layouts = Array[ExtResource("2_bopw8")]([SubResource("Resource_4hyyj")])
+metadata/_custom_type_script = ExtResource("1_ulioy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="QwertyButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Qwerty Keyboard"
+
+[node name="ThreeButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Three-Column Keyboard"
+
+[node name="CustomButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Specialized Keyboard"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/QwertyButton" to="." method="_on_qwerty_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/ThreeButton" to="." method="_on_three_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]

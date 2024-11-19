@@ -1,0 +1,182 @@
+[gd_resource type="Resource" script_class="GASVirtualKeyboardLayout" load_steps=33 format=3 uid="uid://g3yb1jpc63sn"]
+
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_key.gd" id="1_oowna"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_layout.gd" id="2_4qba7"]
+[ext_resource type="Resource" uid="uid://bal181v3to13m" path="res://addons/gas/virtual_keyboard/defaults/common_keys/backspace.tres" id="2_nh3ik"]
+[ext_resource type="Resource" uid="uid://m22imyykaccn" path="res://addons/gas/virtual_keyboard/defaults/common_keys/ok_enter.tres" id="3_0axb4"]
+
+[sub_resource type="Resource" id="Resource_wwqyb"]
+script = ExtResource("1_oowna")
+display_text = "Q"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_4jfa2"]
+script = ExtResource("1_oowna")
+display_text = "W"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_lhfac"]
+script = ExtResource("1_oowna")
+display_text = "E"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_qjuc2"]
+script = ExtResource("1_oowna")
+display_text = "R"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_jvn3r"]
+script = ExtResource("1_oowna")
+display_text = "T"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_4deix"]
+script = ExtResource("1_oowna")
+display_text = "Y"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_om8b5"]
+script = ExtResource("1_oowna")
+display_text = "U"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_dt8un"]
+script = ExtResource("1_oowna")
+display_text = "I"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_vxbsr"]
+script = ExtResource("1_oowna")
+display_text = "O"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_kjfym"]
+script = ExtResource("1_oowna")
+display_text = "P"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_cwq6k"]
+script = ExtResource("1_oowna")
+display_text = "A"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_xxhil"]
+script = ExtResource("1_oowna")
+display_text = "S"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_gsike"]
+script = ExtResource("1_oowna")
+display_text = "D"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_x150u"]
+script = ExtResource("1_oowna")
+display_text = "F"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_ob6vg"]
+script = ExtResource("1_oowna")
+display_text = "G"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_xik3y"]
+script = ExtResource("1_oowna")
+display_text = "H"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_nop6w"]
+script = ExtResource("1_oowna")
+display_text = "J"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_ddhl6"]
+script = ExtResource("1_oowna")
+display_text = "K"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_7c526"]
+script = ExtResource("1_oowna")
+display_text = "L"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_678yq"]
+script = ExtResource("1_oowna")
+display_text = "
+"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_8xmcq"]
+script = ExtResource("1_oowna")
+display_text = "Z"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_04awn"]
+script = ExtResource("1_oowna")
+display_text = "X"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_boygu"]
+script = ExtResource("1_oowna")
+display_text = "C"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_2rr86"]
+script = ExtResource("1_oowna")
+display_text = "V"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_cmq0t"]
+script = ExtResource("1_oowna")
+display_text = "B"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_nejcc"]
+script = ExtResource("1_oowna")
+display_text = "N"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_b6umi"]
+script = ExtResource("1_oowna")
+display_text = "M"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_noelm"]
+script = ExtResource("1_oowna")
+display_text = "123"
+custom_keycode = 0
+custom_signal_value = "shift_layout"
+metadata/_custom_type_script = ExtResource("1_oowna")
+
+[resource]
+script = ExtResource("2_4qba7")
+keys = Array[ExtResource("1_oowna")]([SubResource("Resource_wwqyb"), SubResource("Resource_4jfa2"), SubResource("Resource_lhfac"), SubResource("Resource_qjuc2"), SubResource("Resource_jvn3r"), SubResource("Resource_4deix"), SubResource("Resource_om8b5"), SubResource("Resource_dt8un"), SubResource("Resource_vxbsr"), SubResource("Resource_kjfym"), SubResource("Resource_cwq6k"), SubResource("Resource_xxhil"), SubResource("Resource_gsike"), SubResource("Resource_x150u"), SubResource("Resource_ob6vg"), SubResource("Resource_xik3y"), SubResource("Resource_nop6w"), SubResource("Resource_ddhl6"), SubResource("Resource_7c526"), SubResource("Resource_678yq"), SubResource("Resource_8xmcq"), SubResource("Resource_04awn"), SubResource("Resource_boygu"), SubResource("Resource_2rr86"), SubResource("Resource_cmq0t"), SubResource("Resource_nejcc"), SubResource("Resource_b6umi"), null, SubResource("Resource_noelm"), ExtResource("2_nh3ik"), ExtResource("3_0axb4")])
+keys_string = "QWERTYUIOPASDFGHJKL\\nZXCVBNM"
+metadata/_custom_type_script = ExtResource("2_4qba7")

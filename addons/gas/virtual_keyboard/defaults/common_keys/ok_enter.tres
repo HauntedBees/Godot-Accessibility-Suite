@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GASVirtualKeyboardKey" load_steps=2 format=3 uid="uid://m22imyykaccn"]
+
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_key.gd" id="1_d4vw8"]
+
+[resource]
+script = ExtResource("1_d4vw8")
+display_text = "OK"
+custom_keycode = 4194309
+shift_modifier = false
+custom_signal_value = ""
+metadata/_custom_type_script = ExtResource("1_d4vw8")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GASVirtualKeyboardKey" load_steps=2 format=3 uid="uid://bal181v3to13m"]
+
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_key.gd" id="1_2caav"]
+
+[resource]
+script = ExtResource("1_2caav")
+display_text = "Back"
+custom_keycode = 4194308
+shift_modifier = false
+custom_signal_value = ""
+metadata/_custom_type_script = ExtResource("1_2caav")

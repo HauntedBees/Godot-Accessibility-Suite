@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GASVirtualKeyboardKey" load_steps=2 format=3 uid="uid://bxg1oenp4n2sv"]
+
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_key.gd" id="1_l7cf8"]
+
+[resource]
+script = ExtResource("1_l7cf8")
+display_text = "Space"
+custom_keycode = 32
+custom_signal_value = ""
+metadata/_custom_type_script = ExtResource("1_l7cf8")

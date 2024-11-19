@@ -1,0 +1,199 @@
+[gd_resource type="Resource" script_class="GASVirtualKeyboardLayout" load_steps=36 format=3 uid="uid://de5hjw62rnwa4"]
+
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_key.gd" id="1_c6kdh"]
+[ext_resource type="Resource" uid="uid://bal181v3to13m" path="res://addons/gas/virtual_keyboard/defaults/common_keys/backspace.tres" id="2_7yfv0"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_layout.gd" id="2_pbafy"]
+[ext_resource type="Resource" uid="uid://m22imyykaccn" path="res://addons/gas/virtual_keyboard/defaults/common_keys/ok_enter.tres" id="3_bhwcm"]
+
+[sub_resource type="Resource" id="Resource_c6kdh"]
+script = ExtResource("1_c6kdh")
+display_text = "1"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_pbafy"]
+script = ExtResource("1_c6kdh")
+display_text = "2"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_7yfv0"]
+script = ExtResource("1_c6kdh")
+display_text = "3"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_bhwcm"]
+script = ExtResource("1_c6kdh")
+display_text = "4"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_i20ai"]
+script = ExtResource("1_c6kdh")
+display_text = "5"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_aqyrc"]
+script = ExtResource("1_c6kdh")
+display_text = "6"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_42p21"]
+script = ExtResource("1_c6kdh")
+display_text = "7"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_ja2lv"]
+script = ExtResource("1_c6kdh")
+display_text = "8"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_hmxhi"]
+script = ExtResource("1_c6kdh")
+display_text = "9"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_weme5"]
+script = ExtResource("1_c6kdh")
+display_text = "0"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_851ew"]
+script = ExtResource("1_c6kdh")
+display_text = "@"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_5yy5j"]
+script = ExtResource("1_c6kdh")
+display_text = "#"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_lhe3s"]
+script = ExtResource("1_c6kdh")
+display_text = "$"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_e23tm"]
+script = ExtResource("1_c6kdh")
+display_text = "&"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_2npip"]
+script = ExtResource("1_c6kdh")
+display_text = "_"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_fcpdf"]
+script = ExtResource("1_c6kdh")
+display_text = "-"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_op3ky"]
+script = ExtResource("1_c6kdh")
+display_text = "("
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_ekwj2"]
+script = ExtResource("1_c6kdh")
+display_text = ")"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_n5cth"]
+script = ExtResource("1_c6kdh")
+display_text = "="
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_1wm1h"]
+script = ExtResource("1_c6kdh")
+display_text = "%"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_vu4m1"]
+script = ExtResource("1_c6kdh")
+display_text = "\""
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_utbuj"]
+script = ExtResource("1_c6kdh")
+display_text = "*"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_inqnt"]
+script = ExtResource("1_c6kdh")
+display_text = "'"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_a5ok4"]
+script = ExtResource("1_c6kdh")
+display_text = ":"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_32ft7"]
+script = ExtResource("1_c6kdh")
+display_text = "/"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_t7668"]
+script = ExtResource("1_c6kdh")
+display_text = "!"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_lnfe0"]
+script = ExtResource("1_c6kdh")
+display_text = "?"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_erwck"]
+script = ExtResource("1_c6kdh")
+display_text = "+"
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_6dl6x"]
+script = ExtResource("1_c6kdh")
+display_text = ","
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_aw0mu"]
+script = ExtResource("1_c6kdh")
+display_text = "."
+custom_keycode = null
+custom_signal_value = null
+
+[sub_resource type="Resource" id="Resource_3nmi3"]
+script = ExtResource("1_c6kdh")
+display_text = "abc"
+custom_keycode = 0
+custom_signal_value = "shift_layout"
+metadata/_custom_type_script = ExtResource("1_c6kdh")
+
+[resource]
+script = ExtResource("2_pbafy")
+keys = Array[ExtResource("1_c6kdh")]([SubResource("Resource_c6kdh"), SubResource("Resource_pbafy"), SubResource("Resource_7yfv0"), SubResource("Resource_bhwcm"), SubResource("Resource_i20ai"), SubResource("Resource_aqyrc"), SubResource("Resource_42p21"), SubResource("Resource_ja2lv"), SubResource("Resource_hmxhi"), SubResource("Resource_weme5"), SubResource("Resource_851ew"), SubResource("Resource_5yy5j"), SubResource("Resource_lhe3s"), SubResource("Resource_e23tm"), SubResource("Resource_2npip"), SubResource("Resource_fcpdf"), SubResource("Resource_op3ky"), SubResource("Resource_ekwj2"), SubResource("Resource_n5cth"), SubResource("Resource_1wm1h"), SubResource("Resource_vu4m1"), SubResource("Resource_utbuj"), SubResource("Resource_inqnt"), SubResource("Resource_a5ok4"), SubResource("Resource_32ft7"), SubResource("Resource_t7668"), SubResource("Resource_lnfe0"), SubResource("Resource_erwck"), SubResource("Resource_6dl6x"), SubResource("Resource_aw0mu"), null, SubResource("Resource_3nmi3"), ExtResource("2_7yfv0"), ExtResource("3_bhwcm")])
+keys_string = "1234567890@#$&_-()=%\"*':/!?+,."
+metadata/_custom_type_script = ExtResource("2_pbafy")

@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b26jseabiiivv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12l6o"]
+
+[resource]
+ButtonPadding/base_type = &"VSeparator"
+ButtonPadding/styles/separator = SubResource("StyleBoxEmpty_12l6o")
+HBoxContainer/constants/separation = 4
+VBoxContainer/constants/separation = 4
