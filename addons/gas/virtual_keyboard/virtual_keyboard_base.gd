@@ -13,38 +13,88 @@ signal keyboard_signal_emitted(value: String)
 			current_layout_index = layouts.size() - 1
 		else:
 			current_layout_index = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
 		redraw_keyboard()
 
-@export var custom_key_scene: PackedScene
-@export var minimum_key_size := Vector2(30.0, 30.0)
+@export_category("Key Button Styles")
+@export var custom_key_scene: PackedScene:
+	set(value):
+		custom_key_scene = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
+		redraw_keyboard()
+
+@export var minimum_key_size := Vector2(30.0, 30.0):
+	set(value):
+		minimum_key_size = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
+		redraw_keyboard()
+
+@export var custom_cursor_scene: PackedScene:
+	set(value):
+		custom_cursor_scene = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
+		redraw_keyboard()
 
 @export var show_empty_buttons := true:
 	set(value):
 		show_empty_buttons = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
 		redraw_keyboard()
 
 @export var expand_buttons := true:
 	set(value):
 		expand_buttons = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
 		redraw_keyboard()
 
+@export_category("Keyboard Styles")
 @export var horizontal_alignment := BoxContainer.AlignmentMode.ALIGNMENT_BEGIN:
 	set(value):
 		horizontal_alignment = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
 		redraw_keyboard()
 
 @export var columns_per_section := 5:
 	set(value):
 		columns_per_section = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
 		redraw_keyboard()
 
 @export var layouts_to_show := 1:
 	set(value):
 		layouts_to_show = value
+		if !Engine.is_editor_hint() && !is_inside_tree():
+			return
 		redraw_keyboard()
+
+var _cursor: Control
+var _position := Vector2i.ZERO
+var _keys: Dictionary[Vector2i, GASVirtualKeyboardButtonBase] = {}
 
 func _ready() -> void:
 	redraw_keyboard()
+	_draw_cursor()
+
+func _input(event: InputEvent) -> void:
+	var delta := GASInput.get_vector2i(event)
+	if delta == Vector2i.ZERO:
+		return
+	var new_pos := _position + delta
+	if _keys.has(new_pos):
+		_position = new_pos
+	#elif delta.y != 0 && _row_widths.has(new_pos.y):
+		#_position = Vector2i(_row_widths[new_pos.y], new_pos.y)
+	else:
+		return
+	_draw_cursor()
 
 func redraw_keyboard() -> void:
 	if !is_inside_tree():
@@ -58,7 +108,9 @@ func redraw_keyboard() -> void:
 		if i > 0:
 			hbox.add_child(VSeparator.new())
 		var next := (current_layout_index + i) % layouts.size()
-		hbox.add_child(_get_layout_vbox(layouts[next]))
+		hbox.add_child(_get_layout_vbox(layouts[next], i * columns_per_section))
+	if visible:
+		print(_keys.keys())
 
 func _on_virtual_keyboard_key_pressed(keycode: Key) -> void:
 	var e := InputEventKey.new()
@@ -82,12 +134,29 @@ func _on_virtual_keyboard_custom_pressed(value: String) -> void:
 	else:
 		keyboard_signal_emitted.emit(value)
 
+func _draw_cursor() -> void:
+	if !_cursor:
+		if custom_cursor_scene:
+			_cursor = custom_cursor_scene.instantiate()
+		else:
+			_cursor = ColorRect.new()
+			_cursor.mouse_filter = MOUSE_FILTER_IGNORE
+			_cursor.color = Color(Color.YELLOW, 0.5)
+			_cursor.set_anchors_preset(Control.PRESET_FULL_RECT)
+	if _cursor.is_inside_tree():
+		_cursor.get_parent().remove_child(_cursor)
+	if _keys.has(_position):
+		_keys[_position].add_child(_cursor)
+	else:
+		print("Position %s not found!" % _position)
+
 func _wipe_current_keyboard() -> void:
+	_keys.clear()
 	for i in get_children():
 		remove_child(i)
 		i.queue_free()
 
-func _get_layout_vbox(layout: GASVirtualKeyboardLayout) -> VBoxContainer:
+func _get_layout_vbox(layout: GASVirtualKeyboardLayout, x_offset := 0) -> VBoxContainer:
 	var container := VBoxContainer.new()
 	container.size_flags_horizontal = Container.SIZE_EXPAND_FILL
 	container.size_flags_vertical = Container.SIZE_EXPAND_FILL
@@ -97,6 +166,7 @@ func _get_layout_vbox(layout: GASVirtualKeyboardLayout) -> VBoxContainer:
 	var num_rows := 0
 	var current_row: HBoxContainer = null
 	var items_in_row := 0
+	var active_items_in_row := 0
 	for i in layout.keys.size():
 		var key := layout.keys[i]
 		var is_empty := key == null || key.display_text == ""
@@ -106,11 +176,18 @@ func _get_layout_vbox(layout: GASVirtualKeyboardLayout) -> VBoxContainer:
 				container.add_child(current_row)
 			current_row = _get_hbox()
 			items_in_row = 0
+			active_items_in_row = 0
 			num_rows += 1
 		items_in_row += 1
 		if !is_empty || show_empty_buttons:
-			current_row.add_child(_get_button(key))
+			var key_btn := _get_button(key)
+			if !is_empty:
+				key_btn.key_position = Vector2i(active_items_in_row + x_offset, num_rows - 1)
+				_keys[key_btn.key_position] = key_btn
+				active_items_in_row += 1
+			current_row.add_child(key_btn)
 	if show_empty_buttons && (layout.keys.size() % columns_per_section) != 0:
+		items_in_row = current_row.get_child_count()
 		var remaining_keys := columns_per_section - (layout.keys.size() % columns_per_section)
 		for i in remaining_keys:
 			current_row.add_child(_get_button())
@@ -132,9 +209,14 @@ func _get_button(key: GASVirtualKeyboardKey = null) -> GASVirtualKeyboardButtonB
 	else:
 		b = GASVirtualKeyboardButton.new(minimum_key_size)
 	b.key_info = key
+	b.virtual_keyboard_key_hovered.connect(_on_button_hovered)
 	b.virtual_keyboard_key_pressed.connect(_on_virtual_keyboard_key_pressed)
 	b.virtual_keyboard_custom_action_pressed.connect(_on_virtual_keyboard_custom_pressed)
 	return b
+
+func _on_button_hovered(btn: GASVirtualKeyboardButtonBase) -> void:
+	_position = btn.key_position
+	_draw_cursor()
 
 func _try_pad_row(row: HBoxContainer) -> void:
 	if expand_buttons:

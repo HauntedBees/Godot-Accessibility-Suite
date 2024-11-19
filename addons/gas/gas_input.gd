@@ -84,8 +84,8 @@ func emit_signal_if_click(s: Signal, i: InputEvent, button := MOUSE_BUTTON_LEFT)
 
 func get_vector2i(event: InputEvent) -> Vector2i:
 	return Vector2i(
-		_bool_to_int(event.is_action_pressed("ui_right")) - _bool_to_int(event.is_action_pressed("ui_left")),
-		_bool_to_int(event.is_action_pressed("ui_down")) - _bool_to_int(event.is_action_pressed("ui_up"))
+		_bool_to_int(is_event_action_just_pressed(event, "ui_right")) - _bool_to_int(is_event_action_just_pressed(event, "ui_left")),
+		_bool_to_int(is_event_action_just_pressed(event, "ui_down")) - _bool_to_int(is_event_action_just_pressed(event, "ui_up"))
 	)
 func _bool_to_int(b: bool) -> int: return 1 if b else 0
 

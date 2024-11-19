@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dkgyswwckcr23"]
+[gd_scene load_steps=24 format=3 uid="uid://dkgyswwckcr23"]
 
 [ext_resource type="Theme" uid="uid://b26jseabiiivv" path="res://addons/gas/virtual_keyboard/defaults/keyboard_theme.tres" id="1_7f0b2"]
 [ext_resource type="Script" path="res://example_scenes/virtual_keyboard.gd" id="1_dn2x2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://addons/gas/virtual_keyboard/defaults/virtual_keyboard_three_column.gd" id="11_ltc61"]
 [ext_resource type="Resource" uid="uid://civcvy1dbbsyg" path="res://addons/gas/virtual_keyboard/defaults/layouts/abc_uppercase.tres" id="13_gfvdo"]
 [ext_resource type="Script" path="res://addons/gas/virtual_keyboard/virtual_keyboard_key.gd" id="16_y4yf6"]
+[ext_resource type="PackedScene" uid="uid://bod8nevm0a0op" path="res://example_scenes/example_scene_parts/custom_button.tscn" id="17_1hbsc"]
 
 [sub_resource type="Resource" id="Resource_1hbsc"]
 script = ExtResource("16_y4yf6")
@@ -161,6 +162,7 @@ visible = false
 layout_mode = 2
 script = ExtResource("1_ulioy")
 layouts = Array[ExtResource("2_bopw8")]([SubResource("Resource_4hyyj")])
+custom_key_scene = ExtResource("17_1hbsc")
 metadata/_custom_type_script = ExtResource("1_ulioy")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
