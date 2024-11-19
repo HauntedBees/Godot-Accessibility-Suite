@@ -71,8 +71,14 @@ func _on_virtual_keyboard_custom_pressed(value: String) -> void:
 	if value == "shift_layout":
 		current_layout_index += 1
 	elif value.begins_with("action:"):
-		var action := value.split(":")[1]
-		return # TODO
+		var action_name := value.split(":")[1]
+		var input_actions := InputMap.action_get_events(action_name)
+		for a in input_actions:
+			var ak := a as InputEventKey
+			if ak:
+				_on_virtual_keyboard_key_pressed(ak.keycode)
+				return
+		Input.parse_input_event(input_actions[0])
 	else:
 		keyboard_signal_emitted.emit(value)
 

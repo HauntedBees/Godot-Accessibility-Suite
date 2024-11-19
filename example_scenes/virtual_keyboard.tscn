@@ -122,6 +122,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 size_flags_stretch_ratio = 2.0
 
+[node name="UpdateInfo" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Press any of the virtual keyboard keys to see them reflected here."
+script = ExtResource("4_7f0b2")
+metadata/_custom_type_script = ExtResource("4_7f0b2")
+
 [node name="KeyboardContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
@@ -175,6 +182,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Specialized Keyboard"
 
+[connection signal="keyboard_signal_emitted" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/KeyboardContainer/Custom" to="." method="_on_custom_keyboard_signal_emitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/QwertyButton" to="." method="_on_qwerty_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/ThreeButton" to="." method="_on_three_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]
