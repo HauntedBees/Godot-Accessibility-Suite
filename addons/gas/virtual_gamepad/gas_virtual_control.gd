@@ -49,7 +49,8 @@ var config:
 		}
 		return _inner_get_config(d)
 	set(c):
-		if c == null: return
+		if c == null:
+			return
 		anchor_top = c["anchor"][0]
 		anchor_left = c["anchor"][1]
 		anchor_right = c["anchor"][2]
@@ -63,14 +64,18 @@ var config:
 		is_toggle = c["toggle"]
 		can_be_toggled = c["can_be_toggled"]
 		_inner_set_config(c)
+
 func _inner_get_config(d: Dictionary) -> Dictionary: return d
 func _inner_set_config(c: Dictionary) -> void: pass
 
 func _on_input(i: InputEvent) -> void: pass
+
 ## Sometimes lifting the finger doesn't work quite right and things get fucky,
 ## so this _unhandled_input is to ensure that lifting a finger up always registers.
 ## TODO: figure out a better way of handling this? or maybe this IS how to handle it.
 func _unhandled_input(i: InputEvent) -> void:
-	if !(i is InputEventScreenTouch): return
-	if i.pressed: return
+	if i is not InputEventScreenTouch:
+		return
+	if i.pressed:
+		return
 	_on_input(i)

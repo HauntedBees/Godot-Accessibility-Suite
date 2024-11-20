@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://domdk6ojkhqwf"]
+
+[ext_resource type="Script" path="res://example_scenes/virtual_gamepad.gd" id="1_ilqbb"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_aiyuh"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_gamepad.gd" id="2_nt6pg"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_dpad.gd" id="3_30wuc"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_button.gd" id="3_nt6pg"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_qvgbu"]
+[ext_resource type="Texture2D" uid="uid://d31xceav5034u" path="res://addons/gas/virtual_gamepad/parts/button1.png" id="4_3jsk3"]
+[ext_resource type="Script" path="res://addons/gas/virtual_gamepad/gas_virtual_analog_stick.gd" id="6_3075r"]
+
+[node name="VirtualGamepad" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ilqbb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_aiyuh")
+bbcode_enabled = true
+text = "You can add a [code]GASVirtualGamepad[/code] container to your scene, then add any number of [code]GASVirtualControl[/code] nodes (by default there are [code]GASVirtualDPad[/code], [code]GASVirtualAnalogStick[/code], and [code]GASVirtualButton[/code], but you can create your own!) under it and you'll have a flexible virtual gamepad which, more importantly, comes with a built in Edit Mode allowing players to customize the controls to whatever positions and sizes work best for them. Controls can also be set to toggle mode, allowing the player to press the button to activate and inactivate it instead of having to hold the button down, and the controls can also be configured to have dynamic positions, so they'll appear wherever the player presses down and then move relative to that. Try it out!"
+fit_content = true
+script = ExtResource("3_qvgbu")
+accessible_text = "You can add a [code]GASVirtualGamepad[/code] container to your scene, then add any number of [code]GASVirtualControl[/code] nodes (by default there are [code]GASVirtualControl[/code], [code]GASVirtualControl[/code], and [code]GASVirtualControl[/code], but you can create your own!)"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EditModeToggle" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Edit Mode  "
+
+[node name="GASVirtualGamepad" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_nt6pg")
+mobile_only = false
+metadata/_custom_type_script = ExtResource("2_nt6pg")
+
+[node name="GASVirtualButton" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GASVirtualGamepad"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -818.0
+offset_top = 141.0
+offset_right = -738.0
+offset_bottom = 221.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("3_nt6pg")
+metadata/_custom_type_script = ExtResource("3_nt6pg")
+
+[node name="GASVirtualButton2" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GASVirtualGamepad"]
+anchors_preset = 0
+offset_left = 1209.0
+offset_top = 212.0
+offset_right = 1289.0
+offset_bottom = 292.0
+scale = Vector2(2, 2)
+script = ExtResource("3_nt6pg")
+texture = ExtResource("4_3jsk3")
+metadata/_custom_type_script = ExtResource("3_nt6pg")
+
+[node name="GASVirtualDPad" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GASVirtualGamepad"]
+anchors_preset = 0
+offset_left = 179.0
+offset_top = 396.0
+offset_right = 340.0
+offset_bottom = 557.0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("3_30wuc")
+metadata/_custom_type_script = ExtResource("3_30wuc")
+
+[node name="GASVirtualAnalogStick" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GASVirtualGamepad"]
+anchors_preset = 0
+offset_left = -5.0
+offset_top = 147.0
+offset_right = 155.0
+offset_bottom = 307.0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("6_3075r")
+metadata/_custom_type_script = ExtResource("6_3075r")
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/EditModeToggle" to="." method="_on_edit_mode_toggle_toggled"]

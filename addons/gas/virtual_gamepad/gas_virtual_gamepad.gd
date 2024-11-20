@@ -1,27 +1,32 @@
 @tool
 class_name GASVirtualGamepad extends Control
 
-@export var mobile_only := true
+@export var mobile_only := true:
+	set(value):
+		mobile_only = value
+		visible = !mobile_only || is_mobile
+
 @export var translation_prefix := ""
 
 var edit_mode := false:
-	set(m):
-		edit_mode = m
+	set(value):
+		edit_mode = value
 		for c in get_children():
-			if c == dynamic_control_handler: continue
-			c.edit_mode = m
+			if c != dynamic_control_handler:
+				c.edit_mode = value
 
 var is_mobile := OS.has_feature("mobile")
 var default_values := {}
-var dynamic_control_handler:Control = null
-var current_dynamic_control:GASVirtualControl = null
+var dynamic_control_handler: Control = null
+var current_dynamic_control: GASVirtualControl = null
 var current_dynamic_control_start := Vector2.ZERO
 
 func _ready() -> void:
 	if mobile_only && !is_mobile:
 		visible = false
+		return
 	await get_tree().process_frame
-	for c in get_children():
+	for c: GASVirtualControl in get_children():
 		default_values[c.name] = c.config
 		if c is GASVirtualMovementControl:
 			c.reset_dynamic_movement.connect(_on_reset_dynamic_movement.bind(c))
@@ -47,7 +52,8 @@ func load_setup() -> void:
 		if c == dynamic_control_handler:
 			continue
 		var loaded_config: Dictionary = config.get_value("controls", c.name, {})
-		if !loaded_config.is_empty(): c.config = loaded_config
+		if !loaded_config.is_empty():
+			c.config = loaded_config
 
 func save_setup() -> void:
 	var config := ConfigFile.new()
@@ -58,7 +64,7 @@ func save_setup() -> void:
 	config.save("user://gas_virtualgamepad_%s.cfg" % name)
 
 ## For handling dynamic analog sticks and directional pads
-func _on_unhandled_input(i: InputEvent)-> void:
+func _on_unhandled_input(i: InputEvent) -> void:
 	if edit_mode:
 		return
 	if _is_valid_drag(i) && current_dynamic_control != null:
