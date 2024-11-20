@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgclbm2p07i7f"]
+
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="1_mxaf1"]
+
+[node name="DaisyInfo" type="Node2D"]
+
+[node name="AccessibleLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -544.0
+offset_right = 544.0
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "Left Bumper: Backspace        Left Analog Stick: Select Petal    Right Bumper: Space
+Left Trigger: Numbers     Right Trigger: Caps"
+horizontal_alignment = 1
+script = ExtResource("1_mxaf1")
+metadata/_custom_type_script = ExtResource("1_mxaf1")

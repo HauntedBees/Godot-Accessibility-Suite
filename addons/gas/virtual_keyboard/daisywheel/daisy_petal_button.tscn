@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6pv2l3hc21w1"]
+
+[ext_resource type="Texture2D" uid="uid://dii2vb6wpjdgj" path="res://addons/gas/virtual_keyboard/daisywheel/button.png" id="1_wnc0y"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/daisywheel/daisy_petal_button.gd" id="2_y6jgh"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="3_0cv5w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6jgh"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DaisyPetalButton" type="Sprite2D"]
+self_modulate = Color(0.66486, 0.418232, 0.128613, 1)
+texture = ExtResource("1_wnc0y")
+script = ExtResource("2_y6jgh")
+text = "Z"
+button_color = Color(0.66486, 0.418232, 0.128613, 1)
+button_alpha = null
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = -48.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(48, 48)
+text = "Z"
+label_settings = SubResource("LabelSettings_y6jgh")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_0cv5w")
+metadata/_custom_type_script = ExtResource("3_0cv5w")

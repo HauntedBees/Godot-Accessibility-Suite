@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0abp0uxuges0"]
+
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/daisywheel/daisywheel.gd" id="1_2mm4o"]
+[ext_resource type="Script" path="res://example_scenes/daisywheel.gd" id="1_qygkj"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="3_bpmcw"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="4_g0v8y"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qygkj")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 743.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="GASDaisywheel" type="Node2D" parent="CenterContainer/Control"]
+position = Vector2(0, -45)
+script = ExtResource("1_2mm4o")
+info_position_offset = Vector2(0, -70)
+metadata/_custom_type_script = ExtResource("1_2mm4o")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 122.0
+offset_top = 36.0
+offset_right = 626.0
+offset_bottom = 354.0
+grow_vertical = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 45.0
+offset_top = 56.0
+offset_right = 871.0
+offset_bottom = 404.0
+theme_override_fonts/mono_font = ExtResource("3_bpmcw")
+bbcode_enabled = true
+text = "You can add a [code]GASDaisyWheel[/code] node to your scene if you want a gamepad-accessible virtual keyboard. You can customize the keys and visuals. Try it out! If you've got a gamepad use the controls described below to type into that textbox!"
+fit_content = true
+script = ExtResource("4_g0v8y")
+accessible_text = "You can add a [code]GASDaisyWheel[/code] node to your scene if you want a gamepad-accessible virtual keyboard. You can customize the keys and visuals. Try it out! If you've got a gamepad use the controls described below to type into that textbox!"

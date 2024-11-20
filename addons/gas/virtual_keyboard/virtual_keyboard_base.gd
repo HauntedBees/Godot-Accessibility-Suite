@@ -113,11 +113,7 @@ func redraw_keyboard() -> void:
 		print(_keys.keys())
 
 func _on_virtual_keyboard_key_pressed(keycode: Key) -> void:
-	var e := InputEventKey.new()
-	e.keycode = keycode
-	e.pressed = true
-	e.unicode = keycode
-	Input.parse_input_event(e)
+	GASInput.simulate_keycode_press(keycode)
 
 func _on_virtual_keyboard_custom_pressed(value: String) -> void:
 	if value == "shift_layout":

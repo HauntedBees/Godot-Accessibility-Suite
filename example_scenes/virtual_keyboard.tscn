@@ -108,12 +108,13 @@ size_flags_horizontal = 3
 [node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
-text = "Click inside the textbox below and then select any of the keyboard keys on the right to type into it! "
+text = "Select any of the keyboard keys on the right to type into the textbox below!"
 autowrap_mode = 3
 script = ExtResource("4_7f0b2")
 metadata/_custom_type_script = ExtResource("4_7f0b2")
 
 [node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 

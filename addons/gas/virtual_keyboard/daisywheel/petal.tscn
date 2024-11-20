@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://blnwaw0h16j1u"]
+
+[ext_resource type="Texture2D" uid="uid://10xtaf56rpxa" path="res://addons/gas/virtual_keyboard/daisywheel/petal.png" id="1_gmlym"]
+[ext_resource type="Script" path="res://addons/gas/virtual_keyboard/daisywheel/daisy_petal.gd" id="2_3rfkc"]
+[ext_resource type="PackedScene" uid="uid://b6pv2l3hc21w1" path="res://addons/gas/virtual_keyboard/daisywheel/daisy_petal_button.tscn" id="3_qiiyq"]
+
+[node name="DaisyPetal" type="Sprite2D"]
+texture = ExtResource("1_gmlym")
+script = ExtResource("2_3rfkc")
+
+[node name="ButtonSet" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 24)
+
+[node name="Top" parent="ButtonSet" instance=ExtResource("3_qiiyq")]
+unique_name_in_owner = true
+self_modulate = Color(0.960784, 1, 1, 0)
+position = Vector2(0, -72)
+pressed_color = Color(1, 1, 1, 1)
+button_color = Color(0.960784, 1, 1, 1)
+button_alpha = 0.0
+
+[node name="Left" parent="ButtonSet" instance=ExtResource("3_qiiyq")]
+unique_name_in_owner = true
+self_modulate = Color(0.66486, 0.418232, 0.128613, 0)
+position = Vector2(-72, 0)
+button_alpha = 0.0
+
+[node name="Right" parent="ButtonSet" instance=ExtResource("3_qiiyq")]
+unique_name_in_owner = true
+self_modulate = Color(0.66486, 0.418232, 0.128613, 0)
+position = Vector2(72, 0)
+button_alpha = 0.0
+
+[node name="Bottom" parent="ButtonSet" instance=ExtResource("3_qiiyq")]
+unique_name_in_owner = true
+self_modulate = Color(0.66486, 0.418232, 0.128613, 0)
+position = Vector2(0, 72)
+button_alpha = 0.0

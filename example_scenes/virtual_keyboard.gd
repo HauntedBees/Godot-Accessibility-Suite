@@ -5,6 +5,10 @@ extends ExampleSceneRoot
 @onready var _custom: GASVirtualKeyboardBase = %Custom
 @onready var _keybs: Array[GASVirtualKeyboardBase] = [_qwerty, _three, _custom]
 @onready var _update_info: AccessibleLabel = %UpdateInfo
+@onready var _text_edit: TextEdit = %TextEdit
+
+func _ready() -> void:
+	_text_edit.grab_focus()
 
 func _on_qwerty_button_pressed() -> void:
 	_toggle_vis(_qwerty)

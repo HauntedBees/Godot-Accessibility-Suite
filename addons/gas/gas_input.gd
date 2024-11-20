@@ -78,6 +78,13 @@ func is_click(i: InputEvent, button := MOUSE_BUTTON_LEFT) -> bool:
 		return false
 	return iemb.button_index == button && iemb.pressed
 
+func simulate_keycode_press(keycode: Key) -> void:
+	var e := InputEventKey.new()
+	e.pressed = true
+	e.keycode = keycode
+	e.unicode = keycode
+	Input.parse_input_event(e)
+
 func emit_signal_if_click(s: Signal, i: InputEvent, button := MOUSE_BUTTON_LEFT) -> void:
 	if is_click(i, button):
 		s.emit()

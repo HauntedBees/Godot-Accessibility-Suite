@@ -40,6 +40,9 @@ func change_scene(p: PackedScene, label: String, link: String) -> void:
 	if link == "":
 		_info.text = label
 		_back_button.visible = false
+	elif link == "none":
+		_info.text = label
+		_back_button.visible = true
 	else:
 		_info.text = "%s ([url=%s]More Info[/url])" % [label, link]
 		_back_button.visible = true
