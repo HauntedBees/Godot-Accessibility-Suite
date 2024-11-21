@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpptp1u1c6b0l"]
+[gd_scene load_steps=6 format=3 uid="uid://cpptp1u1c6b0l"]
 
-[ext_resource type="Script" path="res://example_scenes/example_scene_root.gd" id="1_svssq"]
+[ext_resource type="Script" path="res://example_scenes/control_sensitivity.gd" id="1_j8atw"]
 [ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="2_p54qq"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="2_pc76d"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="3_j8atw"]
+[ext_resource type="Texture2D" uid="uid://b3d2bpp40ucbc" path="res://example_assets/parrot.png" id="5_46j07"]
 
 [node name="ControlSensitivity" type="Control"]
 layout_mode = 3
@@ -10,9 +13,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_svssq")
+script = ExtResource("1_j8atw")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +23,92 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AccessibleLabel" type="Label" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-text = "TODO"
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("2_pc76d")
+bbcode_enabled = true
+text = "You can let players set the the [code]GASInput.mouse_sensitivity[/code] and [code]GASInput.joy_axis_sensitivity[/code] variables to adjust the sensitivity of mouse movements and analog stick movements respectively, then you can manually multiply your inputs by these values, or use the built-in [code]GASInput[/code] [code]mouse_motion_get_relative[/code], [code]mouse_motion_get_screen_relative[/code], [code]mouse_motion_get_velocity[/code], [code]mouse_motion_get_screen_velocity[/code], and [code]joypad_motion_get_axis_value[/code] methods to get the adjusted values.
+
+Use the left analog stick on your gamepad or move your mouse inside the white area below to move the bird around."
+fit_content = true
+script = ExtResource("3_j8atw")
+accessible_text = "You can let players set the the [code]GASInput.mouse_sensitivity[/code] and [code]GASInput.joy_axis_sensitivity[/code] variables to adjust the sensitivity of mouse movements and analog stick movements respectively, then you can manually multiply your inputs by these values, or use the built-in [code]GASInput[/code] [code]mouse_motion_get_relative[/code], [code]mouse_motion_get_screen_relative[/code], [code]mouse_motion_get_velocity[/code], [code]mouse_motion_get_screen_velocity[/code], and [code]joypad_motion_get_axis_value[/code] methods to get the adjusted values.
+
+Use the left analog stick on your gamepad or move your mouse inside the white area below to move the bird around."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mouse Sensitivity"
 script = ExtResource("2_p54qq")
+metadata/_custom_type_script = ExtResource("2_p54qq")
+
+[node name="MouseSens" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="AccessibleLabel2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Joypad Sensitivity"
+script = ExtResource("2_p54qq")
+metadata/_custom_type_script = ExtResource("2_p54qq")
+
+[node name="JoySens" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Bird" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/ColorRect/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 691.0
+offset_top = 283.0
+offset_right = 755.0
+offset_bottom = 347.0
+mouse_filter = 2
+texture = ExtResource("5_46j07")
+expand_mode = 1
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/MouseSens" to="." method="_on_mouse_sens_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/JoySens" to="." method="_on_joy_sens_value_changed"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/ColorRect" to="." method="_on_color_rect_gui_input"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/ColorRect" to="." method="_on_color_rect_mouse_exited"]

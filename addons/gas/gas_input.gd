@@ -11,7 +11,17 @@ var vibration_scale := 1.0:
 		vibration_scale = value
 		GASConfig.try_autosave()
 
- # https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
+# https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-sensitivity-of-controls/
+var mouse_sensitivity := 1.0:
+	set(value):
+		mouse_sensitivity = value
+		GASConfig.try_autosave()
+var joy_axis_sensitivity := 1.0:
+	set(value):
+		joy_axis_sensitivity = value
+		GASConfig.try_autosave()
+
+# https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-acceptance-delay-of-0-5-seconds-between-inputs/
 var input_cooldown_enabled := false:
 	set(value):
 		input_cooldown_enabled = value
@@ -63,6 +73,18 @@ func _ready() -> void:
 
 func get_last_input_method() -> InputMethodType:
 	return _last_input
+
+# https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-sensitivity-of-controls/
+func mouse_motion_get_relative(e: InputEventMouseMotion) -> Vector2:
+	return e.relative * mouse_sensitivity
+func mouse_motion_get_screen_relative(e: InputEventMouseMotion) -> Vector2:
+	return e.screen_relative * mouse_sensitivity
+func mouse_motion_get_velocity(e: InputEventMouseMotion) -> Vector2:
+	return e.velocity * mouse_sensitivity
+func mouse_motion_get_screen_velocity(e: InputEventMouseMotion) -> Vector2:
+	return e.screen_velocity * mouse_sensitivity
+func joypad_motion_get_axis_value(e: InputEventJoypadMotion) -> float:
+	return e.axis_value * joy_axis_sensitivity
 
 # https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
 func start_joy_vibration(device: int, weak_magnitude: float, strong_magnitude: float, duration: float = 0) -> void:

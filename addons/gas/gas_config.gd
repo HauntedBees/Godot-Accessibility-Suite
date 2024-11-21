@@ -27,6 +27,8 @@ func load_settings(profile := "default") -> bool:
 	if config.load("user://gas-%s.cfg" % profile) != OK: # nothing to load!
 		return false
 	_is_loading = true
+	GASInput.joy_axis_sensitivity = config.get_value("input", "joy_axis_sensitivity", 1.0)
+	GASInput.mouse_sensitivity = config.get_value("input", "mouse_sensitivity", 1.0)
 	GASInput.vibration_scale = config.get_value("input", "vibration_scale", 1.0)
 	GASInput.input_cooldown_length = config.get_value("input", "input_cooldown_length", 0.5)
 	GASInput.input_cooldown_enabled = config.get_value("input", "input_cooldown_enabled", true)
@@ -55,6 +57,8 @@ func save_settings(profile := "default") -> void:
 	config.set_value("input", "input_cooldown_enabled", GASInput.input_cooldown_enabled)
 	config.set_value("input", "input_toggle_actions", GASInput.input_toggle_actions)
 	config.set_value("input", "vibration_scale", GASInput.vibration_scale)
+	config.set_value("input", "mouse_sensitivity", GASInput.mouse_sensitivity)
+	config.set_value("input", "joy_axis_sensitivity", GASInput.joy_axis_sensitivity)
 	config.set_value("text", "override_font_scale", GASText.override_font_scale)
 	config.set_value("time", "engine_time_scale", Engine.time_scale)
 	config.set_value("core", "custom_settings", _custom_settings)
