@@ -101,7 +101,7 @@ func _on_confirmation_dialog_canceled() -> void:
 
 func _on_ConfirmationDialog_confirmed() -> void:
 	GASInput.remap_action(_selected_input.input_action, _last_event_pressed)
-	_selected_input.refresh_icon()
+	_selected_input.refresh_icon(GASInput.get_last_input_method())
 	_on_confirmation_dialog_canceled()
 
 func _prepopulate_actions() -> void:

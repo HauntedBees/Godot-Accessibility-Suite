@@ -7,6 +7,7 @@ var _btn_tex: AtlasTexture
 @onready var _button: Button = %Button
 
 func _ready() -> void:
+	super()
 	_btn_tex = _button.icon.duplicate()
 	_button.icon = _btn_tex
 

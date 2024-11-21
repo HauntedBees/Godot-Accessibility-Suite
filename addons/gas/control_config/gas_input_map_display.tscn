@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://addons/gas/control_config/gas_input_map_display.gd" id="1_x323m"]
 [ext_resource type="Texture2D" uid="uid://0huoupomtexx" path="res://addons/gas/control_config/inputs.png" id="3_x323m"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hx5ht"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x323m"]
 atlas = ExtResource("3_x323m")
-region = Rect2(0, 0, 128, 128)
+region = Rect2(0, 0, 64, 64)
 
 [node name="GASInputMapDisplay" type="MarginContainer"]
 anchors_preset = 15
@@ -34,8 +34,9 @@ metadata/_custom_type_script = ExtResource("1_nfro4")
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
-icon = SubResource("AtlasTexture_hx5ht")
+icon = SubResource("AtlasTexture_x323m")
 flat = true
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://da5yaxpxr68g1"]
+[gd_scene load_steps=6 format=3 uid="uid://da5yaxpxr68g1"]
 
 [ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_csau4"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_lija0"]
 [ext_resource type="PackedScene" uid="uid://duvxogp47mb0s" path="res://example_scenes/save_settings.tscn" id="3_l3haq"]
 [ext_resource type="PackedScene" uid="uid://dkgyswwckcr23" path="res://example_scenes/virtual_keyboard.tscn" id="4_4gsge"]
 [ext_resource type="PackedScene" uid="uid://b0abp0uxuges0" path="res://example_scenes/daisywheel.tscn" id="5_x7opr"]
-[ext_resource type="PackedScene" uid="uid://domdk6ojkhqwf" path="res://example_scenes/virtual_gamepad.tscn" id="6_6h4j5"]
 
 [node name="General" type="Control"]
 layout_mode = 3
@@ -62,14 +61,3 @@ script = ExtResource("2_lija0")
 heading_name = "General > Daisywheel"
 link = "none"
 scene = ExtResource("5_x7opr")
-
-[node name="Button4" type="Button" parent="MarginContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Provide a virtual gamepad with customization options for mobile games."
-autowrap_mode = 3
-script = ExtResource("2_lija0")
-heading_name = "General > Virtual Gamepad"
-link = "none"
-scene = ExtResource("6_6h4j5")

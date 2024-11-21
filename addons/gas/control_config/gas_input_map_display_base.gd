@@ -3,16 +3,17 @@ class_name GASInputMapDisplayBase extends MarginContainer
 
 signal selected(me: GASInputMapDisplayBase)
 
+const _ICON_SIZE := 64
+
 @export var display_name: String: set = _set_display_name
 @export var input_action: String: set = _set_input_action
 
 var display_type: GASActionConfig.DisplayType
 
-
 func _ready() -> void:
 	GASInput.input_method_changed.connect(refresh_icon)
 
-func refresh_icon() -> void:
+func refresh_icon(_i: GASInput.InputMethodType) -> void:
 	_set_input_action(input_action)
 
 func get_texture() -> Texture2D:
@@ -63,7 +64,7 @@ func get_offset_from_input(action: InputEvent) -> Vector2:
 			JOY_AXIS_RIGHT_Y: idx += 9 if sign(am.axis_value) < 0 else 11
 			JOY_AXIS_TRIGGER_LEFT: idx += 12 + _get_console_offset(joy_name, false)
 			JOY_AXIS_TRIGGER_RIGHT: idx += 13 + _get_console_offset(joy_name, false)
-	return Vector2(128 * (idx % 16), 128 * floor(idx / 16.0))
+	return Vector2(_ICON_SIZE * (idx % 16), _ICON_SIZE * floori(idx / 16.0))
 
 func _get_first_action(action_key: String, prefer_gamepad: bool) -> InputEvent:
 	var actions := InputMap.action_get_events(action_key)

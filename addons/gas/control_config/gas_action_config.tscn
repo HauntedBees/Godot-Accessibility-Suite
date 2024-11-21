@@ -15,7 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
-input_type = null
 action_display_names = Array[String](["Ui Accept", "Ui Select", "Ui Cancel", "Ui Left", "Ui Right", "Ui Up", "Ui Down", "Gas Scroll Down", "Gas Scroll Up"])
 action_input_maps = Array[String](["ui_accept", "ui_select", "ui_cancel", "ui_left", "ui_right", "ui_up", "ui_down", "gas_scroll_down", "gas_scroll_up"])
 number_of_columns = 3

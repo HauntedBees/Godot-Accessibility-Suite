@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv3nk0akklfws"]
+[gd_scene load_steps=11 format=3 uid="uid://dv3nk0akklfws"]
 
 [ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_8jbee"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_hr6ax"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bmidqn2rsimo4" path="res://example_scenes/input_mapping.tscn" id="7_cnym8"]
 [ext_resource type="PackedScene" uid="uid://bwkcuusg8mj06" path="res://example_scenes/input_toggle.tscn" id="8_j5bq4"]
 [ext_resource type="PackedScene" uid="uid://c02aqht3thrjb" path="res://example_scenes/input_delay.tscn" id="8_xx46e"]
+[ext_resource type="PackedScene" uid="uid://domdk6ojkhqwf" path="res://example_scenes/virtual_gamepad.tscn" id="10_88ka5"]
 
 [node name="Motor" type="Control"]
 layout_mode = 3
@@ -78,7 +79,6 @@ link = "https://gameaccessibilityguidelines.com/include-an-option-to-adjust-the-
 scene = ExtResource("6_tai5d")
 
 [node name="Button5" type="Button" parent="MarginContainer/GridContainer"]
-modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -134,7 +134,6 @@ link = "https://gameaccessibilityguidelines.com/include-a-cool-down-period-post-
 scene = ExtResource("8_xx46e")
 
 [node name="Button10" type="Button" parent="MarginContainer/GridContainer"]
-modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -143,3 +142,4 @@ autowrap_mode = 3
 script = ExtResource("2_hr6ax")
 heading_name = "Motor > Virtual Gamepad"
 link = "https://gameaccessibilityguidelines.com/allow-controls-to-be-remapped-reconfigured/"
+scene = ExtResource("10_88ka5")
