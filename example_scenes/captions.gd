@@ -1,4 +1,4 @@
-extends Control
+extends ExampleSceneRoot
 
 const _FONT_A: Dictionary[String, FontFile] = {
 	"bold_font": preload("res://addons/gas/fonts/decalotype/Decalotype-Bold.ttf"),
