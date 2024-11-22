@@ -85,6 +85,20 @@ func mouse_motion_get_screen_velocity(e: InputEventMouseMotion) -> Vector2:
 	return e.screen_velocity * mouse_sensitivity
 func joypad_motion_get_axis_value(e: InputEventJoypadMotion) -> float:
 	return e.axis_value * joy_axis_sensitivity
+func get_action_raw_strength(action: StringName, exact_match := false) -> float:
+	return Input.get_action_raw_strength(action, exact_match) * joy_axis_sensitivity
+func get_action_strength(action: StringName, exact_match := false) -> float:
+	return Input.get_action_strength(action, exact_match) * joy_axis_sensitivity
+func get_axis(negative_action: StringName, positive_action: StringName) -> float:
+	return Input.get_axis(negative_action, positive_action) * joy_axis_sensitivity
+func get_joy_axis(device: int, axis: JoyAxis) -> float:
+	return Input.get_joy_axis(device, axis) * joy_axis_sensitivity
+func get_last_mouse_screen_velocity() -> Vector2:
+	return Input.get_last_mouse_screen_velocity() * mouse_sensitivity
+func get_last_mouse_velocity() -> Vector2:
+	return Input.get_last_mouse_velocity() * mouse_sensitivity
+func get_vector(negative_x: StringName, positive_x: StringName, negative_y: StringName, positive_y: StringName, deadzone: float = -1.0) -> Vector2:
+	return Input.get_vector(negative_x, positive_x, negative_y, positive_y, deadzone) * joy_axis_sensitivity
 
 # https://gameaccessibilityguidelines.com/include-toggle-slider-for-any-haptics/
 func start_joy_vibration(device: int, weak_magnitude: float, strong_magnitude: float, duration: float = 0) -> void:

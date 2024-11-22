@@ -17,6 +17,7 @@ This was originally written for Godot 3.5, and while certain parts of it have be
  - Control remapping utility methods (example page in progress).
  - Support for providing alternatives to holding down buttons.
  - Support for input cooldowns.
+ - Support for adjusting mouse and joystick sensitivity.
  - Scalable font size for `Label` and `RichTextLabel` nodes.
  - Helpers for highlighting important words.
  - Utility for saving the game screen to a file.

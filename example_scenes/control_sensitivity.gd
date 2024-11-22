@@ -13,15 +13,12 @@ func _on_mouse_sens_value_changed(value: float) -> void:
 func _on_joy_sens_value_changed(value: float) -> void:
 	GASInput.joy_axis_sensitivity = value
 
-# TODO: get_action_raw_strength, get_action_strength, get_axis, get_joy_axis
-# get_last_mouse_screen_velocity, get_last_mouse_velocity, get_vector
-
-#func _input(event: InputEvent) -> void:
-	#if event is InputEventJoypadMotion:
-		#var motion := 10.0 * GASInput.joypad_motion_get_axis_value(event)
-		#match (event as InputEventJoypadMotion).axis:
-			#JOY_AXIS_LEFT_X: _bird.position.x += motion
-			#JOY_AXIS_LEFT_Y: _bird.position.y += motion
+func _process(delta: float) -> void:
+	var dir := Vector2(
+		GASInput.get_joy_axis(0, JOY_AXIS_LEFT_X),
+		GASInput.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+	)
+	_bird.position += dir * delta * 500.0
 
 func _on_color_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
