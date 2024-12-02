@@ -106,6 +106,12 @@ gas_scroll_up={
 ]
 }
 
+[internationalization]
+
+locale/translation_remaps={
+"res://example_scenes/subtitles/franz.srt": PackedStringArray("res://example_scenes/subtitles/franz_es.srt:es")
+}
+
 [physics]
 
 common/enable_pause_aware_picking=true

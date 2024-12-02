@@ -1,0 +1,14 @@
+[remap]
+
+importer="gas.caption.srt"
+type="Resource"
+uid="uid://cm4uxfw2mgt10"
+path="res://.godot/imported/franz_es.srt-26e652965ac188d0a2ee47308d1f2aac.tres"
+
+[deps]
+
+source_file="res://example_scenes/subtitles/franz_es.srt"
+dest_files=["res://.godot/imported/franz_es.srt-26e652965ac188d0a2ee47308d1f2aac.tres"]
+
+[params]
+

@@ -83,3 +83,9 @@ func _on_font_button_pressed() -> void:
 	var font := _FONT_B if _is_font_b else _FONT_A
 	for k in font.keys():
 		GASCaptions.custom_theme.set_font(k, "Primary", font[k])
+
+func _on_english_button_pressed() -> void:
+	TranslationServer.set_locale("en_US")
+
+func _on_spanish_button_pressed() -> void:
+	TranslationServer.set_locale("es_LA")
