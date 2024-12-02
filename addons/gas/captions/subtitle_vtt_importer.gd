@@ -4,13 +4,13 @@ extends EditorImportPlugin
 const _REFRESH_RATE := 0.066666667 # 4 frames at 60FPS
 
 func _get_importer_name() -> String:
-	return "gas.caption.srt"
+	return "gas.caption.vtt"
 
 func _get_visible_name() -> String:
-	return "Subtitle Importer"
+	return "VTT Subtitle Importer"
 
 func _get_recognized_extensions() -> PackedStringArray:
-	return ["srt"]
+	return ["vtt"]
 
 func _get_save_extension() -> String:
 	return "tres"
@@ -42,27 +42,52 @@ func _import(source_file: String, save_path: String, options: Dictionary, platfo
 	if res.audio == null:
 		res.audio = _try_get_with_extension(source_file, ".mp3")
 	if res.audio == null:
-		printerr("No valid .ogg, .wav, or .mp3 file exists to accompany %s" % source_file)
+		printerr("Import Error (%s): No valid .ogg, .wav, or .mp3 file exists to accompany this file." % source_file)
 		return FAILED
 	var current_string: PackedStringArray = []
 	var lines_in_current_caption := 0
 	var current_caption := 0
+	var line_no := 1
+	var in_style_or_note := false
+	var just_started_new_caption := false
 	while !file.eof_reached():
 		var l := file.get_line().strip_edges()
+		if line_no == 1 && l != "WEBVTT":
+			printerr("Import Error (%s): First line in file must be \"WEBVTT.\"" % source_file)
+			return FAILED
+		line_no += 1
 		if l == "":
+			if in_style_or_note:
+				in_style_or_note = false
 			continue
-		if l.is_valid_int(): # new caption
+		elif in_style_or_note:
+			continue
+		elif l == "STYLE":
+			in_style_or_note = true
+			printerr("Import Warning (%s): VTT styles are not currently supported." % source_file)
+		elif l.begins_with("NOTE"):
+			in_style_or_note = true
+		elif l.is_valid_int(): # new caption (optional)
 			if current_string.size():
 				res.caption_texts.append("\n".join(current_string))
 			current_string = []
 			lines_in_current_caption = 0
 			current_caption += 1
-		elif l.contains("-->"): # new timings
+			just_started_new_caption = true
+		elif l.contains("-->"): # new timings, new caption
+			if !just_started_new_caption:
+				if current_string.size():
+					res.caption_texts.append("\n".join(current_string))
+				current_string = []
+				lines_in_current_caption = 0
+				current_caption += 1
+			else:
+				just_started_new_caption = true
 			var split := l.split("-->")
 			var last_end_time := -1.0 if res.caption_timings.size() == 0 else res.caption_timings[-1]
-			var current_start_time := _time_string_to_seconds(split[0].strip_edges())
+			var current_start_time := _time_string_to_seconds(source_file, split[0].strip_edges())
 			res.caption_timings.append(current_start_time)
-			res.caption_timings.append(_time_string_to_seconds(split[1].strip_edges()))
+			res.caption_timings.append(_time_string_to_seconds(source_file, split[1].strip_edges()))
 			if (current_start_time - last_end_time) < _REFRESH_RATE:
 				printerr("Import Warning (%s): Caption %d should start at least %1.3f seconds after Caption %d." % [source_file, current_caption, _REFRESH_RATE, current_caption - 1])
 		else:
@@ -77,11 +102,15 @@ func _try_get_with_extension(source_file: String, new_extension: String) -> Audi
 	var new_file = source_file.replace(".srt", new_extension)
 	return load(new_file) if FileAccess.file_exists(new_file) else null
 
-func _time_string_to_seconds(s: String) -> float:
+func _time_string_to_seconds(source_file: String, s: String) -> float:
+	if s.contains(" "):
+		printerr("Import Warning (%s): Position cues are not currently supported." % source_file)
+		s = s.split(" ")[0]
 	var timing := s.split(":")
-	var hours := int(timing[0])
-	var minutes := int(timing[1])
-	var second_split := timing[2].split(",")
+	var has_hours := timing.size() == 2
+	var hours := int(timing[0]) if has_hours else 0
+	var minutes := int(timing[1 if has_hours else 0])
+	var second_split := timing[2 if has_hours else 1].split(".")
 	var seconds := int(second_split[0])
 	var milliseconds := int(second_split[1])
 	return milliseconds + 1000 * seconds + 60000 * minutes + 3600000 * hours
