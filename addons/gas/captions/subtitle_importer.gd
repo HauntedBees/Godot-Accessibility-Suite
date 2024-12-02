@@ -1,6 +1,8 @@
 @tool
 extends EditorImportPlugin
 
+const _REFRESH_RATE := 0.066666667 # 4 frames at 60FPS
+
 func _get_importer_name() -> String:
 	return "gas.caption.srt"
 
@@ -43,6 +45,8 @@ func _import(source_file: String, save_path: String, options: Dictionary, platfo
 		printerr("No valid .ogg, .wav, or .mp3 file exists to accompany %s" % source_file)
 		return FAILED
 	var current_string: PackedStringArray = []
+	var lines_in_current_caption := 0
+	var current_caption := 0
 	while !file.eof_reached():
 		var l := file.get_line().strip_edges()
 		if l == "":
@@ -51,12 +55,21 @@ func _import(source_file: String, save_path: String, options: Dictionary, platfo
 			if current_string.size():
 				res.caption_texts.append("\n".join(current_string))
 			current_string = []
+			lines_in_current_caption = 0
+			current_caption += 1
 		elif l.contains("-->"): # new timings
 			var split := l.split("-->")
-			res.caption_timings.append(_time_string_to_seconds(split[0].strip_edges()))
+			var last_end_time := -1.0 if res.caption_timings.size() == 0 else res.caption_timings[-1]
+			var current_start_time := _time_string_to_seconds(split[0].strip_edges())
+			res.caption_timings.append(current_start_time)
 			res.caption_timings.append(_time_string_to_seconds(split[1].strip_edges()))
+			if (current_start_time - last_end_time) < _REFRESH_RATE:
+				printerr("Import Warning (%s): Caption %d should start at least %1.3f seconds after Caption %d." % [source_file, current_caption, _REFRESH_RATE, current_caption - 1])
 		else:
+			lines_in_current_caption += 1
 			current_string.append(l)
+			if lines_in_current_caption > 2:
+				printerr("Import Warning (%s): Caption %d is longer than the recommended two lines." % [source_file, current_caption])
 	res.caption_texts.append("\n".join(current_string))
 	return ResourceSaver.save(res, "%s.%s" % [save_path, _get_save_extension()])
 
