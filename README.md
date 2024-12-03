@@ -27,7 +27,6 @@ This was originally written for Godot 3.5, and while certain parts of it have be
  - `.srt` resource importing and a `CaptionedAudioStreamPlayer` node that syncs captions and audio.
 
 ### Remaining Features
-
 See the [Issues list](https://github.com/HauntedBees/Godot-Accessibility-Suite/issues), but the main things are:
  - Resizable/rearrangeable Control nodes.
  - Dark, light, and high-contrast themes.
@@ -39,3 +38,10 @@ See the [Issues list](https://github.com/HauntedBees/Godot-Accessibility-Suite/i
 If there's a feature you want included in this suite, whether you're a game developer or a game player, create an [issue](https://github.com/HauntedBees/Godot-Accessibility-Suite/issues) for it! My goal is to make a tool helpful for everyone, so the most important thing you can do is let me know how!
 
 And if you would like to contribute to the project with code, please do! All contributions must be made with a permissive MIT-compatible open source license to ensure as many game developers as possible have access to this code.
+
+## Other Add-ons
+The following add-ons are developed and maintained by other developers, but have a comparable license (i.e. if the Godot Accessibility Suite's license is okay for your project, theirs should be, too) and may also help with various accessibility needs. We have no affiliation with the developers of these add-ons and are not endorsing them or their creators; this listing is purely informational.
+ - [Naddy's Extra Controls](https://github.com/don-tnowe/godot-extra-controls): `ScaleContainer` and `MaxSizeContainer` may help with [allowing interfaces to be resized](https://gameaccessibilityguidelines.com/allow-interfaces-to-be-resized/). `Draggable` may help with [allowing interfaces to be rearranged](https://gameaccessibilityguidelines.com/allow-interfaces-to-be-rearranged/).
+ - [Transform Container](https://github.com/PhoenixStroh/transform-container): May help with [allowing interfaces to be rearranged](https://gameaccessibilityguidelines.com/allow-interfaces-to-be-rearranged/).
+ - [Godot Thumbstick Plugin](https://github.com/JoenTNT/godot_thumbstick_addon): Provides virtual joysticks for mobile games.
+ - [Godot Visual Accesibility Tool](https://github.com/jonatan969/GodotVisualAccesibilityTool): Provides shaders that handle color blindness filters, color replacement, brightness effects, etc.
