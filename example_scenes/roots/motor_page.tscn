@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv3nk0akklfws"]
+[gd_scene load_steps=13 format=3 uid="uid://dv3nk0akklfws"]
 
 [ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_8jbee"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_hr6ax"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dftaxs2hfhp2l" path="res://example_scenes/control_resizing.tscn" id="8_32gbf"]
 [ext_resource type="PackedScene" uid="uid://bwkcuusg8mj06" path="res://example_scenes/input_toggle.tscn" id="8_j5bq4"]
 [ext_resource type="PackedScene" uid="uid://c02aqht3thrjb" path="res://example_scenes/input_delay.tscn" id="8_xx46e"]
+[ext_resource type="PackedScene" uid="uid://cvmqrvbjiq5yp" path="res://example_scenes/control_rearranging.tscn" id="9_v3e02"]
 [ext_resource type="PackedScene" uid="uid://domdk6ojkhqwf" path="res://example_scenes/virtual_gamepad.tscn" id="10_88ka5"]
 
 [node name="Motor" type="Control"]
@@ -102,7 +103,6 @@ link = "https://gameaccessibilityguidelines.com/allow-interfaces-to-be-resized/"
 scene = ExtResource("8_32gbf")
 
 [node name="Button7" type="Button" parent="MarginContainer/GridContainer"]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -111,6 +111,7 @@ autowrap_mode = 3
 script = ExtResource("2_hr6ax")
 heading_name = "Motor > Resizable Interfaces"
 link = "https://gameaccessibilityguidelines.com/allow-interfaces-to-be-rearranged/"
+scene = ExtResource("9_v3e02")
 
 [node name="Button8" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2

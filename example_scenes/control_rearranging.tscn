@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvmqrvbjiq5yp"]
+
+[ext_resource type="Script" path="res://example_scenes/control_rearranging.gd" id="1_38pid"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="1_knrur"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="2_38pid"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="3_j02w4"]
+[ext_resource type="Texture2D" uid="uid://b3d2bpp40ucbc" path="res://example_assets/parrot.png" id="5_n8feo"]
+
+[sub_resource type="Gradient" id="Gradient_j02w4"]
+offsets = PackedFloat32Array(0, 0.509158, 0.538462, 1)
+colors = PackedColorArray(0, 1, 1, 1, 0.262745, 0.690196, 1, 1, 0, 0.709804, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tqq64"]
+gradient = SubResource("Gradient_j02w4")
+fill_from = Vector2(0.448718, 0.252137)
+fill_to = Vector2(0.440171, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n8feo"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+
+[node name="ControlRearranging" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_38pid")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("1_knrur")
+bbcode_enabled = true
+text = "The same variables you set when building your UIs with Control nodes in the Godot Scene Editor can also be set programatically, allowing you to provide players with the ability to reposition the UI to match their needs. Using [code]BoxContainer[/code], [code]Separator[/code], and [code]MarginContainer[/code] nodes, you can easily provide multiple options for players to position their UI!"
+fit_content = true
+script = ExtResource("2_38pid")
+accessible_text = "The same variables you set when building your UIs with Control nodes in the Godot Scene Editor can also be set programatically, allowing you to provide players with the ability to reposition the UI to match their needs. Using [code]BoxContainer[/code], [code]Separator[/code], and [code]MarginContainer[/code] nodes, you can easily provide multiple options for players to position their UI!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "UI Position"
+horizontal_alignment = 1
+script = ExtResource("3_j02w4")
+metadata/_custom_type_script = ExtResource("3_j02w4")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "TL"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "TC"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "TR"
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "CL"
+
+[node name="Button5" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+disabled = true
+text = "CC"
+
+[node name="Button6" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "CR"
+
+[node name="Button7" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "BL"
+
+[node name="Button8" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "BC"
+
+[node name="Button9" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Buttons"]
+layout_mode = 2
+text = "BR"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_tqq64")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 96
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("5_n8feo")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
+
+[node name="HUD" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer2/HUD"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer2/HUD/HBoxContainer"]
+layout_mode = 2
+text = "HP:"
+label_settings = SubResource("LabelSettings_n8feo")
+script = ExtResource("3_j02w4")
+metadata/_custom_type_script = ExtResource("3_j02w4")
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer2/HUD/HBoxContainer"]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+value = 76.0
+show_percentage = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer2/HUD"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer2/HUD/HBoxContainer2"]
+layout_mode = 2
+text = "PP:"
+label_settings = SubResource("LabelSettings_n8feo")
+script = ExtResource("3_j02w4")
+metadata/_custom_type_script = ExtResource("3_j02w4")
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer2/HUD/HBoxContainer2"]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+value = 23.0
+show_percentage = false
