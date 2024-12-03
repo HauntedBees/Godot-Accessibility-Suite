@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmd287h3j231s"]
+[gd_scene load_steps=8 format=3 uid="uid://cmd287h3j231s"]
 
 [ext_resource type="Script" path="res://example_scenes/roots/landing_page.gd" id="1_xppdm"]
 [ext_resource type="Script" path="res://example_components/category_button.gd" id="2_rt4su"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpptp1u1c6b0l" path="res://example_scenes/control_sensitivity.tscn" id="3_v6mkt"]
 [ext_resource type="PackedScene" uid="uid://ccjy7rxrnqg5i" path="res://example_scenes/font_size.tscn" id="4_5u67s"]
 [ext_resource type="PackedScene" uid="uid://b6mi43lpk3nhg" path="res://example_scenes/well_spaced.tscn" id="6_lle04"]
+[ext_resource type="PackedScene" uid="uid://dftaxs2hfhp2l" path="res://example_scenes/control_resizing.tscn" id="7_fguij"]
 
 [node name="Vision" type="Control"]
 layout_mode = 3
@@ -86,7 +87,6 @@ heading_name = "Vision > Sound Controls"
 link = "https://gameaccessibilityguidelines.com/provide-separate-volume-controls-or-mutes-for-effects-speech-and-background-music/"
 
 [node name="Button6" type="Button" parent="MarginContainer/GridContainer"]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -95,6 +95,7 @@ autowrap_mode = 3
 script = ExtResource("2_rt4su")
 heading_name = "Vision > Resizable Interfaces"
 link = "https://gameaccessibilityguidelines.com/allow-interfaces-to-be-resized/"
+scene = ExtResource("7_fguij")
 
 [node name="Button7" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2

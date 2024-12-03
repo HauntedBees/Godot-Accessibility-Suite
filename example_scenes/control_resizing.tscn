@@ -1,0 +1,211 @@
+[gd_scene load_steps=11 format=3 uid="uid://dftaxs2hfhp2l"]
+
+[ext_resource type="Script" path="res://example_scenes/control_resizing.gd" id="1_735rd"]
+[ext_resource type="FontFile" uid="uid://dqgaor6ji1vft" path="res://font/liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf" id="1_ko3ht"]
+[ext_resource type="Script" path="res://addons/gas/gas_richtextlabel.gd" id="2_ab0nn"]
+[ext_resource type="Script" path="res://addons/gas/gas_label.gd" id="3_ab0nn"]
+[ext_resource type="Texture2D" uid="uid://dnhuhokxjtoa6" path="res://example_assets/bluebird.png" id="5_vxw3r"]
+[ext_resource type="Texture2D" uid="uid://b3d2bpp40ucbc" path="res://example_assets/parrot.png" id="6_vavss"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_735rd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_735rd"]
+bg_color = Color(0.215686, 0.0980392, 0.52549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yv22"]
+bg_color = Color(1, 0.505882, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxw3r"]
+bg_color = Color(0.627451, 0.423529, 1, 1)
+
+[node name="ControlResizing" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_735rd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AccessibleRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/mono_font = ExtResource("1_ko3ht")
+bbcode_enabled = true
+text = "All [code]Control[/code] nodes come with properties that can be modified to allow the player to resize them, such as [code]custom_minimum_size[/code] and [code]size_flags_stretch_ratio[/code]. With these options you can easily allow users to customize the sizes and relative sizes of controls."
+fit_content = true
+script = ExtResource("2_ab0nn")
+accessible_text = "All [code]Control[/code] nodes come with properties that can be modified to allow the player to resize them, such as [code]custom_minimum_size[/code] and [code]size_flags_stretch_ratio[/code]. With these options you can easily allow users to customize the sizes and relative sizes of controls."
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Left Panel Ratio:"
+script = ExtResource("3_ab0nn")
+metadata/_custom_type_script = ExtResource("3_ab0nn")
+
+[node name="LeftScaleSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+min_value = 0.4
+max_value = 1.8
+step = 0.2
+value = 1.0
+tick_count = 8
+ticks_on_borders = true
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_735rd")
+
+[node name="AccessibleLabel2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Center Panel Size:"
+script = ExtResource("3_ab0nn")
+metadata/_custom_type_script = ExtResource("3_ab0nn")
+
+[node name="PanelScaleSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+min_value = 50.0
+max_value = 300.0
+step = 10.0
+value = 100.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_735rd")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/LeftPanelContainer"]
+layout_mode = 2
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/LeftPanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Godot Control nodes are very flexible, so if you have a container with some text inside it, resizing the container will resize everything under it, too. Setting your text to use word wrapping means your text will always fit!"
+autowrap_mode = 3
+script = ExtResource("3_ab0nn")
+metadata/_custom_type_script = ExtResource("3_ab0nn")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CenterPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0yv22")
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vxw3r")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Your buttons will scale, too!"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Unless you use
+CenterContainer!"
+
+[node name="AccessibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "Experiment with different options on nodes like HBoxContainer to scale your UI in different ways!"
+horizontal_alignment = 1
+autowrap_mode = 3
+script = ExtResource("3_ab0nn")
+metadata/_custom_type_script = ExtResource("3_ab0nn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("5_vxw3r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("6_vavss")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("5_vxw3r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("6_vavss")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_vxw3r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_vavss")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/LeftScaleSlider" to="." method="_on_left_scale_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/PanelScaleSlider" to="." method="_on_panel_scale_slider_value_changed"]
